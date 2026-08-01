@@ -4928,4 +4928,503 @@ table{max-width:100%}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
 }
 </style>
+<style id="release-center-ux-refinement-v2">
+/* مركز الإصدارات: تسلسل بصري أوضح ومسافات أكثر كفاءة */
+.releases-ux{
+  --release-green:#1b8354;
+  --release-dark:#123f2c;
+  --release-border:#d5e4dc;
+  display:grid;
+  grid-template-columns:minmax(0,1.65fr) minmax(300px,.85fr);
+  gap:18px;
+  padding:clamp(20px,2.4vw,32px)!important;
+  background:#fff;
+}
+.releases-ux__intro,.release-archive-ux{grid-column:1/-1}
+.releases-ux__intro{margin:0!important;align-items:center!important;padding-bottom:2px}
+.releases-ux__intro h3{font-size:clamp(21px,2vw,28px)!important;line-height:1.35;margin-block:5px!important}
+.releases-ux__intro p{font-size:14px!important;line-height:1.7}
+.releases-ux__intro>a{min-height:44px;padding:10px 15px!important;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;transition:.18s ease}
+.releases-ux__intro>a:hover{border-color:var(--release-green);background:#f2faf6;transform:translateY(-1px)}
+
+.release-current-ux,.release-next-ux{margin:0!important;height:100%;box-shadow:none!important;transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease}
+.release-current-ux:hover,.release-next-ux:hover{border-color:#9ac9b0;box-shadow:0 10px 28px rgba(18,63,44,.07)!important;transform:translateY(-2px)}
+.release-current-ux{
+  grid-template-columns:64px minmax(0,1fr)!important;
+  align-content:center;
+  padding:22px!important;
+  gap:18px!important;
+  background:linear-gradient(120deg,#eef8f3 0%,#fbfefc 70%)!important;
+}
+.release-current-ux__icon{width:64px!important;height:64px!important;border-radius:16px!important}
+.release-current-ux__content h3{font-size:clamp(17px,1.45vw,21px)!important;line-height:1.55;margin:9px 0 5px!important}
+.release-meta-ux{font-size:12px!important;line-height:1.6;flex-wrap:wrap}
+.release-current-ux__actions{grid-column:1/-1;display:grid!important;grid-template-columns:1fr 1fr;gap:10px!important;margin-top:2px}
+.release-current-ux__actions button{min-height:48px!important;font-size:13px!important;display:inline-flex;align-items:center;justify-content:center;transition:.18s ease}
+.release-current-ux__actions button:hover{border-color:var(--release-green);background:#f4faf7}
+.release-current-ux__actions button.primary:hover{background:#116b43}
+
+.release-next-ux{
+  grid-template-columns:64px minmax(0,1fr)!important;
+  align-content:center;
+  padding:22px!important;
+  gap:15px!important;
+  background:#fafcfb!important;
+}
+.release-next-ux__date{width:64px!important;height:70px!important;border-radius:14px!important}
+.release-next-ux__date strong{font-size:28px!important}
+.release-next-ux__content h3{font-size:16px!important;line-height:1.55;margin:5px 0!important}
+.release-next-ux__content p{font-size:11px!important;line-height:1.65}
+.release-next-ux>button{grid-column:1/-1;width:100%;min-height:48px!important;margin-top:4px;font-size:13px!important;display:inline-flex;align-items:center;justify-content:center;transition:.18s ease}
+.release-next-ux>button:hover{border-color:var(--release-green);background:#f2faf6}
+
+.release-archive-ux{padding-top:12px!important}
+.release-archive-ux__head{margin-bottom:14px!important;padding-top:4px}
+.release-archive-ux__head h3{font-size:21px!important;margin-top:4px!important}
+.release-archive-ux__list{border-radius:14px!important;overflow:hidden;box-shadow:0 1px 0 rgba(18,63,44,.02)}
+.release-archive-ux__list>.release-item-ux{
+  min-height:104px!important;
+  grid-template-columns:52px minmax(0,1fr) auto!important;
+  gap:16px!important;
+  padding:16px 18px!important;
+  transition:background .16s ease;
+}
+.release-archive-ux__list>.release-item-ux:hover{background:#f8fcfa!important}
+.release-quarter{width:52px!important;height:52px!important;border-radius:13px!important;font-size:14px!important}
+.release-item-ux strong{font-size:15px!important;line-height:1.5}
+.release-item-ux small{font-size:11px!important;margin-top:2px}
+.release-item-meta{margin-top:8px!important;gap:7px!important}
+.release-item-meta span{font-size:10px!important;padding:4px 8px!important}
+.release-item-actions{display:flex;align-items:center;gap:9px!important}
+.release-item-actions .release-open,.release-files-button{min-height:42px!important;padding:9px 12px!important;border-radius:8px!important;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap}
+.release-item-actions .release-open{border:1px solid transparent;text-decoration:none!important}
+.release-item-actions .release-open:hover{border-color:#c7ddd2;background:#fff;text-decoration:none!important}
+
+@media(max-width:960px){
+  .releases-ux{grid-template-columns:1fr}
+  .releases-ux__intro,.release-archive-ux{grid-column:1}
+  .release-current-ux,.release-next-ux{height:auto}
+}
+@media(max-width:640px){
+  .releases-ux{display:block;padding:18px 14px!important}
+  .releases-ux__intro{display:flex!important;align-items:flex-start!important;gap:14px!important;margin-bottom:16px!important}
+  .releases-ux__intro h3{font-size:20px!important}
+  .releases-ux__intro p{font-size:12px!important}
+  .releases-ux__intro>a{width:100%;margin-top:2px}
+  .release-current-ux,.release-next-ux{margin-bottom:14px!important;padding:16px!important;border-radius:13px!important}
+  .release-current-ux{grid-template-columns:50px minmax(0,1fr)!important;gap:12px!important}
+  .release-current-ux__icon{width:50px!important;height:50px!important;border-radius:12px!important}
+  .release-current-ux__content h3{font-size:16px!important;margin-top:7px!important}
+  .release-meta-ux{display:grid!important;gap:2px!important;font-size:11px!important}
+  .release-meta-ux span+span:before{display:none}
+  .release-current-ux__actions{grid-template-columns:1fr!important;gap:8px!important}
+  .release-next-ux{grid-template-columns:54px minmax(0,1fr)!important;gap:12px!important}
+  .release-next-ux__date{width:54px!important;height:60px!important}
+  .release-next-ux__date strong{font-size:24px!important}
+  .release-next-ux__content h3{font-size:15px!important}
+  .release-archive-ux{padding-top:6px!important}
+  .release-archive-ux__head h3{font-size:19px!important}
+  .release-archive-ux__list>.release-item-ux{grid-template-columns:46px minmax(0,1fr)!important;gap:11px!important;padding:14px 12px!important}
+  .release-quarter{width:46px!important;height:46px!important}
+  .release-item-actions{grid-column:1/-1!important;display:grid!important;grid-template-columns:1fr 1fr;width:100%;gap:8px!important;margin-top:3px}
+  .release-item-actions .release-open,.release-files-button{width:100%;min-height:44px!important;padding-inline:8px!important}
+}
+@media(max-width:380px){
+  .release-current-ux,.release-next-ux{grid-template-columns:1fr!important}
+  .release-current-ux__icon,.release-next-ux__date{justify-self:start}
+  .release-current-ux__actions,.release-next-ux>button{grid-column:1!important}
+  .release-item-actions{grid-template-columns:1fr!important}
+}
+</style>
+<style id="release-quarter-badges-removal">
+.release-archive-ux .release-quarter{display:none!important}
+.release-archive-ux__list>.release-item-ux{grid-template-columns:minmax(0,1fr) auto!important}
+@media(max-width:640px){
+  .release-archive-ux__list>.release-item-ux{grid-template-columns:minmax(0,1fr)!important}
+  .release-item-actions{grid-column:1!important}
+}
+</style>
+<style id="release-actions-consistency-v1">
+.release-item-actions{
+  display:grid!important;
+  grid-template-columns:minmax(128px,1fr) minmax(128px,1fr);
+  gap:10px!important;
+  align-items:stretch!important;
+  min-width:280px;
+}
+.release-item-actions .release-open,
+.release-item-actions .release-files-button{
+  width:100%!important;
+  min-height:46px!important;
+  padding:10px 14px!important;
+  border-radius:9px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:7px!important;
+  font-size:12px!important;
+  font-weight:800!important;
+  line-height:1!important;
+  white-space:nowrap;
+  cursor:pointer;
+  text-decoration:none!important;
+  transition:background-color .18s ease,border-color .18s ease,color .18s ease,transform .18s ease,box-shadow .18s ease;
+}
+.release-item-actions .release-open{
+  border:1px solid #1b8354!important;
+  color:#fff!important;
+  background:#1b8354!important;
+}
+.release-item-actions .release-open:hover{
+  border-color:#116b43!important;
+  color:#fff!important;
+  background:#116b43!important;
+  box-shadow:0 5px 14px rgba(27,131,84,.16);
+  transform:translateY(-1px);
+}
+.release-item-actions .release-files-button{
+  border:1px solid #9fc8b3!important;
+  color:#166a45!important;
+  background:#fff!important;
+}
+.release-item-actions .release-files-button:hover{
+  border-color:#1b8354!important;
+  color:#0f5d3b!important;
+  background:#f2faf6!important;
+  transform:translateY(-1px);
+}
+.release-item-actions .release-open:focus-visible,
+.release-item-actions .release-files-button:focus-visible{
+  outline:3px solid rgba(27,131,84,.22)!important;
+  outline-offset:3px!important;
+}
+@media(max-width:760px){
+  .release-item-actions{min-width:0;width:100%;grid-template-columns:1fr 1fr!important}
+}
+@media(max-width:390px){
+  .release-item-actions{grid-template-columns:1fr!important}
+}
+</style>
+<style id="release-mobile-actions-stack-fix">
+@media(max-width:640px){
+  .release-archive-ux__list .release-item-actions{
+    grid-column:1/-1!important;
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:stretch!important;
+    gap:8px!important;
+    width:100%!important;
+    min-width:0!important;
+    margin:8px 0 0!important;
+  }
+  .release-archive-ux__list .release-item-actions .release-open,
+  .release-archive-ux__list .release-item-actions .release-files-button{
+    display:flex!important;
+    width:100%!important;
+    max-width:none!important;
+    min-height:46px!important;
+    margin:0!important;
+    justify-self:stretch!important;
+    align-self:stretch!important;
+  }
+}
+</style>
+<style id="remove-current-results-button">
+.release-current-ux__actions [data-publication-target="overview"]{display:none!important}
+.release-current-ux__actions{grid-template-columns:minmax(180px,260px)!important;justify-content:start}
+@media(max-width:640px){
+  .release-current-ux__actions{grid-template-columns:1fr!important;justify-content:stretch}
+}
+</style>
+<style id="remove-publication-results-button">
+.publication-toolbar .publication-action--results{display:none!important}
+@media(max-width:767px){
+  .publication-toolbar__actions{gap:10px!important}
+  .publication-toolbar .publication-export{order:1!important;width:100%!important;margin-top:0!important}
+  .publication-toolbar .publication-export__toggle{width:100%!important;justify-content:center!important}
+  .publication-toolbar .publication-action--previous{order:2!important;margin-top:4px!important}
+}
+</style>
+<style id="current-release-format-icons-style">
+.release-current-ux__actions{display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:10px!important}
+.release-current-ux__actions>.primary{display:none!important}
+.release-format-icons{display:flex;align-items:center;gap:10px}
+.release-format-icon{
+  position:relative;
+  width:52px!important;
+  height:52px!important;
+  min-width:52px!important;
+  min-height:52px!important;
+  padding:0!important;
+  border:1px solid #9fc8b3!important;
+  border-radius:11px!important;
+  display:grid!important;
+  place-items:center!important;
+  color:#166a45!important;
+  background:#fff!important;
+  cursor:pointer;
+  transition:background-color .18s ease,border-color .18s ease,color .18s ease,transform .18s ease,box-shadow .18s ease!important;
+}
+.release-format-icon:hover,.release-format-icon:focus-visible{
+  border-color:#1b8354!important;
+  color:#fff!important;
+  background:#1b8354!important;
+  transform:translateY(-2px);
+  box-shadow:0 7px 18px rgba(27,131,84,.18)!important;
+}
+.release-format-icon svg{width:27px!important;height:27px!important;margin:0!important;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.release-format-icon .format-mark{font-size:6px;font-weight:900;fill:currentColor;stroke:none;letter-spacing:.2px}
+.release-format-icon::after{
+  content:attr(data-tooltip);
+  position:absolute;
+  inset-block-end:calc(100% + 9px);
+  inset-inline-start:50%;
+  z-index:20;
+  padding:6px 9px;
+  border-radius:7px;
+  color:#fff;
+  background:#123f2c;
+  font-size:11px;
+  font-weight:700;
+  line-height:1;
+  white-space:nowrap;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transform:translate(-50%,5px);
+  transition:.16s ease;
+}
+.release-format-icon:hover::after,.release-format-icon:focus-visible::after{opacity:1;visibility:visible;transform:translate(-50%,0)}
+@media(max-width:640px){
+  .release-current-ux__actions{justify-content:stretch!important}
+  .release-format-icons{width:100%;display:grid;grid-template-columns:1fr 1fr}
+  .release-format-icon{width:100%!important;height:48px!important}
+}
+</style>
+<script id="current-release-format-icons-script">
+(function(){
+  function init(){
+    var card=document.querySelector('.release-current-ux');
+    if(!card||card.dataset.formatIconsReady==='true')return;
+    card.dataset.formatIconsReady='true';
+    var tags=card.querySelector('.release-tags');
+    if(tags)tags.innerHTML='<span>العربية والإنجليزية</span><span dir="ltr">PDF وExcel</span>';
+    var actions=card.querySelector('.release-current-ux__actions');
+    var original=actions&&actions.querySelector('.primary');
+    if(!actions)return;
+    var formats=document.createElement('div');
+    formats.className='release-format-icons';
+    formats.setAttribute('aria-label','تحميل ملفات الإصدار');
+    var pdf=document.createElement('button');
+    pdf.type='button';pdf.className='release-format-icon';pdf.setAttribute('aria-label','تحميل ملف PDF');pdf.dataset.tooltip='تحميل PDF';
+    pdf.innerHTML='<svg viewBox="0 0 28 28" aria-hidden="true"><path d="M7 3.5h9l5 5V24.5H7z"/><path d="M16 3.5v5h5"/><text class="format-mark" x="14" y="19" text-anchor="middle">PDF</text></svg>';
+    pdf.addEventListener('click',function(){if(original)original.click();});
+    var excel=document.createElement('button');
+    excel.type='button';excel.className='release-format-icon';excel.setAttribute('aria-label','تحميل ملف Excel');excel.dataset.tooltip='تحميل Excel';
+    excel.innerHTML='<svg viewBox="0 0 28 28" aria-hidden="true"><path d="M7 3.5h9l5 5V24.5H7z"/><path d="M16 3.5v5h5"/><path d="m10.5 14 7 6m0-6-7 6"/></svg>';
+    excel.addEventListener('click',function(){window.open('https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=121920','_blank','noopener');});
+    formats.append(pdf,excel);actions.append(formats);
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+})();
+</script>
+<style id="remove-current-release-card">
+.releases-ux>.release-current-ux{display:none!important}
+.releases-ux>.release-next-ux{grid-column:1/-1!important;height:auto!important}
+@media(min-width:961px){
+  .releases-ux>.release-next-ux{grid-template-columns:64px minmax(0,1fr) auto!important}
+  .releases-ux>.release-next-ux>button{grid-column:auto!important;width:auto!important;min-width:180px}
+}
+</style>
+<script id="remove-current-release-from-releases">
+(function(){
+  function removeCurrent(){
+    document.querySelector('.releases-ux>.release-current-ux')?.remove();
+    var intro=document.querySelector('.releases-ux__intro p');
+    if(intro)intro.textContent='تعرّف على موعد الإصدار القادم، أو ارجع إلى الإصدارات السابقة.';
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',removeCurrent,{once:true});else removeCurrent();
+})();
+</script>
+<style id="previous-releases-heading-refinement">
+.release-archive-ux__head h3{display:none!important}
+.release-archive-ux__head>div>span{
+  display:block!important;
+  color:#123f2c!important;
+  font-size:clamp(20px,1.8vw,25px)!important;
+  font-weight:800!important;
+  line-height:1.4!important;
+  position:relative;
+  padding-inline-start:15px;
+}
+.release-archive-ux__head>div>span::before{
+  content:'';
+  position:absolute;
+  inset-inline-start:0;
+  inset-block:5px;
+  width:4px;
+  border-radius:999px;
+  background:#1b8354;
+}
+.release-archive-ux__head{align-items:center!important;margin-bottom:16px!important}
+</style>
+<style id="releases-intro-title-removal">
+.releases-ux__intro>div>span,
+.releases-ux__intro h3{display:none!important}
+.releases-ux__intro p{margin:0!important;color:#52675d!important;font-size:14px!important;font-weight:600!important}
+@media(max-width:640px){
+  .releases-ux__intro p{font-size:12px!important;line-height:1.7!important}
+}
+</style>
+<style id="releases-product-title-highlight">
+.releases-ux__intro h3{
+  display:block!important;
+  margin:0 0 6px!important;
+  padding-inline-start:16px!important;
+  color:#123f2c!important;
+  font-size:clamp(21px,2vw,28px)!important;
+  font-weight:800!important;
+  line-height:1.4!important;
+  position:relative;
+}
+.releases-ux__intro h3::before{
+  content:'';
+  position:absolute;
+  inset-inline-start:0;
+  inset-block:5px;
+  width:4px;
+  border-radius:999px;
+  background:#1b8354;
+}
+.releases-ux__intro p{max-width:720px}
+@media(max-width:640px){
+  .releases-ux__intro h3{font-size:20px!important;margin-bottom:5px!important}
+}
+</style>
+<script id="releases-product-title-script">
+(function(){
+  function setTitle(){
+    var title=document.querySelector('.releases-ux__intro h3');
+    if(title)title.textContent='الرقم القياسي لأسعار العقارات';
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setTitle,{once:true});else setTitle();
+})();
+</script>
+<style id="previous-release-compact-actions">
+.release-item-actions{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:8px!important;min-width:0!important}
+.release-item-actions>.release-files-button{display:none!important}
+.release-item-actions .release-open{width:auto!important;min-width:145px!important;min-height:46px!important;padding-inline:18px!important}
+.previous-format-buttons{display:flex;align-items:center;gap:7px}
+.previous-format-icon{
+  position:relative;
+  width:46px!important;
+  height:46px!important;
+  min-width:46px!important;
+  min-height:46px!important;
+  padding:0!important;
+  border:1px solid #9fc8b3!important;
+  border-radius:9px!important;
+  display:grid!important;
+  place-items:center!important;
+  color:#166a45!important;
+  background:#fff!important;
+  cursor:pointer;
+  transition:.18s ease!important;
+}
+.previous-format-icon:hover,.previous-format-icon:focus-visible{border-color:#1b8354!important;color:#fff!important;background:#1b8354!important;transform:translateY(-1px);box-shadow:0 5px 14px rgba(27,131,84,.16)}
+.previous-format-icon svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.previous-format-icon .format-mark{font-size:5.5px;font-weight:900;fill:currentColor;stroke:none}
+.previous-format-icon::after{
+  content:attr(data-tooltip);
+  position:absolute;
+  inset-block-end:calc(100% + 8px);
+  inset-inline-start:50%;
+  z-index:25;
+  padding:6px 8px;
+  border-radius:6px;
+  color:#fff;
+  background:#123f2c;
+  font-size:10px;
+  font-weight:700;
+  white-space:nowrap;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transform:translate(-50%,4px);
+  transition:.15s ease;
+}
+.previous-format-icon:hover::after,.previous-format-icon:focus-visible::after{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.previous-format-buttons .previous-format-icon:last-child::after{
+  inset-inline-start:auto;
+  inset-inline-end:0;
+  transform:translate(0,4px);
+}
+.previous-format-buttons .previous-format-icon:last-child:hover::after,
+.previous-format-buttons .previous-format-icon:last-child:focus-visible::after{transform:translate(0,0)}
+@media(max-width:640px){
+  .release-archive-ux__list .release-item-actions{flex-direction:row!important;align-items:center!important;margin-top:8px!important}
+  .release-item-actions .release-open{flex:1 1 auto!important;min-width:0!important}
+  .previous-format-buttons{flex:0 0 auto}
+}
+@media(max-width:350px){
+  .release-archive-ux__list .release-item-actions{flex-wrap:wrap!important}
+  .release-item-actions .release-open{flex-basis:100%!important;width:100%!important}
+}
+</style>
+<script id="previous-release-format-icons-script">
+(function(){
+  function init(){
+    document.querySelectorAll('.release-item-actions').forEach(function(actions){
+      if(actions.dataset.compactFormatsReady==='true')return;
+      actions.dataset.compactFormatsReady='true';
+      var source=actions.querySelector('.release-files-button');
+      if(!source)return;
+      var formats=document.createElement('div');formats.className='previous-format-buttons';formats.setAttribute('aria-label','تنزيل ملفات الإصدار');
+      var pdf=document.createElement('button');pdf.type='button';pdf.className='previous-format-icon';pdf.setAttribute('aria-label','تحميل PDF');pdf.dataset.tooltip='تحميل PDF';
+      pdf.innerHTML='<span class="filetype-icon filetype-icon--pdf" aria-hidden="true"><span>PDF</span></span>';
+      var excel=document.createElement('button');excel.type='button';excel.className='previous-format-icon';excel.setAttribute('aria-label','تحميل Excel');excel.dataset.tooltip='تحميل Excel';
+      excel.innerHTML='<span class="filetype-icon filetype-icon--excel" aria-hidden="true"><span>XLS</span></span>';
+      [pdf,excel].forEach(function(button){button.addEventListener('click',function(){source.click();});});
+      formats.append(pdf,excel);actions.append(formats);
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+})();
+</script>
+<style id="filetype-icons-reliability-fix">
+.previous-format-icon{overflow:visible!important}
+.filetype-icon{
+  position:relative;
+  width:25px;
+  height:29px;
+  border:2px solid currentColor;
+  border-radius:3px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  padding-bottom:4px;
+  color:inherit;
+  background:transparent;
+}
+.filetype-icon::before{
+  content:'';
+  position:absolute;
+  inset-block-start:-2px;
+  inset-inline-end:-2px;
+  width:8px;
+  height:8px;
+  border-inline-start:2px solid currentColor;
+  border-block-end:2px solid currentColor;
+  border-end-start-radius:2px;
+  background:#fff;
+}
+.previous-format-icon:hover .filetype-icon::before,
+.previous-format-icon:focus-visible .filetype-icon::before{background:#1b8354}
+.filetype-icon span{font-family:Arial,sans-serif;font-size:7px;font-weight:900;line-height:1;letter-spacing:-.15px;direction:ltr}
+.filetype-icon--pdf span{font-size:7px}
+.filetype-icon--excel span{font-size:7px}
+</style>
+<style id="previous-format-tooltip-removal">
+.previous-format-icon::after{display:none!important;content:none!important}
+</style>
 </html>
