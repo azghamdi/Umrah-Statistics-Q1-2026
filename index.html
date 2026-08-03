@@ -3332,7 +3332,7 @@ body.metadata-dialog-open .publication-tabs{z-index:900!important}
 <section class="key-result-v1" aria-labelledby="key-result-v1-title">
 <div class="key-result-v1__head"><span class="key-result-v1__label">أبرز نتيجة</span><span class="key-result-v1__period">الربع الأول 2026</span></div>
 <div class="key-result-v1__body"><div class="key-result-v1__number"><strong>−1.6%</strong><span>التغير السنوي في الرقم القياسي</span></div><div class="key-result-v1__copy"><h2 id="key-result-v1-title">انخفاض الرقم القياسي لأسعار العقارات على أساس سنوي</h2><p>سجّل الرقم القياسي لأسعار العقارات في المملكة انخفاضًا مقارنةً بالربع الأول من عام 2025، متأثرًا بصورة رئيسية بانخفاض أسعار القطاع السكني.</p></div></div>
-<div class="key-result-v1__details"><span class="key-result-v1__metric">القطاع السكني <b>−3.6%</b></span><span class="key-result-v1__metric">القطاع التجاري <b>+3.4%</b></span><a class="key-result-v1__link" href="#imported-overview">استكشف التفاصيل ←</a></div>
+<div class="key-result-v1__details"><span class="key-result-v1__metric">القطاع السكني <b dir="ltr">+3.6%</b></span><span class="key-result-v1__metric">القطاع التجاري <b dir="ltr">−3.4%</b></span><a class="key-result-v1__link" href="#imported-overview">استكشف التفاصيل ←</a></div>
 </section>
 </div>
 <div class="publication-tabs-sentinel" aria-hidden="true"></div>
@@ -3411,19 +3411,12 @@ body.metadata-dialog-open .publication-tabs{z-index:900!important}
 </button>
 <div class="publication-metadata__backdrop" hidden></div>
 <section class="publication-metadata__panel" id="publicationMetadataPanel" role="dialog" aria-modal="true" aria-labelledby="publicationMetadataTitle" aria-describedby="publicationMetadataDescription" hidden>
-<header><div><span>معلومات النشرة</span><h3 id="publicationMetadataTitle">البيانات الوصفية</h3><p id="publicationMetadataDescription">معلومات تعريفية محدثة عن هذه النشرة الإحصائية.</p></div><button type="button" class="publication-metadata__close" aria-label="إغلاق البيانات الوصفية">×</button></header>
+<header><div><span>التعريف بالمنتج</span><h3 id="publicationMetadataTitle">البيانات الوصفية</h3><p id="publicationMetadataDescription">معلومات تعريفية عن منتج الرقم القياسي لأسعار العقارات.</p></div><button type="button" class="publication-metadata__close" aria-label="إغلاق البيانات الوصفية">×</button></header>
 <dl>
-<div><dt>نوع الإصدار</dt><dd>إصدار إحصائي</dd></div>
-<div><dt>الدورية</dt><dd>ربعية</dd></div>
-<div><dt>التغطية</dt><dd>المملكة (13 منطقة)</dd></div>
-<div><dt>الفترة المرجعية</dt><dd>الربع الأول 2026</dd></div>
-<div><dt>سنة الأساس</dt><dd>2023</dd></div>
-<div><dt>اللغة</dt><dd>العربية / الإنجليزية</dd></div>
-<div><dt>آخر تحديث</dt><dd><time datetime="2026-04-20">20 أبريل 2026</time></dd></div>
-<div><dt>موعد الإصدار القادم</dt><dd><time datetime="2026-08-12">12 أغسطس 2026</time></dd></div>
-<div><dt>إصدار المنهجية</dt><dd><bdi dir="ltr">2024.1</bdi></dd></div>
-<div><dt>الإدارة المسؤولة</dt><dd>إحصاءات الأسعار</dd></div>
-<div class="publication-metadata__id"><dt>المعرّف الدائم (Persistent ID)</dt><dd><code dir="ltr">GASTAT/REPI/2026/Q1</code><button type="button" class="publication-metadata__copy" data-value="GASTAT/REPI/2026/Q1">نسخ</button><span role="status" aria-live="polite"></span></dd></div>
+<div><dt>اسم المنتج</dt><dd>الرقم القياسي لأسعار العقارات</dd></div>
+<div><dt>الهدف</dt><dd>قياس التغيرات في أسعار العقارات السكنية والتجارية والزراعية مع مرور الزمن.</dd></div>
+<div><dt>وصف المنتج</dt><dd>مؤشر اقتصادي يعكس التغير النسبي في أسعار العقارات مقارنة بفترة الأساس.</dd></div>
+<div><dt>المؤشرات المنشورة</dt><dd><ul><li>الرقم القياسي لأسعار العقارات.</li><li>التغير الربعي.</li><li>التغير السنوي.</li><li>المؤشرات حسب القطاع.</li><li>المؤشرات حسب نوع العقار.</li><li>المؤشرات حسب المنطقة الإدارية.</li></ul></dd></div>
 </dl>
 <footer><span>المصدر: الهيئة العامة للإحصاء</span><button type="button" class="publication-metadata__done">تم</button></footer>
 </section>
@@ -5740,4 +5733,129 @@ table{max-width:100%}
 <style id="previous-format-tooltip-removal">
 .previous-format-icon::after{display:none!important;content:none!important}
 </style>
+<style id="annual-indicator-right-alignment">
+/* In RTL, the first flex item belongs at the inline start (the right side). */
+.key-result-v1__body{flex-direction:row!important}
+@media(max-width:700px){.key-result-v1__body{display:grid!important;grid-template-columns:1fr!important}}
+</style>
+<style id="publication-metadata-product-content">
+.publication-metadata__panel dd ul{margin:0;padding-inline-start:1.25rem;list-style:disc}
+.publication-metadata__panel dd li+li{margin-top:.35rem}
+.publication-metadata__panel header span{font-weight:500!important}
+.publication-metadata__panel header h3{font-weight:600!important}
+.publication-metadata__panel header p{font-weight:400!important}
+.publication-metadata__panel dt{font-weight:600!important}
+.publication-metadata__panel dd,
+.publication-metadata__panel dd li{font-weight:400!important}
+</style>
+<style id="chart-data-tables-style">
+.chart-table-panel{margin:14px 0 18px;border:1px solid #c8ddd2;border-radius:12px;background:#fff;box-shadow:0 5px 16px rgba(18,63,44,.07);overflow:hidden}
+.chart-table-scroll{overflow-x:auto}
+.chart-data-table{width:100%;min-width:560px;border-collapse:collapse;text-align:right;font-size:13px}
+.chart-data-table caption{padding:13px 16px;color:#123f2c;background:#f5faf7;font-weight:600;text-align:right}
+.chart-data-table th,.chart-data-table td{padding:11px 14px;border-top:1px solid #e4ece8;white-space:nowrap}
+.chart-data-table thead th{color:#315b48;background:#f8fbf9;font-weight:600}
+.chart-data-table tbody th{font-weight:500}
+.chart-data-table td[dir="ltr"]{text-align:center;font-variant-numeric:tabular-nums}
+@media(max-width:700px){.chart-data-table{font-size:12px}.chart-data-table th,.chart-data-table td{padding:9px 11px}}
+</style>
+<script id="chart-data-tables-script">
+(function(){
+  var cards=Array.from(document.querySelectorAll('.imported-release__chart-card'));
+  if(!cards.length)return;
+  var tableIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" rx="2"/><path d="M3.5 9.5h17M9 5v14M15 5v14"/></svg>';
+  var first={annual:[['المؤشر العام',-1.6,'all'],['القطاع السكني',-3.6,'residential'],['القطاع التجاري',3.4,'commercial'],['القطاع الزراعي',11.8,'agricultural']],quarterly:[['المؤشر العام',-0.2,'all'],['القطاع السكني',0.5,'residential'],['القطاع التجاري',-2.3,'commercial'],['القطاع الزراعي',3.1,'agricultural']]};
+  var residential={labels:['Q1 2025','Q2 2025','Q3 2025','Q4 2025','Q1 2026'],rows:[['القطاع السكني',3.7,.6,-1,-2.5,-3.6],['الأراضي السكنية',5.4,.8,-.8,-2.4,-3.9],['الشقق',1,.6,-1.8,-2.7,-1.1]]};
+  var regions=[['المنطقة الشرقية',6.9],['نجران',3.5],['تبوك',1.5],['عسير',1.1],['مكة المكرمة',-.7],['الجوف',-1.4],['جازان',-1.4],['الرياض',-4.4],['المدينة المنورة',-5],['القصيم',-5.1],['الحدود الشمالية',-6.6],['حائل',-8],['الباحة',-9.2]];
+  function pct(v){return (v>0?'+':'')+Number(v).toFixed(1)+'%';}
+  function build(index){
+    var html='';
+    if(index===0){
+      var period=(document.getElementById('interactivePeriodFilter')||{}).value||'annual';
+      var sector=(document.getElementById('interactiveSectorFilter')||{}).value||'all';
+      var rows=first[period].filter(function(r){return sector==='all'||r[2]===sector;});
+      html='<table class="chart-data-table"><caption>بيانات التغير '+(period==='annual'?'السنوي':'الربعي')+' حسب القطاع</caption><thead><tr><th scope="col">القطاع</th><th scope="col">نسبة التغير</th></tr></thead><tbody>'+rows.map(function(r){return '<tr><th scope="row">'+r[0]+'</th><td dir="ltr">'+pct(r[1])+'</td></tr>';}).join('')+'</tbody></table>';
+    }else if(index===1){
+      html='<table class="chart-data-table"><caption>التغير السنوي لأهم الأصناف السكنية</caption><thead><tr><th scope="col">الصنف</th>'+residential.labels.map(function(x){return '<th scope="col" dir="ltr">'+x+'</th>';}).join('')+'</tr></thead><tbody>'+residential.rows.map(function(r){return '<tr><th scope="row">'+r[0]+'</th>'+r.slice(1).map(function(v){return '<td dir="ltr">'+pct(v)+'</td>';}).join('')+'</tr>';}).join('')+'</tbody></table>';
+    }else{
+      html='<table class="chart-data-table"><caption>التغير السنوي بحسب المنطقة الإدارية</caption><thead><tr><th scope="col">المنطقة</th><th scope="col">نسبة التغير</th></tr></thead><tbody>'+regions.map(function(r){return '<tr><th scope="row">'+r[0]+'</th><td dir="ltr">'+pct(r[1])+'</td></tr>';}).join('')+'</tbody></table>';
+    }
+    return html;
+  }
+  cards.forEach(function(card,index){
+    var bar=card.querySelector('.standard-chart-actions');
+    var wrap=card.querySelector('.imported-release__chart-wrap');
+    if(!bar||!wrap)return;
+    var button=document.createElement('button');button.className='standard-chart-action';button.type='button';button.setAttribute('data-chart-action','table');button.setAttribute('aria-expanded','false');button.innerHTML=tableIcon+'<span>عرض الجدول</span>';
+    var panel=document.createElement('div');panel.className='chart-table-panel';panel.hidden=true;panel.id='chart-data-table-'+(index+1);button.setAttribute('aria-controls',panel.id);panel.innerHTML='<div class="chart-table-scroll"></div>';
+    bar.appendChild(button);wrap.parentNode.insertBefore(panel,wrap);
+    function refresh(){panel.querySelector('.chart-table-scroll').innerHTML=build(index);}
+    button.addEventListener('click',function(){var open=panel.hidden;panel.hidden=!open;button.setAttribute('aria-expanded',String(open));button.querySelector('span').textContent=open?'إخفاء الجدول':'عرض الجدول';if(open)refresh();});
+    if(index===0){['interactiveSectorFilter','interactivePeriodFilter'].forEach(function(id){var el=document.getElementById(id);if(el)el.addEventListener('change',function(){if(!panel.hidden)refresh();});});}
+  });
+})();
+</script>
+<style id="methodology-summary-v2-style">
+.methodology-summary-v2{border:1px solid #d4e4db;border-radius:14px;background:#fff;overflow:hidden}
+.methodology-summary-v2__head{padding:20px 22px;border-bottom:1px solid #e1ebe6;background:#f3f9f6}
+.methodology-summary-v2__head span{color:#47715e;font-size:12px;font-weight:500}.methodology-summary-v2__head h3{margin:3px 0 0;color:#123f2c;font-size:21px;font-weight:600}
+.methodology-summary-v2__intro,.methodology-summary-v2__more{padding:20px 22px}.methodology-summary-v2 p{margin:0 0 12px;color:#405b4e;font-weight:400;line-height:1.9}
+.methodology-summary-v2__more{padding-top:0}.methodology-summary-v2__more section{padding:20px 0;border-top:1px solid #e3ece7}.methodology-summary-v2 h4{margin:0 0 14px;color:#145c3c;font-size:17px;font-weight:600}.methodology-summary-v2 h5{margin:15px 0 8px;color:#315b48;font-size:14px;font-weight:600}
+.methodology-summary-v2 dl{margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 18px}.methodology-summary-v2 dl div{padding:10px 12px;border-radius:8px;background:#f7faf8}.methodology-summary-v2 dt{color:#315b48;font-size:12px;font-weight:600}.methodology-summary-v2 dd{margin:3px 0 0;color:#475f53;font-size:13px;font-weight:400}.methodology-summary-v2 ul{margin:0;padding-inline-start:1.3rem;color:#475f53}.methodology-summary-v2 li{margin:5px 0;font-weight:400}
+.methodology-summary-v2__actions{padding:15px 22px;border-top:1px solid #dfeae4;display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#fafcfb}.methodology-summary-v2__actions button{min-height:42px;padding:9px 14px;border-radius:9px;display:inline-flex;align-items:center;gap:8px;font-family:inherit;font-weight:600;cursor:pointer}.methodology-summary-v2__more-button{border:1px solid #aacaba;color:#165f3e;background:#fff}.methodology-summary-v2__pdf{border:0;color:#fff;background:#1b8354}.methodology-summary-v2__pdf svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.methodology-summary-v2__status{color:#527063;font-size:12px}
+@media(max-width:700px){.methodology-summary-v2__head,.methodology-summary-v2__intro,.methodology-summary-v2__more,.methodology-summary-v2__actions{padding-inline:15px}.methodology-summary-v2 dl{grid-template-columns:1fr}.methodology-summary-v2__actions button{width:100%;justify-content:center}}
+@media print{body.methodology-print-mode>*{display:none!important}body.methodology-print-mode .publication-content,body.methodology-print-mode #methodology,body.methodology-print-mode #methodologyPanel,body.methodology-print-mode .methodology-summary-v2{display:block!important}body.methodology-print-mode .methodology-summary-v2__more{display:block!important}body.methodology-print-mode .methodology-summary-v2__actions{display:none!important}}
+</style>
+<script id="methodology-summary-v2-script">
+(function(){
+  var panel=document.getElementById('methodologyPanel');if(!panel)return;
+  panel.innerHTML=`<article class="methodology-summary-v2" aria-labelledby="methodology-summary-v2-title">
+  <header class="methodology-summary-v2__head"><span>تحديث المنهجية والجودة</span><h3 id="methodology-summary-v2-title">ملخص المنهجية</h3></header>
+  <div class="methodology-summary-v2__intro"><p>يقيس الرقم القياسي لأسعار العقارات التغيرات في أسعار العقارات السكنية والتجارية والزراعية في المملكة العربية السعودية، ويُعد أحد المؤشرات الاقتصادية الرئيسة لدعم صناع القرار ومتابعة تطورات السوق العقاري.</p><p>يعتمد المؤشر على بيانات الصفقات العقارية المسجلة لدى الهيئة العامة للعقار ووزارة العدل، ويغطي جميع المناطق الإدارية في المملكة. ويُنشر بشكل ربعي باستخدام سنة أساس (2023)، ويتم احتسابه وفق المنهجية الطبقية ومعادلة لاسبير الهندسية، بما يتوافق مع المعايير الدولية. كما تستفيد الهيئة من البيانات التكميلية وتقنيات الذكاء الاصطناعي لتحسين تصنيف العقارات وجودة البيانات.</p></div>
+  <div class="methodology-summary-v2__more" id="methodologyMoreContent" hidden>
+    <section><h4>التغطية الإحصائية</h4><dl><div><dt>المجتمع الإحصائي</dt><dd>جميع الصفقات العقارية المسجلة في المملكة العربية السعودية.</dd></div><div><dt>الوحدة الإحصائية</dt><dd>الصفقة العقارية.</dd></div><div><dt>التغطية الجغرافية</dt><dd>جميع المناطق الإدارية (13 منطقة).</dd></div><div><dt>التغطية القطاعية</dt><dd>القطاع السكني، القطاع التجاري، القطاع الزراعي.</dd></div><div><dt>التغطية الزمنية</dt><dd>من عام 2014 حتى الربع الحالي.</dd></div><div><dt>الفترة المرجعية</dt><dd>ربع سنوي وسنوي.</dd></div><div><dt>سنة الأساس</dt><dd>2023.</dd></div><div><dt>دورية النشر</dt><dd>ربع سنوية.</dd></div><div><dt>وحدة القياس</dt><dd>أرقام قياسية ونسب تغير (%).</dd></div></dl></section>
+    <section><h4>التصنيفات المستخدمة</h4><dl><div><dt>تصنيف القطاعات العقارية</dt><dd>سكني، تجاري، زراعي.</dd></div><div><dt>السكني</dt><dd>قطعة أرض، فيلا، شقة، دور.</dd></div><div><dt>التجاري</dt><dd>قطعة أرض، عمارة، معرض / محل.</dd></div><div><dt>الزراعي</dt><dd>أرض زراعية.</dd></div><div><dt>التصنيف الجغرافي</dt><dd>13 منطقة إدارية.</dd></div></dl></section>
+    <section><h4>مصادر البيانات</h4><h5>المصدر الرئيس</h5><ul><li>الهيئة العامة للعقار.</li><li>وزارة العدل.</li></ul><h5>المصادر التكميلية</h5><ul><li>بيانات التعداد.</li><li>بيانات التجمعات السكنية.</li><li>بيانات الأراضي.</li><li>صور الأقمار الصناعية.</li></ul></section>
+    <section><h4>المنهجية الإحصائية</h4><dl><div><dt>طريقة جمع البيانات</dt><dd>بيانات سجلية يتم الحصول عليها أسبوعيًا.</dd></div><div><dt>طريقة الاحتساب</dt><dd>المنهجية الطبقية (Stratification).</dd></div><div><dt>معادلة الاحتساب</dt><dd>Geometric Laspeyres Index.</dd></div><div><dt>الأوزان</dt><dd>تعتمد على متوسط سعر المتر المربع في سنة الأساس.</dd></div><div><dt>استخدام الذكاء الاصطناعي</dt><dd>نعم.</dd></div></dl><h5>الاستخدامات</h5><ul><li>تحسين تصنيف العقارات.</li><li>الربط مع البيانات التكميلية.</li><li>رفع جودة البيانات.</li></ul></section>
+    <section><h4>التحقق من جودة البيانات</h4><p>تشمل عمليات التحقق:</p><ul><li>تطبيق قواعد الأخطاء.</li><li>تصحيح البيانات.</li><li>مقارنة البيانات تاريخيًا.</li><li>معالجة البيانات الناقصة.</li><li>معالجة القيم غير المنطقية.</li><li>مراجعة النتائج قبل النشر.</li></ul></section>
+    <section><h4>الجودة</h4><p><strong>إطار الجودة:</strong> يعتمد على GSBPM.</p><h5>أبعاد الجودة</h5><ul><li>الملاءمة.</li><li>الدقة.</li><li>الموثوقية.</li><li>الالتزام بالمواعيد.</li><li>إمكانية الوصول.</li><li>الوضوح.</li><li>الاتساق.</li><li>قابلية المقارنة.</li></ul><h5>الاتساق</h5><ul><li>متسق مع الحسابات القومية.</li><li>قابل للمقارنة بين المناطق.</li><li>قابل للمقارنة عبر الزمن.</li></ul></section>
+    <section><h4>النشر</h4><p><strong>دورية النشر:</strong> ربع سنوية.</p><h5>وسائل النشر</h5><ul><li>بوابة الإحصاءات الرسمية.</li><li>قاعدة البيانات الإحصائية.</li><li>الجداول.</li><li>الرسوم البيانية.</li><li>التقرير المنهجي.</li><li>ملفات Excel.</li></ul></section>
+    <section><h4>المستخدمون الرئيسيون</h4><ul><li>البنك المركزي السعودي.</li><li>الهيئة العامة للعقار.</li><li>وزارة الاقتصاد والتخطيط.</li><li>وزارة المالية.</li><li>الجهات الحكومية.</li><li>المنظمات الدولية.</li><li>الباحثون.</li><li>الإعلام.</li><li>الأفراد.</li></ul></section>
+    <section><h4>المعايير الدولية</h4><p>يعتمد المنتج على:</p><ul><li>الدليل الدولي لمؤشرات أسعار العقارات السكنية (Eurostat 2013).</li><li>الدليل العملي لمؤشر أسعار العقارات السكنية (IMF 2020).</li><li>الدليل الفني الصادر عن الهيئة العامة للعقار.</li></ul></section>
+    <section><h4>السرية</h4><dl><div><dt>سياسة السرية</dt><dd>جميع البيانات تعامل بسرية تامة وفق الأنظمة الوطنية.</dd></div><div><dt>إتاحة البيانات الدقيقة</dt><dd>غير متاحة.</dd></div></dl></section>
+    <section><h4>التحديثات</h4><h5>آخر تحديثات المنهجية</h5><ul><li>تحديث سنة الأساس إلى 2023.</li><li>تطوير منهجية جمع ومعالجة البيانات.</li><li>استخدام البيانات التكميلية.</li><li>استخدام تقنيات الذكاء الاصطناعي.</li><li>توسيع التغطية الجغرافية.</li><li>تحديث التصنيف العقاري.</li></ul></section>
+  </div>
+  <footer class="methodology-summary-v2__actions"><button class="methodology-summary-v2__more-button" type="button" aria-expanded="false" aria-controls="methodologyMoreContent"><span>عرض المزيد</span><span aria-hidden="true">⌄</span></button><a class="methodology-summary-v2__pdf" href="https://www.stats.gov.sa/documents/20117/2435133/Methodology+and+Quality+Report+for+Real+Estate+Price+Index+Statistics_AR.pdf/dce9a604-fecf-8609-e7fe-10fd704d5941?t=1783497406266" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5h7l4 4v13H7z"/><path d="M14 3.5v4h4M12 10v6m0 0 3-3m-3 3-3-3"/></svg><span>تحميل تقرير المنهجية الكامل (PDF)</span></a><span class="methodology-summary-v2__status" role="status" aria-live="polite"></span></footer>
+  </article>`;
+  var more=panel.querySelector('#methodologyMoreContent'),moreButton=panel.querySelector('.methodology-summary-v2__more-button'),pdfButton=panel.querySelector('.methodology-summary-v2__pdf'),status=panel.querySelector('.methodology-summary-v2__status');
+  moreButton.addEventListener('click',function(){var open=more.hidden;more.hidden=!open;moreButton.setAttribute('aria-expanded',String(open));moreButton.querySelector('span').textContent=open?'عرض أقل':'عرض المزيد';});
+})();
+</script>
+<style id="methodology-pdf-link-style">
+.methodology-summary-v2__actions a{min-height:42px;padding:9px 14px;border-radius:9px;display:inline-flex;align-items:center;gap:8px;font-family:inherit;font-weight:600;text-decoration:none}
+@media(max-width:700px){.methodology-summary-v2__actions a{width:100%;justify-content:center}}
+</style>
+<style id="chart-excel-export-style">
+.chart-table-export-bar{padding:10px 12px;border-bottom:1px solid #dfe9e4;display:flex;justify-content:flex-start;background:#f8fbf9}
+.chart-table-export{min-height:38px;padding:7px 12px;border:1px solid #9fc6b2;border-radius:8px;display:inline-flex;align-items:center;gap:7px;color:#155e3d;background:#fff;font-family:inherit;font-size:12px;font-weight:600;cursor:pointer}
+.chart-table-export:hover{background:#edf7f1}.chart-table-export svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+</style>
+<script id="chart-excel-export-script">
+(function(){
+  var excelIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3.5h10l4 4v13H5z"/><path d="M15 3.5v4h4M8.5 11l4 6m0-6-4 6"/></svg>';
+  document.querySelectorAll('.chart-table-panel').forEach(function(panel,index){
+    var bar=document.createElement('div');bar.className='chart-table-export-bar';
+    var button=document.createElement('button');button.type='button';button.className='chart-table-export';button.innerHTML=excelIcon+'<span>تصدير Excel</span>';
+    bar.appendChild(button);panel.insertBefore(bar,panel.firstChild);
+    button.addEventListener('click',function(){
+      var table=panel.querySelector('.chart-data-table');if(!table)return;
+      var title=(table.querySelector('caption')||{}).textContent||'بيانات الرسم البياني';
+      var workbook='<!DOCTYPE html><html dir="rtl"><head><meta charset="UTF-8"><style>table{border-collapse:collapse;font-family:Tahoma,Arial}caption{font-size:16px;font-weight:bold;margin-bottom:10px}th,td{border:1px solid #b7c9bf;padding:8px;text-align:right}thead th{background:#eaf5ef;color:#123f2c}</style></head><body>'+table.outerHTML+'</body></html>';
+      var blob=new Blob(['\ufeff',workbook],{type:'application/vnd.ms-excel;charset=utf-8'}),url=URL.createObjectURL(blob),link=document.createElement('a');
+      link.href=url;link.download='real-estate-chart-data-'+(index+1)+'.xls';document.body.appendChild(link);link.click();link.remove();setTimeout(function(){URL.revokeObjectURL(url);},1000);
+      button.querySelector('span').textContent='تم التصدير';setTimeout(function(){button.querySelector('span').textContent='تصدير Excel';},2200);
+    });
+  });
+})();
+</script>
 </html>
