@@ -6003,11 +6003,11 @@
           <span aria-hidden="true">›</span>
           <a href="https://azghamdi.github.io/publication/stats.html">الإحصاءات</a>
           <span aria-hidden="true">›</span>
-          <a href="https://azghamdi.github.io/publication/stats.html?view=stat0#catalog">الإحصاءات الاقتصادية</a>
+          <a href="https://azghamdi.github.io/publication/stats.html?view=stat0#catalog">الإحصاءات البيئية والمكانية</a>
           <span aria-hidden="true">›</span>
-          <a href="https://azghamdi.github.io/publication/stats.html?view=stat0&amp;group=3#catalog">إحصاءات الأسعار</a>
+          <a href="https://azghamdi.github.io/publication/stats.html?view=stat0&amp;group=3#catalog">إحصاءات السياحة والحج والعمرة</a>
           <span aria-hidden="true">›</span>
-          <span aria-current="page">إحصاءات أسعار العقارات</span>
+          <span aria-current="page">إحصاءات العمرة</span>
         </nav>
         <h1>إحصاءات العمرة</h1>
         <p>الربع الأول 2026</p>
@@ -10633,6 +10633,28 @@
   nav.addEventListener('change',event=>{if(event.target.id==='datasetTableSelect')updateSource(Number(event.target.value))});
   document.addEventListener('umrah-dataset-change',event=>{updateSource(Number(event.detail?.index)||0);queueMicrotask(addSearch)});
   new MutationObserver(()=>queueMicrotask(addSearch)).observe(nav,{childList:true,subtree:true});addSearch();updateSource(0);
+})();
+</script>
+<style id="summary-table-mobile-style">
+  @media(max-width:600px){
+    #dataTablePanel .table-wrap.is-summary-table{overflow-x:visible;box-shadow:none;scrollbar-gutter:auto}
+    #dataTablePanel .table-wrap.is-summary-table .data-table{width:100%!important;min-width:0!important;table-layout:fixed}
+    #dataTablePanel .table-wrap.is-summary-table .data-table th,
+    #dataTablePanel .table-wrap.is-summary-table .data-table td{padding:11px 9px;font-size:13px;line-height:1.55;white-space:normal;overflow-wrap:anywhere}
+    #dataTablePanel .table-wrap.is-summary-table .data-table th:first-child,
+    #dataTablePanel .table-wrap.is-summary-table .data-table td:first-child{position:static!important;width:62%!important;min-width:0!important;box-shadow:none!important;text-align:right!important}
+    #dataTablePanel .table-wrap.is-summary-table .data-table th:nth-child(2),
+    #dataTablePanel .table-wrap.is-summary-table .data-table td:nth-child(2){width:38%!important;min-width:0!important;text-align:left!important;direction:ltr;white-space:nowrap;font-variant-numeric:tabular-nums;font-weight:700}
+  }
+</style>
+<script id="summary-table-mobile-behavior">
+(()=>{
+  const wrap=document.querySelector('#dataTablePanel .table-wrap');
+  if(!wrap)return;
+  const update=index=>wrap.classList.toggle('is-summary-table',Number(index)===0);
+  document.addEventListener('umrah-dataset-change',event=>update(event.detail?.index));
+  document.getElementById('datasetNav')?.addEventListener('change',event=>{if(event.target.id==='datasetTableSelect')update(event.target.value)});
+  update(document.getElementById('datasetTableSelect')?.value||0);
 })();
 </script>
 <script id="tableau-frame-state">
