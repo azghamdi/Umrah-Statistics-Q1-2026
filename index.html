@@ -10562,6 +10562,29 @@
   new MutationObserver(()=>requestAnimationFrame(normalize)).observe(grid,{childList:true,subtree:true});normalize();
 })();
 </script>
+<style id="mobile-chart-touch-fix">
+  @media(max-width:600px){
+    #datasetChartMount .repi-chart-action{min-height:44px;padding:8px 11px}
+    #datasetChartMount .chart-series-toggle{min-height:44px;padding:7px 13px}
+    #datasetChartMount .repi-chart-actions{gap:7px}
+  }
+  #datasetChartMount .chart-series-toggle.series-hidden{opacity:1;pointer-events:auto}
+</style>
+<script id="gender-chart-structure-fix">
+(()=>{
+  const data=window.NEWSLETTER_DATA,grid=document.getElementById('repiChartGrid');if(!data||!grid)return;
+  const esc=value=>String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+  const fmt=value=>Number(value).toLocaleString('en-US',{maximumFractionDigits:1});
+  function rebuild(){
+    const card=[...grid.querySelectorAll('.repi-chart-card')].find(item=>item.querySelector('h4')?.textContent.trim()==='التوزيع حسب الجنس'),old=card?.querySelector('.repi-chart-svg');if(!card||!old||old.dataset.genderRebuilt==='true')return;
+    const index=Number(document.getElementById('datasetTableSelect')?.value)||0,dataset=data.datasets[index]||data.datasets[0],maleIndex=dataset.columns.findIndex(column=>column==='الإجمالي - ذكور'||column==='ذكور'),femaleIndex=dataset.columns.findIndex(column=>column==='الإجمالي - إناث'||column==='إناث');if(maleIndex<0||femaleIndex<0)return;
+    const numeric=new Set(dataset.columns.map((column,i)=>dataset.rows.some(row=>Number.isFinite(Number(row[i])))?i:-1).filter(i=>i>=0)),labelIndex=Math.max(0,dataset.columns.findIndex((column,i)=>!numeric.has(i))),rows=dataset.rows.filter(row=>!/^الإجمالي$/.test(String(row[labelIndex]).trim())).slice(0,10),max=Math.max(1,...rows.flatMap(row=>[Number(row[maleIndex])||0,Number(row[femaleIndex])||0])),rowGap=68,start=34,height=Math.max(340,start+rows.length*rowGap+42);
+    const body=rows.map((row,i)=>{const label=String(row[labelIndex]??''),male=Number(row[maleIndex])||0,female=Number(row[femaleIndex])||0,y=start+i*rowGap,maleTip=`${label} — ذكور: ${fmt(male)}`,femaleTip=`${label} — إناث: ${fmt(female)}`;return `<g class="gender-row"><text class="l" x="180" y="${y+21}" text-anchor="end">${esc(label.slice(0,26))}</text><rect class="chart-mark" data-series="male" data-tooltip="${esc(maleTip)}" tabindex="0" role="button" aria-label="${esc(maleTip)}" x="200" y="${y}" width="${Math.max(1,male/max*420)}" height="16" rx="3" fill="#1b8354"><title>${esc(maleTip)}</title></rect><rect class="chart-mark" data-series="female" data-tooltip="${esc(femaleTip)}" tabindex="0" role="button" aria-label="${esc(femaleTip)}" x="200" y="${y+24}" width="${Math.max(1,female/max*420)}" height="16" rx="3" fill="#00a6b2"><title>${esc(femaleTip)}</title></rect></g>`}).join('');
+    const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('class','repi-chart-svg');svg.setAttribute('viewBox',`0 0 720 ${height}`);svg.setAttribute('role','img');svg.setAttribute('aria-label','التوزيع حسب الجنس');svg.dataset.genderRebuilt='true';svg.innerHTML=`<title>التوزيع حسب الجنس</title><style>.l{font:12px 'IBM Plex Sans Arabic';fill:#40564e}</style><g class="gender-plot" transform="translate(0 18)">${body}</g>`;old.replaceWith(svg);
+  }
+  new MutationObserver(()=>requestAnimationFrame(rebuild)).observe(grid,{childList:true,subtree:true});rebuild();
+})();
+</script>
 <style id="progressive-dataset-browser-style">
   .dataset-browser label>span{display:flex;align-items:center;gap:7px}
   .dataset-browser label>span::before{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;color:#166a45;background:#eaf6f0;font:700 12px/1 "IBM Plex Sans",Arial,sans-serif}
