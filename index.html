@@ -10615,6 +10615,38 @@
   new MutationObserver(()=>queueMicrotask(enhance)).observe(nav,{childList:true,subtree:true});enhance();
 })();
 </script>
+<style id="visible-dataset-domains-style">
+  #datasetNav .dataset-browser{display:flex;flex-direction:column;align-items:stretch;gap:14px}
+  #datasetNav .dataset-group-native{display:none!important}
+  .dataset-domain-panel{display:grid;gap:9px;width:100%}
+  .dataset-domain-heading{display:flex;align-items:center;gap:8px;color:#344a41;font-size:14px;font-weight:800}
+  .dataset-domain-heading::before{content:"1";display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;color:#166a45;background:#eaf6f0;font:700 12px/1 "IBM Plex Sans",Arial,sans-serif}
+  .dataset-domain-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+  .dataset-domain-option{display:flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:10px 14px;border:1px solid #c9d4ce;border-radius:10px;background:#fff;color:#344a41;font:700 14px/1.55 "IBM Plex Sans Arabic","IBM Plex Sans",Arial,sans-serif;cursor:pointer;transition:border-color .15s,background .15s,color .15s,box-shadow .15s}
+  .dataset-domain-option::before{content:"";width:8px;height:8px;border:2px solid #8a9992;border-radius:50%;background:#fff}
+  .dataset-domain-option:hover,.dataset-domain-option:focus-visible{border-color:#1b8354;background:#f4faf7;color:#166a45}
+  .dataset-domain-option:focus-visible{outline:3px solid rgba(27,131,84,.22);outline-offset:2px}
+  .dataset-domain-option.is-active{border-color:#1b8354;background:#eef8f3;color:#166a45;box-shadow:inset 0 -3px #1b8354}
+  .dataset-domain-option.is-active::before{border-color:#1b8354;background:#1b8354;box-shadow:0 0 0 3px #d9eee4}
+  #datasetNav .dataset-table-choice{display:grid;width:min(100%,760px);gap:7px;padding-top:2px}
+  #datasetNav .dataset-table-choice[hidden]{display:none!important}
+  #datasetNav .dataset-browser-count{align-self:start}
+  @media(max-width:700px){.dataset-domain-options{grid-template-columns:1fr}.dataset-domain-option{justify-content:flex-start;min-height:48px;text-align:right}#datasetNav .dataset-table-choice{width:100%}}
+</style>
+<script id="visible-dataset-domains-behavior">
+(()=>{
+  const nav=document.getElementById('datasetNav');if(!nav)return;
+  function enhanceDomains(){
+    const browser=nav.querySelector('.dataset-browser'),group=nav.querySelector('#datasetGroupSelect');if(!browser||!group||browser.querySelector('.dataset-domain-panel'))return;
+    const nativeLabel=group.closest('label');nativeLabel?.classList.add('dataset-group-native');
+    const panel=document.createElement('div');panel.className='dataset-domain-panel';panel.innerHTML='<div class="dataset-domain-heading">اختر قسم البيانات</div><div class="dataset-domain-options" role="group" aria-label="أقسام البيانات"></div>';
+    const options=panel.querySelector('.dataset-domain-options');
+    [...group.options].filter(option=>option.value).forEach(option=>{const button=document.createElement('button');button.type='button';button.className='dataset-domain-option';button.dataset.value=option.value;button.textContent=option.textContent;const active=group.value===option.value;button.classList.toggle('is-active',active);button.setAttribute('aria-pressed',String(active));button.addEventListener('click',()=>{group.value=button.dataset.value;group.dispatchEvent(new Event('change',{bubbles:true}))});options.appendChild(button)});
+    browser.insertBefore(panel,nativeLabel);
+  }
+  new MutationObserver(()=>queueMicrotask(enhanceDomains)).observe(nav,{childList:true,subtree:true});enhanceDomains();
+})();
+</script>
 <style id="table-search-and-source-style">
   .dataset-table-search{display:none!important}
   .dataset-table-search:focus{outline:3px solid rgba(27,131,84,.18);border-color:#1b8354}
