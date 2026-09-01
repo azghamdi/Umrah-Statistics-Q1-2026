@@ -54,14 +54,7 @@
     @media(max-width:600px){.view-tabs{margin-inline:14px}.view-tab{flex:1;padding-inline:10px}.charts-placeholder{margin:18px 14px}}
   </style>
 <!-- FULL-INDEX-DEV-NAV-CSS:BEGIN -->
-<link href="https://fonts.googleapis.com" rel="preconnect" />
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-<link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap"
-      rel="stylesheet"
-    />
-<style>
-
+<style id="goh-official-nav-styles">
       .goh {
         --goh-green: #1b8354;
         --goh-green-dark: #166a45;
@@ -441,6 +434,7 @@
       .goh__mobile-panel {
         display: none;
       }
+
       @media (max-width: 1180px) {
         .goh__desktop {
           display: none;
@@ -565,8 +559,8 @@
           width: 118px;
         }
       }
-    
-
+    </style>
+<style id="goh-platform-brand-overrides">
       /* GASTAT navigation aligned with Saudi Platforms Code */
       .goh {
         --goh-green: #1b8354;
@@ -661,7 +655,7 @@
         background: var(--goh-green);
         border-radius: 4px 4px 0 0;
       }
-      .goh__trigger span:last-child {
+      .goh__trigger span:last-child:not(.nds-nav-label) {
         width: 18px;
         height: 18px;
         display: grid;
@@ -669,7 +663,7 @@
         font-size: 15px;
         transition: transform 0.2s;
       }
-      .goh__trigger[aria-expanded="true"] span:last-child {
+      .goh__trigger[aria-expanded="true"] span:last-child:not(.nds-nav-label) {
         transform: rotate(180deg);
       }
       .goh__dropdown {
@@ -891,8 +885,8 @@
           transition: none !important;
         }
       }
-    
-
+    </style>
+<style id="goh-nds-navigation-only-tuning">
       /* Navigation-only alignment inspired by NDS Vanilla; page content remains untouched. */
       #goh-official-nav .goh__gov-row,
       #goh-official-nav .goh__main {
@@ -925,8 +919,8 @@
           animation: none;
         }
       }
-    
-
+    </style>
+<style id="goh-mobile-responsive-fix">
       /* Responsive navigation hardening — scoped to the GASTAT header only */
       @media (max-width: 1180px) {
         #goh-official-nav {
@@ -1124,15 +1118,15 @@
           font-size: 10px;
         }
       }
-    
-
+    </style>
+<style>
       @media (max-width: 1180px) {
         html.goh-mobile-overlay-open {
           overflow: hidden;
         }
       }
-    
-
+    </style>
+<style id="goh-login-icon-only">
       #goh-official-nav .goh__login--icon {
         width: 44px;
         min-width: 44px;
@@ -1162,8 +1156,14 @@
           min-width: 40px;
         }
       }
-    
-
+    </style>
+<style id="goh-mobile-statistics-groups">
+      @media (max-width: 1180px) {
+      }
+      @media (max-width: 420px) {
+      }
+    </style>
+<style id="goh-desktop-statistics-hover">
       @media (min-width: 1181px) {
         #goh-official-nav .goh__item {
           position: static;
@@ -1187,8 +1187,34 @@
       }
       @media (min-width: 1181px) and (max-width: 1320px) {
       }
-    
-
+    </style>
+<style id="goh-secondary-statistics-visible">
+      @media (min-width: 1181px) {
+      }
+      @media (max-width: 1180px) {
+      }
+    </style>
+<style id="goh-statistics-third-level-flyout">
+      @media (min-width: 1181px) {
+        @keyframes gohTier3Open {
+          from {
+            opacity: 0;
+            transform: translateX(4px);
+          }
+          to {
+            opacity: 1;
+            transform: none;
+          }
+        }
+      }
+      @media (max-width: 1180px) {
+      }
+    </style>
+<style id="goh-all-third-level-flyouts">
+      @media (min-width: 1181px) {
+      }
+    </style>
+<style id="goh-heading-and-spatial-direction-fix">
       #goh-official-nav .goh__drop-title {
         text-align: right !important;
         direction: rtl;
@@ -1198,8 +1224,20 @@
       }
       @media (min-width: 1181px) {
       }
-    
-
+    </style>
+<style id="goh-second-level-right-alignment">
+      @media (min-width: 1181px) {
+      }
+    </style>
+<style id="goh-third-level-right-arrows">
+      @media (min-width: 1181px) {
+      }
+    </style>
+<style id="goh-third-level-left-arrows-final">
+      @media (min-width: 1181px) {
+      }
+    </style>
+<style id="gastat-bilingual-page-style">
       html[dir="ltr"] body {
         direction: ltr;
         text-align: left;
@@ -1246,8 +1284,8 @@
         text-align: left;
         direction: ltr;
       }
-    
-
+    </style>
+<style id="gastat-english-navigation-left-aligned">
         html[dir="ltr"] #goh-official-nav,
         html[lang="en"] #goh-official-nav {
           direction: ltr !important;
@@ -1309,8 +1347,8 @@
             text-align: left !important;
           }
         }
-    
-
+    </style>
+<style id="gastat-final-responsive-compatibility">
       html {
         overflow-x: clip;
       }
@@ -1447,8 +1485,8 @@
           font-size: 11px;
         }
       }
-    
-
+    </style>
+<style id="gastat-mobile-tabs-hover-persistent-style">
       /*
    * Narrow screens used with a mouse (small laptop/tablet):
    * keep the tab content visible while hovering the tab or its menu.
@@ -1482,8 +1520,12 @@
           display: block !important;
         }
       }
-    
-
+    </style>
+<style class="goh__space-efficient-statistics">
+      @media (min-width: 1181px) {
+      }
+    </style>
+<style id="goh-statistics-four-sections-style">
       #goh-official-nav .goh__dropdown--statistics-sections {
         width: min(360px, calc(100vw - 32px));
         padding: 20px;
@@ -1527,8 +1569,8 @@
         display: grid;
         gap: 6px;
       }
-    
-
+    </style>
+<style id="goh-statistical-field-subsections-style">
       #goh-official-nav .goh__statistics-section {
         width: 100%;
         border: 0;
@@ -1591,8 +1633,8 @@
         color: #006c4c;
         outline: none;
       }
-    
-
+    </style>
+<style id="goh-statistical-field-simple-side-flyout">
       @media (min-width: 1181px) {
         #goh-official-nav .goh__dropdown--statistics-sections {
           right: clamp(18px, 4vw, 64px);
@@ -1673,8 +1715,8 @@
           display: grid;
         }
       }
-    
-
+    </style>
+<style id="goh-statistics-unified-official-style">
       #goh-official-nav {
         --stat-green: #1b8354;
         --stat-green-dark: #126b43;
@@ -1835,8 +1877,8 @@
           box-shadow: none !important;
         }
       }
-    
-
+    </style>
+<style id="goh-statistics-official-font-style">
       #goh-official-nav .goh__item--statistics-sections,
       #goh-official-nav .goh__dropdown--statistics-sections,
       #goh-official-nav .goh__dropdown--statistics-sections button,
@@ -1861,8 +1903,8 @@
         line-height: 1.65;
         font-weight: 500;
       }
-    
-
+    </style>
+<style id="goh-statistics-dot-spacing-fix">
       #goh-official-nav .goh__statistics-sections-list > button,
       #goh-official-nav .goh__statistics-section > summary,
       #goh-official-nav .goh__mobile-menu--statistics-sections > button {
@@ -1915,8 +1957,8 @@
           transform: translateY(-50%) rotate(90deg) !important;
         }
       }
-    
-
+    </style>
+<style id="goh-statistics-desktop-hover-style">
       @media (min-width: 1181px) and (hover: hover) {
         #goh-official-nav
           .goh__item--statistics-sections:hover
@@ -1941,8 +1983,8 @@
           transform: scaleX(1);
         }
       }
-    
-
+    </style>
+<style id="goh-statistics-list-hover-stability">
       @media (min-width: 1181px) and (hover: hover) {
         #goh-official-nav .goh__statistics-section--field:after {
           content: "";
@@ -1977,8 +2019,8 @@
           transform: none !important;
         }
       }
-    
-
+    </style>
+<style id="goh-statistical-official-branches-style">
       #goh-official-nav .goh__stat-main-group {
         position: relative;
       }
@@ -2153,8 +2195,8 @@
           padding: 9px 34px 9px 12px;
         }
       }
-    
-
+    </style>
+<style id="goh-statistics-subjects-style">
       #goh-official-nav .goh__statistics-section--subjects {
         position: relative;
         overflow: visible;
@@ -2291,8 +2333,8 @@
           padding: 9px 34px 9px 12px;
         }
       }
-    
-
+    </style>
+<style id="goh-statistics-regions-style">
       #goh-official-nav .goh__statistics-section--regions {
         position: relative;
         overflow: visible;
@@ -2429,8 +2471,8 @@
         > .goh__region-flyout {
         grid-template-columns: 1fr;
       }
-    
-
+    </style>
+<style id="goh-statistics-international-style">
       #goh-official-nav .goh__statistics-section--international {
         position: relative;
         overflow: visible;
@@ -2558,8 +2600,8 @@
           padding: 9px 34px 9px 12px;
         }
       }
-    
-
+    </style>
+<style id="goh-statistics-sdg-goals-style">
       #goh-official-nav .goh__international-goals-group {
         position: relative;
       }
@@ -2735,8 +2777,8 @@
           padding: 8px 32px 8px 10px;
         }
       }
-    
-
+    </style>
+<style id="goh-statistics-third-level-width-only">
       @media (min-width: 1181px) and (hover: hover) {
         #goh-official-nav .goh__stat-topic-flyout {
           width: min(470px, calc(100vw - 760px));
@@ -2753,8 +2795,8 @@
           width: 410px;
         }
       }
-    
-
+    </style>
+<style id="goh-statistics-match-nav-font-style">
       #goh-official-nav .goh__dropdown--statistics-sections button,
       #goh-official-nav .goh__dropdown--statistics-sections summary,
       #goh-official-nav .goh__dropdown--statistics-sections a,
@@ -2777,8 +2819,8 @@
         font-size: 18px !important;
         font-weight: 400 !important;
       }
-    
-
+    </style>
+<style id="goh-statistics-dropdown-under-trigger">
       @media (min-width: 1181px) {
         #goh-official-nav .goh__item--statistics-sections {
           position: relative !important;
@@ -2792,8 +2834,8 @@
           margin-right: -180px !important;
         }
       }
-    
-
+    </style>
+<style id="goh-statistics-active-line-visible">
       @media (min-width: 1181px) {
         #goh-official-nav .goh__item--statistics-sections > .goh__trigger {
           position: relative;
@@ -2820,8 +2862,8 @@
           z-index: 32;
         }
       }
-    
-
+    </style>
+<style id="goh-statistics-fullwidth-trial">
       @media (min-width: 1181px) {
         #goh-official-nav .goh__item--statistics-sections {
           position: static !important;
@@ -2844,8 +2886,8 @@
           margin-left: auto;
         }
       }
-    
-
+    </style>
+<style id="goh-statistics-active-line-aligned">
       @media (min-width: 1181px) {
         #goh-official-nav
           .goh__item--statistics-sections:hover
@@ -2859,8 +2901,8 @@
           bottom: -16px !important;
         }
       }
-    
-
+    </style>
+<style id="goh-statistics-trigger-font-match">
       #goh-official-nav .goh__item--statistics-sections > .goh__trigger {
         font-family: inherit !important;
         font-size: 14px !important;
@@ -2868,8 +2910,8 @@
         line-height: normal !important;
         letter-spacing: normal !important;
       }
-    
-
+    </style>
+<style id="goh-statistics-fullwidth-removed">
       @media (min-width: 1181px) {
         #goh-official-nav .goh__item--statistics-sections {
           position: relative !important;
@@ -2891,8 +2933,8 @@
           margin: 0 !important;
         }
       }
-    
-
+    </style>
+<style id="goh-all-desktop-menus-compact">
       @media (min-width: 1181px) {
         #goh-official-nav .goh__desktop .goh__item {
           position: relative !important;
@@ -2926,8 +2968,8 @@
           gap: 10px !important;
         }
       }
-    
-
+    </style>
+<style id="gastat-header-critical-no-fouc">
       #goh-official-nav {
         --goh-green: #1b8354;
         --goh-ink: #161f2d;
@@ -3037,51 +3079,8 @@
           transform: translateY(-2px) rotate(45deg) !important;
         }
       }
-    
-
-  /* يمنع ظهور النسخ القديمة للأقسام أثناء تنفيذ التهيئة النهائية. */
-  html.goh-clean-first-render main {
-    visibility: hidden !important;
-  }
-
-  html.goh-clean-first-render *,
-  html.goh-clean-first-render *::before,
-  html.goh-clean-first-render *::after {
-    animation: none !important;
-    transition: none !important;
-  }
-
-  /* القواعد النهائية الحرجة تُحمّل مبكرًا قبل رسم المحتوى. */
-  .indicators-section .goh-primary-card-icon,
-  [class*="indicators"] .goh-primary-card-icon {
-    display: none !important;
-  }
-
-  #gastat-data-tools .goh-primary-card-icon,
-  #gastat-data-tools .gastat-data-tools__card [class*="icon"],
-  #gastat-data-tools .gastat-data-tools__card-icon {
-    width: 48px !important;
-    height: 48px !important;
-    min-width: 48px !important;
-    min-height: 48px !important;
-    padding: 10px !important;
-    background: #f1f3f3 !important;
-    border: 1px solid #e0e4e2 !important;
-    border-radius: 12px !important;
-    color: #1b8354 !important;
-    box-shadow: none !important;
-  }
-
-  #gastat-data-tools .goh-primary-card-icon svg,
-  #gastat-data-tools .gastat-data-tools__card [class*="icon"] svg,
-  #gastat-data-tools .gastat-data-tools__card-icon svg {
-    width: 24px !important;
-    height: 24px !important;
-    color: #1b8354 !important;
-    stroke: #1b8354 !important;
-  }
-
-
+    </style>
+<style id="goh-media-center-groups-final">
       .goh__media-groups {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -3130,8 +3129,8 @@
           grid-template-columns: 1fr;
         }
       }
-    
-
+    </style>
+<style id="goh-statistics-unified-menu-effect-final">
       /* توحيد حالات قائمة البيانات والإحصاءات مع بقية القائمة العلوية */
       @media (min-width: 1181px) {
         #goh-official-nav .goh__item--statistics-sections:hover > .goh__trigger,
@@ -3195,8 +3194,8 @@
           color: #111827 !important;
         }
       }
-    
-
+    </style>
+<style id="goh-statistics-all-levels-gray-final">
       /* جميع المستويات الداخلية لقائمة البيانات والإحصاءات */
       #goh-official-nav .goh__dropdown--statistics-sections :is(button, summary, a) {
         transition:
@@ -3260,8 +3259,104 @@
           box-shadow: none !important;
         }
       }
-    
+    </style>
+<style id="goh-statistical-field-flat-list">
+      /* حذف المجال الإحصائي والخرائط التفاعلية من القائمة العلوية بنسختيها */
+      #goh-official-nav .goh__statistics-section--field,
+      #goh-official-nav .goh__statistics-section--interactive-maps {
+        display: none !important;
+      }
 
+      /* عرض جميع أقسام المجال الإحصائي مباشرة دون مستوى تصنيف وسيط */
+      #goh-official-nav
+        .goh__statistics-section--field
+        > .goh__statistics-subsections {
+        display: grid !important;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-rows: repeat(8, minmax(42px, auto));
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(0, 1fr);
+        align-items: stretch;
+        gap: 3px 16px;
+        width: min(960px, calc(100vw - 64px)) !important;
+        max-height: none !important;
+        overflow: visible !important;
+        padding: 12px 14px !important;
+        border-radius: 12px !important;
+      }
+
+      #goh-official-nav
+        .goh__statistics-section--field
+        > .goh__statistics-subsections
+        > .goh__stat-main-group,
+      #goh-official-nav
+        .goh__statistics-section--field
+        .goh__stat-topic-flyout {
+        display: contents !important;
+      }
+
+      #goh-official-nav
+        .goh__statistics-section--field
+        .goh__stat-main-group-trigger {
+        display: none !important;
+      }
+
+      #goh-official-nav
+        .goh__statistics-section--field
+        .goh__stat-topic-flyout {
+        position: static !important;
+        width: auto !important;
+        max-height: none !important;
+        overflow: visible !important;
+        padding: 0 !important;
+        border: 0 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        transform: none !important;
+      }
+
+      #goh-official-nav
+        .goh__statistics-section--field
+        .goh__stat-topic-flyout
+        > a {
+        display: flex !important;
+        align-items: center;
+        min-width: 0;
+        min-height: 44px;
+        padding: 9px 38px 9px 14px !important;
+        border-radius: 8px !important;
+      }
+
+      @media (max-width: 1180px) {
+        #goh-official-nav
+          .goh__statistics-section--field
+          > .goh__statistics-subsections {
+          grid-template-columns: 1fr;
+          grid-template-rows: none;
+          grid-auto-flow: row;
+          grid-auto-columns: auto;
+          width: auto !important;
+          max-height: none;
+          overflow: visible;
+          margin: 3px 10px 8px;
+          padding: 6px !important;
+        }
+      }
+
+      @media (min-width: 1181px) and (max-width: 1450px) {
+        #goh-official-nav
+          .goh__statistics-section--field
+          > .goh__statistics-subsections {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          grid-template-rows: repeat(12, minmax(40px, auto));
+          width: min(700px, calc(100vw - 48px)) !important;
+        }
+      }
+    </style>
+<style id="goh-authority-two-columns-final">
       #goh-official-nav .goh__authority-columns {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -3281,8 +3376,8 @@
           padding: 0;
         }
       }
-    
-
+    </style>
+<style id="goh-statistics-submenu-border-unified-20260812">
     /* توحيد الخط العلوي في جميع مستويات قائمة البيانات والإحصاءات */
     #goh-official-nav :is(
       .goh__dropdown--statistics-sections,
@@ -3315,8 +3410,201 @@
       border-top-color: #111827 !important;
       background-color: #111827 !important;
     }
-  
+  </style>
+<style id="remove-statistics-dropdown-content-final">
+      /* إبقاء زر الإحصاءات فقط وإلغاء قائمته نهائياً */
+      #goh-official-nav .goh__item--statistics-sections > .goh__dropdown--statistics-sections:not(.goh__statistics-sections-v2),
+      #goh-official-nav .goh__mobile-item--statistics-sections > .goh__mobile-menu--statistics-sections:not(.goh__statistics-sections-v2) {
+        display: none !important;
+      }
 
+      #goh-official-nav .goh__statistics-sections-v2 {
+        width: min(430px, calc(100vw - 32px)) !important;
+        padding: 10px !important;
+      }
+
+      #goh-official-nav .goh__statistics-sections-v2 .goh__primary-statistics-list {
+        display: grid;
+        gap: 3px;
+      }
+
+      #goh-official-nav .goh__statistics-sections-v2 .goh__primary-statistics-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        min-height: 46px;
+        padding: 9px 14px;
+        border: 1px solid transparent;
+        border-radius: 8px;
+        background: #fff;
+        color: #17251f;
+        font: inherit;
+        text-align: right;
+        cursor: default;
+      }
+
+      #goh-official-nav .goh__statistics-sections-v2 .goh__primary-statistics-item:hover,
+      #goh-official-nav .goh__statistics-sections-v2 .goh__primary-statistics-item:focus-visible {
+        background: #f3f4f6;
+        border-color: #d1d5db;
+        outline: none;
+      }
+
+      #goh-official-nav .goh__statistics-sections-v2 .goh__section-chevron {
+        flex: 0 0 auto;
+        width: 8px;
+        height: 8px;
+        border-left: 2px solid #6b7280;
+        border-bottom: 2px solid #6b7280;
+        transform: rotate(45deg);
+      }
+
+      #goh-official-nav .goh__primary-statistics-entry {
+        position: relative;
+      }
+
+      #goh-official-nav .goh__primary-statistics-submenu {
+        display: none;
+        position: absolute;
+        top: 0;
+        right: calc(100% + 8px);
+        width: min(390px, calc(100vw - 32px));
+        max-height: min(610px, calc(100vh - 190px));
+        overflow-y: auto;
+        padding: 10px;
+        border: 1px solid #dce5e0;
+        border-top: 3px solid #111827;
+        border-radius: 0 0 12px 12px;
+        background: #fff;
+        box-shadow: 0 16px 35px rgba(22, 31, 45, 0.13);
+        z-index: 80;
+        gap: 3px;
+        direction: rtl;
+      }
+
+      #goh-official-nav .goh__primary-statistics-entry:focus-within > .goh__primary-statistics-submenu,
+      #goh-official-nav .goh__primary-statistics-entry.is-open > .goh__primary-statistics-submenu {
+        display: grid;
+      }
+
+      #goh-official-nav .goh__primary-statistics-submenu > button,
+      #goh-official-nav .goh__primary-statistics-submenu > a {
+        display: block;
+        min-height: 43px;
+        padding: 8px 12px;
+        border: 1px solid transparent;
+        border-radius: 7px;
+        background: #fff;
+        color: #17251f;
+        font: inherit;
+        text-align: right;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      #goh-official-nav .goh__primary-statistics-submenu > button:hover,
+      #goh-official-nav .goh__primary-statistics-submenu > button:focus-visible,
+      #goh-official-nav .goh__primary-statistics-submenu > a:hover,
+      #goh-official-nav .goh__primary-statistics-submenu > a:focus-visible {
+        background: #f3f4f6;
+        border-color: #d1d5db;
+        outline: none;
+      }
+
+      #goh-official-nav .goh__primary-statistics-submenu > button[disabled] {
+        color: #9aa1a9;
+        cursor: default;
+      }
+
+      #goh-official-nav .goh__primary-statistics-submenu > button[disabled]:hover,
+      #goh-official-nav .goh__primary-statistics-submenu > button[disabled]:focus-visible {
+        background: #fff;
+        border-color: transparent;
+      }
+
+      @media (min-width: 1181px) {
+        #goh-official-nav .goh__statistics-sections-v2 {
+          width: min(660px, calc(100vw - 520px)) !important;
+        }
+
+        #goh-official-nav .goh__statistics-sections-v2 .goh__primary-statistics-list {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 8px 28px;
+        }
+
+        #goh-official-nav .goh__statistics-sections-v2 .goh__primary-statistics-submenu.is-two-column {
+          width: min(540px, calc(100vw - 500px));
+          max-height: none;
+          overflow: visible;
+          align-content: start;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          column-gap: 8px;
+        }
+
+        /* Column-aware flyout offset: with a 2-column primary grid, the submenu
+           of a right-column (odd) entry must clear its own cell *and* the
+           left-column (even) cell beside it, or it lands on top of it.
+           This must apply as soon as the 2-column grid turns on (1181px),
+           not only from 1360px up — the previous gating left a 1181–1359px
+           gap where every submenu used the "one cell" offset regardless of
+           column, so odd-entry flyouts overlapped the even column.
+           The "+Npx" fudge must track the list's own column-gap (28px) plus
+           an 8px visual clearance, or widening that gap re-introduces the
+           overlap this offset exists to prevent. */
+        #goh-official-nav .goh__statistics-sections-v2 .goh__primary-statistics-entry:nth-child(odd) > .goh__primary-statistics-submenu {
+          right: calc(200% + 36px);
+        }
+
+        #goh-official-nav .goh__statistics-sections-v2 .goh__primary-statistics-entry:nth-child(even) > .goh__primary-statistics-submenu {
+          right: calc(100% + 8px);
+        }
+      }
+      @media (min-width: 1360px) {
+        #goh-official-nav .goh__statistics-sections-v2 {
+          width: min(760px, calc(100vw - 560px)) !important;
+        }
+
+        #goh-official-nav .goh__statistics-sections-v2 .goh__primary-statistics-list {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 8px 28px;
+        }
+
+        #goh-official-nav .goh__statistics-sections-v2 .goh__primary-statistics-item {
+          min-height: 48px;
+          padding-inline: 13px;
+        }
+      }
+
+      @media (max-width: 1180px) {
+        #goh-official-nav .goh__primary-statistics-submenu {
+          position: static;
+          width: 100%;
+          max-height: none;
+          margin-top: 3px;
+          box-shadow: none;
+          border-top-width: 1px;
+        }
+
+        #goh-official-nav .goh__primary-statistics-entry:hover > .goh__primary-statistics-submenu,
+        #goh-official-nav .goh__primary-statistics-entry:focus-within > .goh__primary-statistics-submenu {
+          display: none;
+        }
+
+        #goh-official-nav .goh__primary-statistics-entry.is-open > .goh__primary-statistics-submenu {
+          display: grid;
+        }
+      }
+</style>
+<style id="goh-statistics-main-menu-wide">
+  @media (min-width: 1181px) {
+    #goh-official-nav .goh__item--statistics-sections > .goh__dropdown--statistics-sections.goh__statistics-sections-v2 {
+      width: min(1100px, calc(100vw - 96px)) !important;
+      max-width: none !important;
+    }
+  }
+</style>
+<style id="gastat-english-language-switch-click-fix">
       html[dir="ltr"] #goh-official-nav .goh__main,
       html[lang="en"] #goh-official-nav .goh__main {
         position: relative;
@@ -3361,8 +3649,8 @@
           margin-inline-start: auto !important;
         }
       }
-    
-
+    </style>
+<style id="gastat-english-nav-no-overlap-style">
       html[dir="ltr"] #goh-official-nav .goh__main,
       html[lang="en"] #goh-official-nav .goh__main {
         gap: 12px !important;
@@ -3424,8 +3712,8 @@
           text-align: left !important;
         }
       }
-    
-
+    </style>
+<style id="gastat-mobile-statistics-nested-accordion-style">
       @media (max-width: 1180px) {
         #goh-official-nav .goh__mobile-panel.is-open {
           display: block !important;
@@ -3511,8 +3799,8 @@
           background: #eaf7f0;
         }
       }
-    
-
+    </style>
+<style id="gastat-true-hover-navigation-style">
       /*
    * Desktop truth source: CSS hover/focus-within.
    * No JavaScript can hide a dropdown while the pointer is still inside
@@ -3557,8 +3845,8 @@
           display: block !important;
         }
       }
-    
-
+    </style>
+<style id="gastat-mobile-menu-explicitly-persistent-style">
       @media (max-width: 1180px) {
         #goh-official-nav .goh__mobile-panel.gastat-mobile-menu-open {
           display: block !important;
@@ -3567,8 +3855,8 @@
           pointer-events: auto !important;
         }
       }
-    
-
+    </style>
+<style id="gastat-mobile-navigation-order-style">
       @media (max-width: 1180px) {
         #goh-official-nav .goh__mobile-panel {
           padding-top: 8px;
@@ -3581,8 +3869,8 @@
           border-radius: 8px;
         }
       }
-    
-
+    </style>
+<style id="gastat-login-white-foreground">
       #goh-official-nav .goh__login,
       #goh-official-nav .goh__login:hover,
       #goh-official-nav .goh__login:focus-visible,
@@ -3597,31 +3885,8 @@
         color: #fff !important;
         stroke: currentColor;
       }
-    
-
-      #gastat-data-tools {
-        width: 100% !important;
-        max-width: none !important;
-        margin: 0 !important;
-        border: 0 !important;
-        border-radius: 0 !important;
-        background: #f7f8f9 !important;
-        box-shadow: 0 0 0 100vmax #f7f8f9 !important;
-        clip-path: inset(0 -100vmax);
-      }
-
-      #gastat-data-tools::before,
-      #gastat-data-tools::after {
-        display: none !important;
-        content: none !important;
-      }
-
-      #gastat-data-tools .gastat-data-tools__shell {
-        border: 0 !important;
-        border-radius: 0 !important;
-        background: transparent !important;
-        box-shadow: none !important;
-      }
+    </style>
+<style id="gastat-goh-statistics-updated-style">
       .goh__statistics-updated {
         color: #66736d;
         font-size: 11px;
@@ -3632,8 +3897,8 @@
           padding-inline-start: 3px;
         }
       }
-    
-
+    </style>
+<style id="gastat-header-official-colors-only">
   /* ألوان هيدر الهيئة الرسمية فقط — دون تغيير البنية أو المقاسات */
   #goh-official-nav {
     --goh-green: #1b8354;
@@ -3746,8 +4011,8 @@
     background-color: var(--goh-green-soft);
     color: var(--goh-green-dark);
   }
-
-
+</style>
+<style id="gastat-header-tab-states-final">
   /* حالات NDS: التاب المفتوح رمادي بخط أسود، والأخضر لعناوين القائمة الداخلية. */
   #goh-official-nav :is(.goh__trigger, .goh__home):hover,
   #goh-official-nav :is(.goh__trigger, .goh__home):focus-visible {
@@ -3806,8 +4071,8 @@
   #goh-official-nav .goh__desktop .goh__home[aria-current="page"]::after {
     background-color: #161f2d !important;
   }
-
-
+</style>
+<style id="nds-header-component-final-implementation">
   /* تطبيق مكوّن NDS Header على محتوى قائمة الهيئة الحالي. */
   @media (min-width: 1181px) {
     #goh-official-nav .goh__desktop {
@@ -3896,8 +4161,8 @@
     border-color: transparent !important;
     transform: none !important;
   }
-
-
+</style>
+<style id="nds-header-title-underline-final">
   @media (min-width: 1181px) {
     #goh-official-nav .goh__desktop :is(.goh__trigger,.goh__home)::after {
       display: none !important;
@@ -3932,8 +4197,8 @@
       transform: scaleX(1);
     }
   }
-
-
+</style>
+<style id="nds-header-compact-dropdown-final">
   @media (min-width: 1181px) {
     #goh-official-nav .goh__desktop .goh__item {
       position: relative !important;
@@ -3975,8 +4240,8 @@
       grid-template-columns: minmax(260px, 1fr) !important;
     }
   }
-
-
+</style>
+<style id="nds-header-chevron-final">
   @media (min-width: 1181px) {
     #goh-official-nav .goh__desktop .goh__trigger {
       display: inline-flex !important;
@@ -4017,8 +4282,8 @@
       transform: translateY(2px) rotate(225deg);
     }
   }
-
-
+</style>
+<style id="gastat-logo-column-remove-final">
   #goh-official-nav .goh__logo {
     border: 0 !important;
     border-inline-start: 0 !important;
@@ -4030,8 +4295,8 @@
     display: none !important;
     content: none !important;
   }
-
-
+</style>
+<style id="gastat-header-bottom-stripe-remove-final">
   #goh-official-nav,
   #goh-official-nav .goh,
   #goh-official-nav .goh__main {
@@ -4049,8 +4314,8 @@
     content: none !important;
     background: none !important;
   }
-
-
+</style>
+<style id="gastat-mobile-experience-final-20260811">
   /* Final mobile pass: compact navigation, hero, filters and carousel controls. */
   @media (max-width: 700px) {
     html,
@@ -4175,7 +4440,7 @@
 
     .indicators-section .gastat-kpi-mode-tabs {
       display: grid !important;
-      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      grid-template-columns: minmax(0, 1fr) !important;
       width: 100% !important;
       min-height: 0 !important;
       height: auto !important;
@@ -4307,8 +4572,8 @@
       animation-iteration-count: 1 !important;
     }
   }
-
-
+</style>
+<style id="goh-header-smart-search-final-style">
   #goh-official-nav .goh__search{overflow:visible !important}
   #goh-official-nav .goh__search-form{position:relative}
   #goh-official-nav .goh__header-smart-results{
@@ -4337,206 +4602,15 @@
   @media(max-width:700px){
     #goh-official-nav .goh__header-smart-results{grid-template-columns:1fr;max-height:320px}
   }
-
-
+</style>
+<style id="goh-search-target-highlight-style">
   .goh-search-target-highlight {
     outline: 3px solid #1b8354 !important;
     outline-offset: 4px;
     transition: outline-color .25s ease, background-color .25s ease;
   }
-
-
-  .goh-statistics-segmented-tabs {
-    display: inline-flex !important;
-    align-items: center;
-    gap: 4px !important;
-    padding: 6px !important;
-    background: #f3f4f4 !important;
-    border: 1px solid #dfe3e1 !important;
-    border-radius: 14px !important;
-  }
-
-  .goh-statistics-segmented-tab {
-    min-height: 52px;
-    padding: 12px 22px !important;
-    border: 0 !important;
-    border-radius: 10px !important;
-    background: transparent !important;
-    color: #1f2d27 !important;
-    box-shadow: none !important;
-    transition: background-color .18s ease, color .18s ease, box-shadow .18s ease !important;
-  }
-
-  .goh-statistics-segmented-tab:hover {
-    background: #e7e9e8 !important;
-    color: #111 !important;
-  }
-
-  .goh-statistics-segmented-tab.is-active,
-  .goh-statistics-segmented-tab[aria-selected="true"] {
-    background: #1b8354 !important;
-    color: #fff !important;
-    box-shadow: 0 4px 10px rgba(27, 131, 84, .16) !important;
-  }
-
-  @media (max-width: 640px) {
-    .goh-statistics-segmented-tabs {
-      display: flex !important;
-      width: 100%;
-    }
-    .goh-statistics-segmented-tab {
-      flex: 1 1 50%;
-      min-width: 0;
-      padding-inline: 10px !important;
-      font-size: 15px !important;
-    }
-  }
-
-
-  .goh-statistics-segmented-tabs > .goh-statistics-segmented-tab:not(.is-active):not([aria-selected="true"]),
-  button.goh-statistics-segmented-tab:not(.is-active):not([aria-selected="true"]),
-  [role="tab"].goh-statistics-segmented-tab:not(.is-active):not([aria-selected="true"]) {
-    background-color: #f1f8f4 !important;
-    background-image: none !important;
-    color: #1f2d27 !important;
-    border: 1px solid #d5e7dc !important;
-  }
-
-  .goh-statistics-segmented-tabs > .goh-statistics-segmented-tab:not(.is-active):not([aria-selected="true"]):hover,
-  button.goh-statistics-segmented-tab:not(.is-active):not([aria-selected="true"]):hover {
-    background-color: #fff !important;
-    color: #111 !important;
-  }
-
-
-  .goh-statistics-segmented-tabs > .goh-statistics-segmented-tab:not(.is-active):not([aria-selected="true"]):hover,
-  button.goh-statistics-segmented-tab:not(.is-active):not([aria-selected="true"]):hover,
-  [role="tab"].goh-statistics-segmented-tab:not(.is-active):not([aria-selected="true"]):hover {
-    background-color: #fff !important;
-    color: #1b8354 !important;
-    border-color: #1b8354 !important;
-  }
-
-
-  .goh-primary-card-icon {
-    background-color: #1b8354 !important;
-    background-image: none !important;
-    border-color: #1b8354 !important;
-    color: #fff !important;
-    box-shadow: none !important;
-  }
-  .goh-primary-card-icon svg {
-    color: #fff !important;
-    stroke: #fff !important;
-  }
-
-
-  .indicators-section .goh-primary-card-icon,
-  [class*="indicators"] .goh-primary-card-icon,
-  .indicators-section :is(article, [class*="card"], [class*="kpi"])
-    :is([class$="__icon"], [class*="card-icon"], [class*="icon-wrap"], [class*="icon-box"], .kpi-icon):not([class*="trend"]):not([class*="change"]),
-  [class*="indicators"] :is(article, [class*="card"], [class*="kpi"])
-    :is([class$="__icon"], [class*="card-icon"], [class*="icon-wrap"], [class*="icon-box"], .kpi-icon):not([class*="trend"]):not([class*="change"]) {
-    display: none !important;
-  }
-
-
-  #gastat-data-tools .goh-primary-card-icon,
-  #gastat-data-tools .gastat-data-tools__card [class*="icon"],
-  #gastat-data-tools .gastat-data-tools__card-icon,
-  #gastat-data-tools article > div:first-child:has(svg) {
-    width: 48px !important;
-    height: 48px !important;
-    min-width: 48px !important;
-    min-height: 48px !important;
-    padding: 10px !important;
-    background-color: #f1f3f3 !important;
-    background-image: none !important;
-    border: 1px solid #e0e4e2 !important;
-    border-radius: 12px !important;
-    color: #1b8354 !important;
-    box-shadow: none !important;
-  }
-
-  #gastat-data-tools .goh-primary-card-icon svg,
-  #gastat-data-tools .gastat-data-tools__card [class*="icon"] svg,
-  #gastat-data-tools .gastat-data-tools__card-icon svg,
-  #gastat-data-tools article > div:first-child:has(svg) svg {
-    width: 24px !important;
-    height: 24px !important;
-    color: #1b8354 !important;
-    stroke: #1b8354 !important;
-  }
-
-  #gastat-data-tools :is(article, .gastat-data-tools__card):hover .goh-primary-card-icon,
-  #gastat-data-tools :is(article, .gastat-data-tools__card):hover [class*="icon"] {
-    background-color: #f1f3f3 !important;
-    border-color: #e0e4e2 !important;
-    color: #1b8354 !important;
-  }
-
-
-  .goh-calendar-countdown {
-    display: inline-flex;
-    align-items: center;
-    margin-inline-start: 8px;
-    padding: 4px 9px;
-    border-radius: 999px;
-    background: #f1f8f4;
-    border: 1px solid #d5e7dc;
-    color: #1b8354;
-    font-size: 13px;
-    font-weight: 700;
-    white-space: nowrap;
-  }
-
-
-@media (min-width:1181px){
-  #goh-official-nav .goh__dropdown--statistics-sections{
-    width:min(330px,calc(100vw - 32px)) !important;
-    padding:10px !important;
-    border-top-width:4px !important;
-  }
-  #goh-official-nav .goh__dropdown--statistics-sections > .goh__drop-title{
-    display:none !important;
-  }
-  #goh-official-nav .goh__statistics-sections-list{
-    gap:2px !important;
-  }
-  #goh-official-nav .goh__statistics-section{
-    border-radius:7px !important;
-  }
-  #goh-official-nav .goh__statistics-section > summary{
-    min-height:42px !important;
-    padding:8px 34px 8px 34px !important;
-    font-size:15px !important;
-    line-height:1.45 !important;
-  }
-  #goh-official-nav .goh__statistics-section > summary:before{
-    right:12px !important;
-    width:7px !important;
-    height:7px !important;
-  }
-  #goh-official-nav .goh__statistics-section > summary > span{
-    left:12px !important;
-    font-size:17px !important;
-  }
-}
-@media (max-width:1180px){
-  #goh-official-nav .goh__mobile-menu--statistics-sections{
-    gap:2px !important;
-    padding:6px !important;
-  }
-  #goh-official-nav .goh__mobile-menu--statistics-sections > .goh__drop-title{
-    display:none !important;
-  }
-  #goh-official-nav .goh__statistics-section > summary{
-    min-height:44px !important;
-    padding-block:9px !important;
-  }
-}
-
-
+</style>
+<style id="goh-all-dropdowns-no-duplicate-title-final">
 @media (min-width:1181px){
   #goh-official-nav .goh__dropdown{
     padding-top:10px !important;
@@ -4549,8 +4623,8 @@
     margin-top:0 !important;
   }
 }
-
-
+</style>
+<style id="goh-chevron-state-sync-final">
 @media (min-width:1181px){
   #goh-official-nav .goh__desktop .goh__trigger > span[aria-hidden="true"]{
     position:relative !important;
@@ -4586,8 +4660,8 @@
 #goh-official-nav .goh__mobile-item.is-open > .goh__mobile-trigger > span[aria-hidden="true"]{
   transform:rotate(180deg) !important;
 }
-
-
+</style>
+<style id="goh-all-menu-chevrons-state-final">
 @media (min-width:1181px){
   #goh-official-nav .goh__desktop .goh__trigger > span:not(.nds-nav-label){
     position:relative !important;
@@ -4634,8 +4708,8 @@
 #goh-official-nav .goh__mobile-trigger[aria-expanded="true"] > span:last-child{
   transform:rotate(180deg) !important;
 }
-
-
+</style>
+<style id="goh-search-action-spacing-final">
 @media (min-width:1181px){
   #goh-official-nav .goh__main{
     gap:14px !important;
@@ -4676,7 +4750,53 @@
     padding-inline-end:14px !important;
   }
 }
+</style>
+<style id="goh-international-inside-subjects-final">
+  /* عرض موضوعات الإحصاءات مباشرة دون مستوى «حسب الموضوعات» */
+  #goh-official-nav :is(
+    .goh__statistics-sections-list,
+    .goh__mobile-menu--statistics-sections
+  ).goh__subjects-direct {
+    display: grid !important;
+    gap: 2px !important;
+  }
 
+  #goh-official-nav .goh__subjects-direct > :is(
+    .goh__subject-group,
+    .goh__statistics-section--international
+  ) {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  #goh-official-nav .goh__subjects-direct
+    > .goh__subject-group
+    > .goh__stat-main-group-trigger,
+  #goh-official-nav .goh__subjects-direct
+    > .goh__statistics-section--international
+    > summary {
+    min-height: 44px !important;
+    border: 1px solid transparent !important;
+    border-radius: 8px !important;
+    background: #fff !important;
+  }
+
+  #goh-official-nav .goh__subjects-direct
+    > .goh__subject-group
+    > .goh__stat-main-group-trigger:hover,
+  #goh-official-nav .goh__subjects-direct
+    > .goh__subject-group.is-open
+    > .goh__stat-main-group-trigger,
+  #goh-official-nav .goh__subjects-direct
+    > .goh__statistics-section--international
+    > summary:hover,
+  #goh-official-nav .goh__subjects-direct
+    > .goh__statistics-section--international[open]
+    > summary {
+    background: #f3f4f6 !important;
+    border-color: #d1d5db !important;
+    color: #161f2d !important;
+  }
 </style>
 <!-- FULL-INDEX-DEV-NAV-CSS:END -->
 <style id="umrah-publication-styles">
@@ -4806,9 +4926,9 @@
             </li>
             <li class="goh__item goh__item--statistics-sections">
               <button class="goh__trigger" type="button" aria-expanded="false">
-                البيانات والإحصاءات <span aria-hidden="true">⌄</span>
+                الإحصاءات <span aria-hidden="true">⌄</span>
               </button>
-              <div class="goh__dropdown goh__dropdown--statistics-sections">
+              <div class="goh__dropdown goh__dropdown--statistics-sections" hidden>
                 <div class="goh__statistics-sections-list" role="list">
                   <details
                     class="goh__statistics-section goh__statistics-section--field"
@@ -5138,8 +5258,6 @@
                         target="_blank"
                         rel="noopener noreferrer"
                         >الخريطة التفاعلية (لمحة)</a
-                      ><a aria-disabled="true"
-                        >الخريطة التفاعلية (تعداد السعودية 2022)</a
                       >
                     </div>
                   </details>
@@ -5147,7 +5265,7 @@
                     class="goh__statistics-section goh__statistics-section--international"
                   >
                     <summary>
-                      حسب المؤشرات والتقارير الدولية<span aria-hidden="true"
+                      المؤشرات والتقارير الدولية<span aria-hidden="true"
                         >›</span
                       >
                     </summary>
@@ -5233,44 +5351,6 @@
             </li>
             <li class="goh__item">
               <button class="goh__trigger" type="button" aria-expanded="false">
-                الخدمات<span>⌄</span>
-              </button>
-              <div class="goh__dropdown">
-                <div class="goh__links goh__links--compact">
-                  <a
-                    href="https://www.stats.gov.sa/ar/statistical-information-request"
-                    >طلب معلومات إحصائية</a
-                  ><a href="https://www.stats.gov.sa/ar/microdata-request"
-                    >طلب البيانات الدقيقة</a
-                  ><a href="https://www.stats.gov.sa/ar/business-center"
-                    >مركز الأعمال (الخدمات الإحصائية)</a
-                  >
-                </div>
-              </div>
-            </li>
-            <li class="goh__item">
-              <button class="goh__trigger" type="button" aria-expanded="false">
-                المسوح الإحصائية<span>⌄</span>
-              </button>
-              <div class="goh__dropdown">
-                <div class="goh__links goh__links--compact">
-                  <a href="https://www.stats.gov.sa/ar/survey-awareness"
-                    >توعية المسوح</a
-                  ><a
-                    href="https://www.stats.gov.sa/ar/statistical-knowledge-program"
-                    >برنامج المعرفة الإحصائية</a
-                  ><a href="https://www.stats.gov.sa/ar/story-of-number"
-                    >حكاية رقم</a
-                  ><a href="https://www.stats.gov.sa/ar/statistical-products"
-                    >تعرف على المنتجات الإحصائية</a
-                  ><a href="https://www.stats.gov.sa/ar/self-enumeration"
-                    >منصة الاستيفاء الذاتي</a
-                  >
-                </div>
-              </div>
-            </li>
-            <li class="goh__item">
-              <button class="goh__trigger" type="button" aria-expanded="false">
                 المرجعيات<span>⌄</span>
               </button>
               <div class="goh__dropdown">
@@ -5281,6 +5361,28 @@
                     >التصانيف</a
                   ><a href="https://www.stats.gov.sa/ar/glossary"
                     >معجم المصطلحات</a
+                  >
+                </div>
+              </div>
+            </li>
+            <li class="goh__item">
+              <a class="goh__trigger" href="e-services.html">الخدمات</a>
+            </li>
+            <li class="goh__item">
+              <button class="goh__trigger" type="button" aria-expanded="false">
+                المعرفة<span>⌄</span>
+              </button>
+              <div class="goh__dropdown">
+                <div class="goh__links goh__links--compact">
+                  <a href="https://www.stats.gov.sa/ar/survey-awareness"
+                    >توعية المسوح</a
+                  ><a
+                    href="https://www.stats.gov.sa/ar/statistical-knowledge-program"
+                    >برنامج المعرفة الإحصائية</a
+                  ><a href="https://www.stats.gov.sa/ar/statistical-products"
+                    >تعرف على المنتجات الإحصائية</a
+                  ><a href="https://www.stats.gov.sa/ar/self-enumeration"
+                    >منصة الاستيفاء الذاتي</a
                   >
                 </div>
               </div>
@@ -5312,26 +5414,6 @@
                         >النشاطات والإنجازات</a>
                     </div>
                   </section>
-                </div>
-              </div>
-            </li>
-            <li class="goh__item">
-              <button class="goh__trigger" type="button" aria-expanded="false">
-                تواصل معنا<span>⌄</span>
-              </button>
-              <div class="goh__dropdown">
-                <div class="goh__links goh__links--compact">
-                  <a href="https://www.stats.gov.sa/ar/contact-us">تواصل معنا</a
-                  ><a href="https://www.stats.gov.sa/ar/branches">الفروع</a
-                  ><a href="https://www.stats.gov.sa/ar/e-participation"
-                    >المشاركة الإلكترونية</a
-                  ><a
-                    href="https://www.stats.gov.sa/ar/frequently-asked-questions"
-                    >الأسئلة الشائعة</a
-                  ><a href="https://www.stats.gov.sa/ar/careers">التوظيف</a
-                  ><a href="https://www.stats.gov.sa/ar/cooperative-training"
-                    >التدريب التعاوني</a
-                  >
                 </div>
               </div>
             </li>
@@ -5486,9 +5568,9 @@
             class="goh__mobile-trigger"
             aria-expanded="false"
           >
-            <span>البيانات والإحصاءات</span><span aria-hidden="true">⌄</span>
+            <span>الإحصاءات</span><span aria-hidden="true">⌄</span>
           </button>
-          <div class="goh__mobile-menu goh__mobile-menu--statistics-sections">
+          <div class="goh__mobile-menu goh__mobile-menu--statistics-sections" hidden>
             <details
               class="goh__statistics-section goh__statistics-section--field"
             >
@@ -5809,8 +5891,6 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   >الخريطة التفاعلية (لمحة)</a
-                ><a aria-disabled="true"
-                  >الخريطة التفاعلية (تعداد السعودية 2022)</a
                 >
               </div>
             </details>
@@ -5818,7 +5898,7 @@
               class="goh__statistics-section goh__statistics-section--international"
             >
               <summary>
-                حسب المؤشرات والتقارير الدولية<span aria-hidden="true">›</span>
+                المؤشرات والتقارير الدولية<span aria-hidden="true">›</span>
               </summary>
               <div
                 class="goh__international-flyout"
@@ -5898,46 +5978,6 @@
             class="goh__mobile-trigger"
             aria-expanded="false"
           >
-            <span>الخدمات</span><span>⌄</span>
-          </button>
-          <div class="goh__mobile-menu">
-            <a
-              href="https://www.stats.gov.sa/ar/statistical-information-request"
-              >طلب معلومات إحصائية</a
-            ><a href="https://www.stats.gov.sa/ar/microdata-request"
-              >طلب البيانات الدقيقة</a
-            ><a href="https://www.stats.gov.sa/ar/business-center"
-              >مركز الأعمال (الخدمات الإحصائية)</a
-            >
-          </div>
-        </div>
-        <div class="goh__mobile-item">
-          <button
-            type="button"
-            class="goh__mobile-trigger"
-            aria-expanded="false"
-          >
-            <span>المسوح الإحصائية</span><span>⌄</span>
-          </button>
-          <div class="goh__mobile-menu">
-            <a href="https://www.stats.gov.sa/ar/survey-awareness"
-              >توعية المسوح</a
-            ><a href="https://www.stats.gov.sa/ar/statistical-knowledge-program"
-              >برنامج المعرفة الإحصائية</a
-            ><a href="https://www.stats.gov.sa/ar/story-of-number">حكاية رقم</a
-            ><a href="https://www.stats.gov.sa/ar/statistical-products"
-              >تعرف على المنتجات الإحصائية</a
-            ><a href="https://www.stats.gov.sa/ar/self-enumeration"
-              >منصة الاستيفاء الذاتي</a
-            >
-          </div>
-        </div>
-        <div class="goh__mobile-item">
-          <button
-            type="button"
-            class="goh__mobile-trigger"
-            aria-expanded="false"
-          >
             <span>المرجعيات</span><span>⌄</span>
           </button>
           <div class="goh__mobile-menu">
@@ -5945,6 +5985,31 @@
               >الأدلة الإحصائية</a
             ><a href="https://www.stats.gov.sa/ar/classifications">التصانيف</a
             ><a href="https://www.stats.gov.sa/ar/glossary">معجم المصطلحات</a
+            >
+          </div>
+        </div>
+        <div class="goh__mobile-item">
+          <a class="goh__mobile-trigger" href="e-services.html">
+            <span>الخدمات</span>
+          </a>
+        </div>
+        <div class="goh__mobile-item">
+          <button
+            type="button"
+            class="goh__mobile-trigger"
+            aria-expanded="false"
+          >
+            <span>المعرفة</span><span>⌄</span>
+          </button>
+          <div class="goh__mobile-menu">
+            <a href="https://www.stats.gov.sa/ar/survey-awareness"
+              >توعية المسوح</a
+            ><a href="https://www.stats.gov.sa/ar/statistical-knowledge-program"
+              >برنامج المعرفة الإحصائية</a
+            ><a href="https://www.stats.gov.sa/ar/statistical-products"
+              >تعرف على المنتجات الإحصائية</a
+            ><a href="https://www.stats.gov.sa/ar/self-enumeration"
+              >منصة الاستيفاء الذاتي</a
             >
           </div>
         </div>
@@ -5969,27 +6034,6 @@
               >هكاثون الابتكار في البيانات</a
             ><a href="https://www.stats.gov.sa/ar/activities-and-achievements"
               >النشاطات والإنجازات</a>
-          </div>
-        </div>
-        <div class="goh__mobile-item">
-          <button
-            type="button"
-            class="goh__mobile-trigger"
-            aria-expanded="false"
-          >
-            <span>تواصل معنا</span><span>⌄</span>
-          </button>
-          <div class="goh__mobile-menu">
-            <a href="https://www.stats.gov.sa/ar/contact-us">تواصل معنا</a
-            ><a href="https://www.stats.gov.sa/ar/branches">الفروع</a
-            ><a href="https://www.stats.gov.sa/ar/e-participation"
-              >المشاركة الإلكترونية</a
-            ><a href="https://www.stats.gov.sa/ar/frequently-asked-questions"
-              >الأسئلة الشائعة</a
-            ><a href="https://www.stats.gov.sa/ar/careers">التوظيف</a
-            ><a href="https://www.stats.gov.sa/ar/cooperative-training"
-              >التدريب التعاوني</a
-            >
           </div>
         </div>
       </div>
@@ -6538,14 +6582,6 @@
   })();
   </script>
 <!-- FULL-INDEX-DEV-NAV-JS:BEGIN -->
-<script id="gastat-clean-first-render-guard">
-  document.documentElement.classList.add('goh-clean-first-render');
-  window.addEventListener('DOMContentLoaded', () => {
-    window.requestAnimationFrame(() => {
-      document.documentElement.classList.remove('goh-clean-first-render');
-    });
-  }, { once: true });
-</script>
 <script id="goh-official-nav-script">
       (() => {
         const root = document.getElementById("goh-official-nav");
@@ -6697,7 +6733,9 @@
         if (!root || !desktopNav) return;
         const desktop = matchMedia("(min-width: 1181px)");
         const items = [...desktopNav.querySelectorAll(".goh__item")].filter(
-          (item) => item.querySelector(":scope > .goh__trigger"),
+          (item) =>
+            item.querySelector(":scope > .goh__trigger") &&
+            item.querySelector(":scope > .goh__dropdown"),
         );
 
         const openOnly = (selected) => {
@@ -6724,10 +6762,13 @@
               ".goh__desktop .goh__item > .goh__trigger",
             );
             if (!trigger) return;
+            const triggerItem = trigger.closest(".goh__item");
+            if (!triggerItem || !triggerItem.querySelector(":scope > .goh__dropdown"))
+              return;
             event.preventDefault();
             event.stopPropagation();
             event.stopImmediatePropagation();
-            openOnly(trigger.closest(".goh__item"));
+            openOnly(triggerItem);
           },
           true,
         );
@@ -6797,14 +6838,13 @@
             "Sixth United Nations World Data Forum 2026",
           "هكاثون الابتكار في البيانات": "Data Innovation Hackathon",
           "الكلمات الأعلى بحثًا:": "Top searches:",
-          "نمو صادرات خدمات المملكة العربية السعودية بنسبة 7.9% في الربع الأول من عام 2026":
-            "Saudi Arabia's services exports grew by 7.9% in Q1 2026",
-          "أظهرت نتائج إحصاءات التجارة الدولية في الخدمات أن إجمالي قيمة صادرات المملكة من الخدمات للربع الأول لعام 2026م بلغ 71.3 مليار ريال سعودي، مقارنةً بـ 66.1 مليار ريال للربع الرابع من عام 2025م، مسجلًا نموًا نسبته 7.9%. كما بلغ إجمالي قيمة واردات المملكة من الخدمات للربع الأول لعام 2026م نحو 111.4 مليار ريال سعودي، مقابل 119.6مليار ريال في الربع الرابع من عام 2025 م، مسجلًا انخفاضًا نسبته 6.9%.":
-            "International trade in services statistics show that Saudi services exports reached SAR 71.3 billion in Q1 2026, up 7.9%, while imports reached SAR 111.4 billion, down 6.9% from Q4 2025.",
-          "انخفاض معدل البطالة لإجمالي سكان المملكة ليصل إلى 3.1% خلال الربع الأول من عام 2026م":
-            "Overall unemployment in Saudi Arabia declined to 3.1% in Q1 2026",
-          "بناءً على تقديرات مسح القوى العاملة للهيئة العامة للإحصاء، بلغ معدل البطالة الإجمالي (للسعوديين وغير السعوديين) 3.1% خلال الربع الأول من عام 2026م، مسجلًا بذلك انخفاضًا بمقدار 0.4 نقطة مئوية مقارنة بالربع الرابع من عام 2025، وسجل ارتفاعًا سنويًّا بمقدار 0.3 نقطة مئوية مقارنةً بالربع الأول من عام2025م. وبلغ معدل مشاركة القوى العاملة الإجمالي (للسعوديين وغير السعوديين) 67.2% بانخفاض مقداره 0.2 نقطة مئوية مقارنةً بالربع السابق من عام 2025م، وبانخفاض سنوي مقداره 1.0 نقطة مئوية مقارنة بالربع المماثل من عام 2025م. هذا وقد بلغ معدل البطالة للسعوديين 6.4% في الربع الأول من عام 2026م":
-            "Labour Force Survey estimates show that overall unemployment reached 3.1% in Q1 2026. Labour force participation stood at 67.2%, while unemployment among Saudis reached 6.4%.",
+          "الخرائط التفاعلية (لمحة)": "Interactive Maps (Lamha)",
+          "استكشف بيانات مناطق المملكة بصريًا، وقارن المؤشرات بين المناطق الإدارية من خلال تجربة مكانية تفاعلية واضحة وسريعة تساعدك على فهم التوزيعات والاتجاهات والوصول إلى المعلومة بسهولة.":
+            "Explore Saudi regional data visually and compare indicators across administrative regions through a clear, fast interactive spatial experience.",
+          "مستكشف البيانات": "Data Explorer",
+          "ابحث في المؤشرات والسلاسل الزمنية والبيانات التفصيلية، وخصص الجداول والفترات للوصول إلى البيانات التي تحتاجها وتحليلها وتنزيلها من مكان واحد بطريقة مبسطة ومرنة.":
+            "Search indicators, time series, and detailed data, then customize tables and periods to analyze and download what you need from one place.",
+          "استعراض الخدمة": "Explore Service",
           "&quot;الإحصاء&quot; المملكة تتسلم رسمياً استضافة منتدى الأمم المتحدة العالمي للبيانات 2026 في الرياض":
             "Saudi Arabia officially receives the hosting of the 2026 UN World Data Forum in Riyadh",
           "تسلم الدكتور فهد بن عبدالله الدوسري رئيس الهيئة العامة للإحصاء رسمياً استضافة المملكة منتدى الأمم المتحدة العالمي السادس للبيانات 2026، وذلك في ختام أعمال النسخة الخامسة من المنتدى المنعقد مؤخراً في مدينة ميدلين بجمهورية كولومبيا خلال الفترة (12–15 نوفمبر 2024م)":
@@ -7020,7 +7060,7 @@
           ["المؤشرات الدولية", "International Indicators"],
           ["التقارير الدولية", "International Reports"],
           ["الخدمات", "Services"],
-          ["المسوح الإحصائية", "Statistical Surveys"],
+          ["المعرفة", "Knowledge"],
           ["التصانيف", "Classifications"],
           ["الأخبار", "News"],
           ["الوسائط", "Media"],
@@ -7030,7 +7070,7 @@
           ["الفروع", "Branches"],
           ["التوظيف", "Careers"],
           ["الهيئة", "GASTAT"],
-          ["البيانات والإحصاءات", "Data and Statistics"],
+          ["الإحصاءات", "Statistics"],
           ["إحصاءات", "Statistics"],
           ["الأسعار", "Prices"],
           ["الأعمال", "Business"],
@@ -7142,7 +7182,7 @@
             root.lang = "ar";
             root.dir = "rtl";
             document.title =
-              "نسخة تجريبية للعرض الداخلي | الأقسام الإحصائية المطوّرة";
+              "النسخة التجريبية لموقع الهيئة العامة للإحصاء";
             control = languageControl();
             if (control) {
               control.textContent = "English";
@@ -7182,8 +7222,8 @@
         }
 
         var observer = new MutationObserver(function (records) {
-          bindControl();
           if (activeLanguage !== "en") return;
+          bindControl();
           records.forEach(function (record) {
             record.addedNodes.forEach(translateNode);
           });
@@ -7376,13 +7416,12 @@
           ];
           if (!items.length) return false;
           const order = [
-            "البيانات والإحصاءات",
-            "الخدمات",
-            "المسوح الإحصائية",
-            "المرجعيات",
             "الهيئة",
+            "الإحصاءات",
+            "المرجعيات",
+            "الخدمات",
+            "المعرفة",
             "المركز الإعلامي",
-            "تواصل معنا",
           ];
           const title = (item) =>
             item
@@ -7637,9 +7676,9 @@
  const apply=()=>{
   const desktop=document.querySelector('#goh-official-nav .goh__item--statistics-sections > .goh__trigger');
   const mobile=document.querySelector('#goh-official-nav .goh__mobile-item--statistics-sections > .goh__mobile-trigger > span:first-child');
-   if(desktop){desktop.childNodes[0].nodeValue='البيانات والإحصاءات ';desktop.setAttribute('aria-label','البيانات والإحصاءات')}
-   if(mobile)mobile.textContent='البيانات والإحصاءات';
-  document.querySelectorAll('.indicators-section .kpi-product-link').forEach(link=>{link.href='https://azghamdi.github.io/indicator/';link.setAttribute('aria-label','اكتشف المزيد عن المؤشر')});
+   if(desktop){desktop.childNodes[0].nodeValue='الإحصاءات ';desktop.setAttribute('aria-label','الإحصاءات')}
+   if(mobile)mobile.textContent='الإحصاءات';
+  document.querySelectorAll('.indicators-section .kpi-product-link').forEach(link=>{link.href='https://www.stats.gov.sa/ar/home';link.setAttribute('aria-label','اكتشف المزيد عن المؤشر')});
  };
  document.readyState==='loading'?document.addEventListener('DOMContentLoaded',()=>{apply();setTimeout(apply,350)},{once:true}):apply();
 })();
@@ -7891,119 +7930,331 @@
   else init();
 })();
 </script>
-<script id="gastat-statistics-tabs-unified-script">
+<script id="goh-international-inside-subjects-final-script">
 (() => {
-  const labels = ['حسب المجال الإحصائي', 'حسب الموضوعات'];
-  const normalize = (value = '') => value.replace(/\s+/g, ' ').trim();
+  const relocate = () => {
+    document.querySelectorAll(
+      '#goh-official-nav .goh__statistics-sections-list, #goh-official-nav .goh__mobile-menu--statistics-sections'
+    ).forEach((menu) => {
+      const subjects = menu.querySelector(':scope > .goh__statistics-section--subjects');
+      const international = menu.querySelector(':scope > .goh__statistics-section--international');
+      const subjectsContent = subjects?.querySelector(':scope > .goh__statistics-subsections');
+      if (!subjects || !subjectsContent) return;
 
-  const init = () => {
-    const tabs = [...document.querySelectorAll('button, [role="tab"], a')]
-      .filter((element) => labels.includes(normalize(element.textContent)));
-    if (tabs.length < 2) return;
+      if (international) {
+        international.classList.add('goh__statistics-section--nested-in-subjects');
+        subjectsContent.appendChild(international);
+      }
 
-    tabs.forEach((tab) => tab.classList.add('goh-statistics-segmented-tab'));
-    const commonParent = tabs[0].parentElement;
-    if (commonParent && tabs.every((tab) => tab.parentElement === commonParent)) {
-      commonParent.classList.add('goh-statistics-segmented-tabs');
-    }
-
-    const setActive = (selected) => tabs.forEach((tab) => {
-      const active = tab === selected;
-      tab.classList.toggle('is-active', active);
-      tab.setAttribute('aria-selected', String(active));
-    });
-
-    const initiallyActive = tabs.find((tab) =>
-      tab.matches('.active, .is-active, [aria-selected="true"]')
-    ) || tabs[0];
-    setActive(initiallyActive);
-    tabs.forEach((tab) => tab.addEventListener('click', () => setActive(tab)));
-  };
-
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
-  else init();
-})();
-</script>
-<script id="gastat-primary-card-icon-direct-script">
-(() => {
-  const init = () => {
-    const cards = [...document.querySelectorAll(
-      'main article, main [class*="card"], main [class*="kpi"]'
-    )];
-
-    cards.forEach((card) => {
-      const svg = card.querySelector('svg');
-      if (!svg) return;
-      const holder = svg.parentElement;
-      if (!holder || holder.matches('button, a') || holder.closest('button, a')) return;
-      holder.classList.add('goh-primary-card-icon');
-    });
-  };
-
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
-  else init();
-})();
-</script>
-<script id="gastat-indicator-trend-arrows-restore-script">
-(() => {
-  const init = () => document.querySelectorAll(
-    '.indicators-section [class*="trend"], .indicators-section [class*="change"], .indicators-section [class*="arrow"], .indicators-section [class*="direction"], [class*="indicators"] [class*="trend"], [class*="indicators"] [class*="change"], [class*="indicators"] [class*="arrow"], [class*="indicators"] [class*="direction"]'
-  ).forEach((element) => element.classList.remove('goh-primary-card-icon'));
-
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
-  else init();
-})();
-</script>
-<script id="gastat-calendar-release-countdown-script">
-(() => {
-  const schedules = [
-    { date: '18 أغسطس 2026', remaining: 'متبقي أسبوع' },
-    { date: '10 سبتمبر 2026', remaining: 'متبقي شهر' },
-    { date: '24 سبتمبر 2026', remaining: 'متبقي شهر ونصف' },
-    { date: '8 أكتوبر 2026', remaining: 'متبقي شهران' }
-  ];
-
-  const clean = (value = '') => value.replace(/\s+/g, ' ').trim();
-  const findCalendarTab = () => [...document.querySelectorAll('button, [role="tab"], a')]
-    .find((element) => clean(element.textContent) === 'إصدارات التقويم الإحصائي');
-
-  const updateCalendarCards = () => {
-    const tab = findCalendarTab();
-    if (!tab) return;
-    const section = tab.closest('section') || tab.parentElement?.parentElement || document;
-    const cards = [...section.querySelectorAll('article, .hover-card, [class*="release-card"], [class*="publication-card"]')]
-      .filter((card) => card.offsetParent !== null && !card.dataset.calendarScheduleUpdated);
-
-    cards.slice(0, schedules.length).forEach((card, index) => {
-      const schedule = schedules[index];
-      const dateNode = [...card.querySelectorAll('time, p, span, strong, div')].find((node) => {
-        if (node.children.length) return false;
-        const text = clean(node.textContent);
-        return /202[5-7]/.test(text) && /(يناير|فبراير|مارس|أبريل|مايو|يونيو|يوليو|أغسطس|سبتمبر|أكتوبر|نوفمبر|ديسمبر)/.test(text);
+      [...subjectsContent.children].forEach((item) => {
+        menu.insertBefore(item, subjects);
       });
-      if (!dateNode) return;
-
-      dateNode.textContent = schedule.date;
-      if (dateNode.tagName === 'TIME') dateNode.removeAttribute('datetime');
-      const badge = document.createElement('span');
-      badge.className = 'goh-calendar-countdown';
-      badge.textContent = schedule.remaining;
-      dateNode.insertAdjacentElement('afterend', badge);
-      card.dataset.calendarScheduleUpdated = 'true';
+      menu.classList.add('goh__subjects-direct');
+      subjects.remove();
     });
   };
 
-  const init = () => {
-    const tab = findCalendarTab();
-    if (!tab) return;
-    tab.addEventListener('click', () => window.setTimeout(updateCalendarCards, 60));
-    if (tab.matches('.active, .is-active, [aria-selected="true"]')) updateCalendarCards();
-  };
-
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
-  else init();
+  relocate();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', relocate, { once: true });
+  }
 })();
 </script>
+<script id="remove-statistics-dropdown-content-runtime-final">
+      (() => {
+                        const sections = [
+          {
+            name: "الاقتصاد والتجارة والاستثمار",
+            items: [
+              ["استخدام المنشآت للتقنية", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=127305"],
+              ["الاقتصاد الرقمي", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=122941"],
+              ["ثقة المستهلك", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=10132653"],
+              ["ثقة الأعمال والمستهلك", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=1340144"],
+              ["الاستثمار الأجنبي المباشر", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123583"],
+              ["الناتج المحلي الإجمالي", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=120038"],
+              ["التجارة الدولية للسلع", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123481"],
+              ["التجارة الدولية للخدمات", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=1340149"],
+              ["المؤشرات الاقتصادية الشهرية", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123342"],
+              ["الحسابات القومية وجداول العرض والاستخدام", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=419265"],
+              ["الصورة الاقتصادية الشاملة", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=2197212"],
+            ],
+          },
+          {
+            name: "الأسعار والتضخم",
+            items: [
+              ["تكلفة السكن والإيجارات", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=121920"],
+              ["تكاليف البناء ومواده", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=3453505"],
+              ["أسعار الطاقة والوقود", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124707"],
+              ["أسعار الغذاء", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=121662"],
+              ["التضخم وأسعار المستهلك", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=121421"],
+              ["أسعار المنتجين والجملة", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=10329368"],
+            ],
+          },
+          {
+            name: "الأعمال والصناعة والابتكار",
+            items: [
+              ["الإنتاج الصناعي", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123454"],
+              ["البحث والتطوير", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123265"],
+              ["المنشآت الصغيرة والمتوسطة", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123088"],
+              ["قطاع الأعمال والمنشآت", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=3631799"],
+              ["القطاع غير الربحي", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=2163811"],
+              ["تجارة الجملة والتجزئة", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123427"],
+            ],
+          },
+          {
+            name: "سوق العمل والمهارات",
+            items: [
+              ["مهارات الكبار والتعلّم", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=3030916"],
+              ["التوظيف والمشتغلون", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124074"],
+              ["معدل البطالة", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=417515"],
+              ["العمل التطوعي", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123992"],
+            ],
+          },
+          {
+            name: "السكان والمساكن",
+            items: [
+              ["الإسكان والمساكن", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436318&category=417705"],
+              ["عدد السكان وخصائصهم", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436318&category=417653"],
+              ["تعداد السعودية ٢٠٢٢", "https://www.stats.gov.sa/ar/statistics?index=119025&subindex=127380"],
+            ],
+          },
+          {
+            name: "الصحة والتعليم والرفاه",
+            items: [
+              ["التعليم والتدريب", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=514986"],
+              ["صحة الطفل والطفولة المبكرة", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123872"],
+              ["الرعاية الصحية", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123812"],
+              ["العوامل المؤثرة في الصحة", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123842"],
+              ["المنشآت والكوادر الصحية", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=2968800"],
+              ["الحالة الصحية", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=417594"],
+              ["السلامة والصحة المهنية", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123762"],
+              ["النشاط البدني والرياضة", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=1278616"],
+              ["صحة المرأة والإنجاب", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123902"],
+              ["تعداد السعودية ٢٠٢٢", "https://www.stats.gov.sa/ar/statistics?index=119025&subindex=127380"],
+            ],
+          },
+          {
+            name: "المجتمع وأساليب الحياة",
+            items: [
+              ["استخدام الأفراد للإنترنت", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=122971"],
+              ["الثقافة والترفيه", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=127333"],
+              ["دخل الأسرة وإنفاقها", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=127329"],
+              ["الأمن والسلامة", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=2377692"],
+              ["الخدمات في المناطق", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124988"],
+              ["كبار السن", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123674"],
+              ["ذوو الإعاقة", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123728"],
+              ["الأسرة السعودية", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=3153652"],
+              ["المرأة", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123614"],
+              ["الشباب", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=2696599"],
+            ],
+          },
+          {
+            name: "الطاقة والثروة المعدنية",
+            items: [
+              ["الكهرباء", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124767"],
+              ["كفاءة الطاقة", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124737"],
+              ["الثروة المعدنية", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=9766296"],
+              ["النفط والغاز", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124827"],
+              ["الطاقة المتجددة", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124797"],
+            ],
+          },
+          {
+            name: "البيئة والمناخ والأراضي والزراعة",
+            items: [
+              ["حسابات الزراعة والأسماك", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=2236635"],
+              ["الإنتاج الزراعي", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124583"],
+              ["المزارع والحيازات", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124673"],
+              ["الأسماك والاستزراع المائي", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124643"],
+              ["الأمن الغذائي", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=2197199"],
+              ["الثروة الحيوانية", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124553"],
+              ["التغير المناخي", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=2236741"],
+              ["البيئة بوجه عام", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124458"],
+              ["الأراضي", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=2215700"],
+              ["البيئة في المنزل", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124428"],
+              ["النفايات", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=10269979"],
+              ["المياه", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=2236631"],
+            ],
+          },
+          {
+            name: "النقل والسياحة والحج والعمرة",
+            items: [
+              ["الحج", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124364"],
+              ["الفنادق والمنشآت السياحية", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124304"],
+              ["العمرة", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124334"],
+              ["النقل الجوي", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124954"],
+              ["النقل البحري", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124924"],
+              ["السكك الحديدية", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=565258"],
+              ["النقل البري", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124894"],
+              ["التخزين والخدمات اللوجستية", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=2163948"],
+            ],
+          },
+        ];
+
+        const buildMenu = (mobile = false) => {
+          const menu = document.createElement("div");
+          menu.className = mobile
+            ? "goh__mobile-menu goh__mobile-menu--statistics-sections goh__statistics-sections-v2"
+            : "goh__dropdown goh__dropdown--statistics-sections goh__statistics-sections-v2";
+
+          const list = document.createElement("div");
+          list.className = "goh__statistics-sections-list goh__primary-statistics-list";
+          list.setAttribute("role", "list");
+
+          sections.forEach((section, index) => {
+            const entry = document.createElement("div");
+            entry.className = "goh__primary-statistics-entry";
+            entry.setAttribute("role", "listitem");
+
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "goh__primary-statistics-item";
+            button.dataset.statisticsSection = String(index + 1);
+            button.setAttribute("aria-expanded", "false");
+            button.innerHTML = `<span>${section.name}</span>${section.items.length ? '<span class="goh__section-chevron" aria-hidden="true"></span>' : ''}`;
+            entry.appendChild(button);
+
+            if (section.items.length) {
+              const submenu = document.createElement("div");
+              submenu.className = "goh__primary-statistics-submenu";
+              submenu.classList.toggle("is-two-column", section.items.length > 6);
+              submenu.setAttribute("aria-label", section.name);
+
+              section.items.forEach(([itemName, itemUrl]) => {
+                const item = document.createElement(itemUrl ? "a" : "button");
+                if (itemUrl) {
+                  item.href = itemUrl;
+                  item.target = "_blank";
+                  item.rel = "noopener noreferrer";
+                } else {
+                  item.type = "button";
+                  item.disabled = true;
+                  item.setAttribute("aria-disabled", "true");
+                }
+                item.textContent = itemName;
+                submenu.appendChild(item);
+              });
+
+              entry.appendChild(submenu);
+              button.addEventListener("click", () => {
+                if (!mobile) return;
+                const isOpen = entry.classList.toggle("is-open");
+                button.setAttribute("aria-expanded", String(isOpen));
+              });
+            }
+
+            list.appendChild(entry);
+          });
+
+          menu.appendChild(list);
+          return menu;
+        };
+
+        const prepareStatisticsMenus = () => {
+          document
+            .querySelectorAll(
+              "#goh-official-nav .goh__dropdown--statistics-sections:not(.goh__statistics-sections-v2), #goh-official-nav .goh__mobile-menu--statistics-sections:not(.goh__statistics-sections-v2)",
+            )
+            .forEach((menu) => menu.remove());
+
+          const desktopItem = document.querySelector(
+            "#goh-official-nav .goh__item--statistics-sections",
+          );
+          if (desktopItem && !desktopItem.querySelector(":scope > .goh__statistics-sections-v2")) {
+            desktopItem.appendChild(buildMenu(false));
+          }
+
+          const mobileItem = document.querySelector(
+            "#goh-official-nav .goh__mobile-item--statistics-sections",
+          );
+          if (mobileItem && !mobileItem.querySelector(":scope > .goh__statistics-sections-v2")) {
+            mobileItem.appendChild(buildMenu(true));
+          }
+        };
+
+        prepareStatisticsMenus();
+        document.addEventListener("DOMContentLoaded", prepareStatisticsMenus, { once: true });
+      })();
+    </script>
+<script id="goh-statistics-hover-intent-script">
+      (() => {
+        // The desktop "الإحصاءات" mega menu lays its sections out in two
+        // columns; a right-column section's flyout opens past the
+        // left-column section beside it. Moving the mouse in a straight
+        // line from the trigger to that flyout crosses the neighbouring
+        // section's own button, and plain :hover made that neighbour pop
+        // its own flyout open for the instant the cursor passed over it.
+        // Hover-intent timers fix this: opening waits for a short dwell
+        // (so a fast pass-through never counts as intent) and closing is
+        // delayed (so re-entering the original section's flyout — a
+        // descendant of the same entry — cancels the close in time).
+        const OPEN_DELAY = 120;
+        const CLOSE_DELAY = 260;
+
+        const setup = () => {
+          const nav = document.querySelector(
+            "#goh-official-nav .goh__dropdown--statistics-sections.goh__statistics-sections-v2",
+          );
+          if (!nav || nav.dataset.hoverIntentReady) return;
+          nav.dataset.hoverIntentReady = "true";
+
+          const entries = [
+            ...nav.querySelectorAll(
+              ":scope > .goh__primary-statistics-list > .goh__primary-statistics-entry",
+            ),
+          ];
+          let openTimer = null;
+          let closeTimer = null;
+
+          const closeAll = (except) => {
+            entries.forEach((e) => {
+              if (e === except) return;
+              e.classList.remove("is-open");
+              e.querySelector(":scope > .goh__primary-statistics-item")?.setAttribute(
+                "aria-expanded",
+                "false",
+              );
+            });
+          };
+
+          entries.forEach((entry) => {
+            const trigger = entry.querySelector(
+              ":scope > .goh__primary-statistics-item",
+            );
+            if (!entry.querySelector(":scope > .goh__primary-statistics-submenu"))
+              return;
+
+            entry.addEventListener("mouseenter", () => {
+              if (!matchMedia("(min-width:1181px)").matches) return;
+              clearTimeout(closeTimer);
+              if (entry.classList.contains("is-open")) return;
+              clearTimeout(openTimer);
+              openTimer = setTimeout(() => {
+                closeAll(entry);
+                entry.classList.add("is-open");
+                trigger?.setAttribute("aria-expanded", "true");
+              }, OPEN_DELAY);
+            });
+
+            entry.addEventListener("mouseleave", () => {
+              if (!matchMedia("(min-width:1181px)").matches) return;
+              clearTimeout(openTimer);
+              closeTimer = setTimeout(() => {
+                entry.classList.remove("is-open");
+                trigger?.setAttribute("aria-expanded", "false");
+              }, CLOSE_DELAY);
+            });
+          });
+
+          nav.addEventListener("mouseleave", () => {
+            clearTimeout(openTimer);
+            closeTimer = setTimeout(() => closeAll(null), CLOSE_DELAY);
+          });
+        };
+
+        setup();
+        document.addEventListener("DOMContentLoaded", setup, { once: true });
+      })();
+    </script>
 <!-- FULL-INDEX-DEV-NAV-JS:END -->
 <style id="newsletter-official-navigation-final-fix">
   /* Keep the transferred official navigation independent from newsletter styles. */
@@ -9826,189 +10077,6 @@
 <style id="ibm-plex-font-enforcement">
   html,body,body button,body input,body select,body textarea,body table,body th,body td,body a,body summary,body label,body output,body code,body pre,body svg text {
     font-family:"IBM Plex Sans Arabic","IBM Plex Sans",Tahoma,Arial,sans-serif !important;
-  }
-</style>
-<style id="goh-navigation-identity-final">
-  #goh-official-nav {
-    --nav-green:#1b8354;
-    --nav-green-dark:#166a45;
-    --nav-green-soft:#eef8f3;
-    --nav-ink:#243a32;
-    --nav-muted:#60726b;
-    --nav-line:#d7e2dc;
-  }
-  #goh-official-nav :where(.goh__trigger,.goh__mobile-trigger,.goh__statistics-section>summary,.goh__stat-main-group-trigger,.goh__international-goals-trigger) {
-    color:var(--nav-ink) !important;
-    font-weight:600 !important;
-    text-decoration:none !important;
-  }
-  #goh-official-nav :where(.goh__trigger,.goh__mobile-trigger,.goh__statistics-section>summary,.goh__stat-main-group-trigger,.goh__international-goals-trigger):focus-visible {
-    outline:3px solid rgba(27,131,84,.28) !important;
-    outline-offset:2px !important;
-  }
-  #goh-official-nav :where(.goh__statistics-section>summary,.goh__stat-main-group-trigger,.goh__international-goals-trigger) {
-    min-height:48px !important;
-    padding:10px 14px !important;
-    border:1px solid transparent !important;
-    border-radius:8px !important;
-    background:#fff !important;
-    transition:background-color .15s,border-color .15s,color .15s !important;
-  }
-  #goh-official-nav :where(.goh__statistics-section[open]>summary,.goh__stat-main-group-trigger[aria-expanded="true"],.goh__international-goals-group.is-open>.goh__international-goals-trigger),
-  #goh-official-nav :where(.goh__statistics-section>summary,.goh__stat-main-group-trigger,.goh__international-goals-trigger):hover {
-    color:var(--nav-green-dark) !important;
-    background:var(--nav-green-soft) !important;
-    border-color:#b9ddcc !important;
-    box-shadow:inset -3px 0 0 var(--nav-green) !important;
-  }
-  #goh-official-nav :where(.goh__dropdown,.goh__stat-topic-flyout,.goh__region-flyout,.goh__international-flyout,.goh__mobile-menu) {
-    color:var(--nav-ink) !important;
-    background:#fff !important;
-    border-color:var(--nav-line) !important;
-  }
-  #goh-official-nav :where(.goh__links a,.goh__stat-topic-flyout a,.goh__stat-topic-flyout button,.goh__region-flyout a,.goh__international-flyout>a,.goh__mobile-menu>a) {
-    min-height:42px !important;
-    padding:9px 12px !important;
-    display:flex !important;
-    align-items:center !important;
-    color:var(--nav-ink) !important;
-    background:#fff !important;
-    border:1px solid transparent !important;
-    border-radius:7px !important;
-    font-size:14px !important;
-    font-weight:500 !important;
-    line-height:1.55 !important;
-    text-align:right !important;
-    text-decoration:none !important;
-    white-space:normal !important;
-    transition:background-color .15s,border-color .15s,color .15s !important;
-  }
-  #goh-official-nav :where(.goh__links a,.goh__stat-topic-flyout a,.goh__stat-topic-flyout button,.goh__region-flyout a,.goh__international-flyout>a,.goh__mobile-menu>a):is(:hover,:focus-visible) {
-    color:var(--nav-green-dark) !important;
-    background:var(--nav-green-soft) !important;
-    border-color:#c4dfd1 !important;
-    outline:none !important;
-  }
-  #goh-official-nav .goh__media-group h4,
-  #goh-official-nav .goh__mobile-group-title {
-    color:var(--nav-green-dark) !important;
-    border-color:var(--nav-line) !important;
-  }
-  @media(min-width:1181px){
-    #goh-official-nav .goh__desktop .goh__item>.goh__dropdown {
-      z-index:10000 !important;
-      border-top:3px solid var(--nav-green) !important;
-      box-shadow:0 18px 38px rgba(22,61,48,.14) !important;
-    }
-    #goh-official-nav .goh__desktop .goh__item:is(:hover,:focus-within,.is-open)>.goh__trigger,
-    #goh-official-nav .goh__desktop .goh__trigger[aria-expanded="true"] {
-      color:var(--nav-green-dark) !important;
-      background:var(--nav-green-soft) !important;
-      box-shadow:inset 0 -3px 0 var(--nav-green) !important;
-    }
-    #goh-official-nav .goh__dropdown--statistics-sections {
-      max-height:min(720px,calc(100vh - 150px)) !important;
-    }
-    #goh-official-nav .goh__statistics-sections-list {
-      max-height:min(680px,calc(100vh - 190px)) !important;
-      overflow-y:auto !important;
-      overscroll-behavior:contain;
-      scrollbar-gutter:stable;
-    }
-  }
-  @media(max-width:1180px){
-    #goh-official-nav .goh__mobile-panel {
-      background:#fff !important;
-      border-top:3px solid var(--nav-green) !important;
-    }
-    #goh-official-nav .goh__mobile-item {
-      border-bottom:1px solid var(--nav-line) !important;
-    }
-    #goh-official-nav .goh__mobile-trigger {
-      width:100% !important;
-      min-height:52px !important;
-      padding:11px 16px !important;
-      background:#fff !important;
-      border:0 !important;
-      text-align:right !important;
-    }
-    #goh-official-nav .goh__mobile-trigger[aria-expanded="true"] {
-      color:var(--nav-green-dark) !important;
-      background:var(--nav-green-soft) !important;
-      box-shadow:inset -4px 0 0 var(--nav-green) !important;
-    }
-    #goh-official-nav .goh__mobile-menu {
-      padding:6px 10px 12px !important;
-      border-top:1px solid var(--nav-line) !important;
-      max-height:min(68vh,620px) !important;
-      overflow-y:auto !important;
-      overscroll-behavior:contain;
-    }
-  }
-</style>
-<style id="goh-sdg-flyout-fix">
-  #goh-official-nav .goh__international-goals-group { position:relative !important; }
-  #goh-official-nav .goh__international-goals-group > .goh__sdg-flyout {
-    display:none !important;
-    margin:0 !important;
-    padding:10px !important;
-    grid-template-columns:1fr !important;
-    gap:4px !important;
-    background:#fff !important;
-    border:1px solid #d7e2dc !important;
-    border-top:3px solid #1b8354 !important;
-    border-radius:10px !important;
-    box-shadow:0 18px 38px rgba(22,31,45,.16) !important;
-    overflow-y:auto !important;
-    overscroll-behavior:contain;
-  }
-  #goh-official-nav .goh__international-goals-group > .goh__sdg-flyout > a {
-    display:block !important;
-    width:100% !important;
-    margin:0 !important;
-    padding:9px 34px 9px 11px !important;
-    color:#29352f !important;
-    background:#fff !important;
-    border:1px solid transparent !important;
-    border-radius:7px !important;
-    font-size:13px !important;
-    font-weight:500 !important;
-    line-height:1.55 !important;
-    text-align:right !important;
-    text-decoration:none !important;
-    white-space:normal !important;
-  }
-  #goh-official-nav .goh__international-goals-group > .goh__sdg-flyout > a:hover,
-  #goh-official-nav .goh__international-goals-group > .goh__sdg-flyout > a:focus-visible {
-    color:#126b43 !important;
-    background:#eef8f2 !important;
-    border-color:#b9ddcc !important;
-  }
-  @media(min-width:1181px){
-    #goh-official-nav .goh__international-goals-group > .goh__sdg-flyout {
-      position:absolute !important;
-      z-index:10020 !important;
-      top:0 !important;
-      right:calc(100% + 12px) !important;
-      left:auto !important;
-      width:min(420px,calc(100vw - 430px)) !important;
-      max-height:min(620px,calc(100vh - 190px)) !important;
-    }
-    #goh-official-nav .goh__international-goals-group:hover > .goh__sdg-flyout,
-    #goh-official-nav .goh__international-goals-group:focus-within > .goh__sdg-flyout,
-    #goh-official-nav .goh__international-goals-group.is-open > .goh__sdg-flyout {
-      display:grid !important;
-    }
-  }
-  @media(max-width:1180px){
-    #goh-official-nav .goh__international-goals-group.is-open > .goh__sdg-flyout {
-      position:static !important;
-      display:grid !important;
-      width:auto !important;
-      max-height:50vh !important;
-      margin:6px 8px 10px !important;
-      box-shadow:none !important;
-    }
   }
 </style>
 <style id="advanced-export-menu-style">
