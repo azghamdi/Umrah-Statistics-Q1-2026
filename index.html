@@ -4818,8 +4818,70 @@
   .chart-mark{outline:none}.chart-mark:focus rect,.chart-mark:focus circle{filter:drop-shadow(0 0 3px #1b8354)}
   @media(max-width:760px){.data-table th,.data-table td{min-width:112px}.data-table th:first-child,.data-table td:first-child{min-width:145px}.chart-metric-label{align-items:stretch;flex-direction:column}.chart-metric-select{max-width:none;width:100%}}
 </style>
+    <style id="gastat-compact-header">
+      .dga-platform-page .demo-alert {
+        min-height: 30px;
+        padding-block: 4px;
+        font-size: 12px;
+      }
+      .dga-platform-page .main-header {
+        min-height: 64px;
+        padding-block: 6px;
+      }
+      .dga-platform-page .brand {
+        min-width: 158px;
+      }
+      .dga-platform-page .official-gastat-logo {
+        width: min(174px, 17vw);
+        max-height: 48px;
+        object-fit: contain;
+      }
+      .dga-platform-page .main-nav {
+        gap: 0;
+      }
+      .dga-platform-page .nav-link-main {
+        min-height: 42px;
+        padding: 8px 10px;
+        font-size: 13px;
+      }
+      .dga-platform-page .nav-link-main:after {
+        inset-inline: 10px;
+        bottom: 3px;
+      }
+      .dga-platform-page .nav-dropdown-menu {
+        margin-top: 5px;
+      }
+      @media (max-width: 1100px) {
+        .dga-platform-page .main-header {
+          min-height: 60px;
+          padding-inline: 16px;
+        }
+        .dga-platform-page .brand {
+          min-width: 140px;
+        }
+        .dga-platform-page .official-gastat-logo {
+          width: 150px;
+          max-height: 42px;
+        }
+        .dga-platform-page .nav-link-main {
+          min-height: 38px;
+          padding: 7px 8px;
+          font-size: 12px;
+        }
+      }
+      @media (max-width: 900px) {
+        .dga-platform-page .main-header {
+          min-height: 58px;
+          padding-block: 5px;
+        }
+        .dga-platform-page .official-gastat-logo {
+          width: 142px;
+          max-height: 40px;
+        }
+      }
+    </style>
 </head>
-<body>
+<body class="dga-platform-page">
 <script>window.GASTAT_EXPORT_LOGO="data:image/png;base64,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";</script>
 <a class="a11y-skip-link" href="#main-content">تجاوز إلى المحتوى الرئيسي</a>
 <div class="download-toast" id="downloadToast" role="status" aria-live="polite" aria-atomic="true" hidden><span class="download-toast-icon" aria-hidden="true">✓</span><span id="downloadToastText"></span></div>
@@ -6063,6 +6125,12 @@
   <main class="container" id="main-content" tabindex="-1">
     <section class="explorer" aria-label="بيانات النشرة">
       <div class="explorer-head"><span class="eyebrow">بيانات النشرة</span></div>
+      <div class="publication-strip" aria-label="معلومات النشرة">
+        <span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v5l3 2"/></svg><span>تاريخ النشر</span><strong><time datetime="2026-08-23">2026/08/23</time></strong></span>
+        <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 6M20 5v6h-6"/></svg><span>دورية التحديث</span><strong>ربع سنوي</strong></span>
+        <span class="publication-strip-next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6h14v14H5zM8 3v6M16 3v6M5 10h14"/></svg><span>النشرة القادمة</span><strong><time datetime="2026-11-29">2026/11/29</time></strong></span>
+        <a href="https://azghamdi.github.io/releases-archive/">الرجوع للنشرات السابقة <span aria-hidden="true">←</span></a>
+      </div>
       <section class="release-highlight" aria-labelledby="releaseHighlightTitle">
         <div class="release-highlight-head">
           <h2 id="releaseHighlightTitle"><span aria-hidden="true"></span>أبرز النتائج</h2>
@@ -6081,13 +6149,6 @@
           </article>
         </div>
       </section>
-      <div class="publication-strip" aria-label="معلومات النشرة">
-        <span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v5l3 2"/></svg><span>تاريخ النشر</span><strong><time datetime="2026-08-23" dir="ltr">2026/08/23</time></strong></span>
-        <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5"/></svg><span>فترة الأساس</span><strong>لا تنطبق</strong></span>
-        <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 6M20 5v6h-6"/></svg><span>دورية التحديث</span><strong>ربع سنوي</strong></span>
-        <span class="publication-strip-next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6h14v14H5zM8 3v6M16 3v6M5 10h14"/></svg><span>النشرة القادمة</span><strong><time datetime="2026-11-29" dir="ltr">2026/11/29</time></strong></span>
-        <a href="https://azghamdi.github.io/releases-archive/">الرجوع للنشرات السابقة <span aria-hidden="true">←</span></a>
-      </div>
       <style id="release-highlight-style">
         .release-highlight{margin:8px 24px 22px;overflow:hidden;border:1px solid #cfe2d8;border-radius:16px;background:#f5faf7;box-shadow:0 8px 24px rgba(22,61,48,.05)}
         .release-highlight-head{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:15px 20px;background:#eaf5ef;border-bottom:1px solid #cfe2d8}
@@ -6105,7 +6166,7 @@
         .publication-strip>span svg{grid-row:1/3;width:19px;height:19px;align-self:center;fill:none;stroke:#1b8354;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
         .publication-strip>span strong{color:#2d443b;font-size:12px;font-weight:600;white-space:nowrap}
         .publication-strip-next{flex:1 1 auto}
-        .publication-strip>a{display:flex;align-items:center;justify-content:center;gap:7px;min-width:max-content;padding:11px 16px;color:#166a45;font-size:12px;font-weight:700;text-decoration:none;background:#f7faf8}
+        .publication-strip>a{display:flex;align-items:center;justify-content:center;gap:7px;min-width:max-content;white-space:nowrap;padding:11px 20px;color:#166a45;font-size:12px;font-weight:700;text-decoration:none;background:#f7faf8}
         .publication-strip>a:hover,.publication-strip>a:focus-visible{background:#eef8f3;text-decoration:underline}
         @media(max-width:700px){
           .release-highlight{margin:6px 14px 16px;border-radius:13px}
@@ -6116,23 +6177,20 @@
           .release-highlight-item h3{font-size:13px}.release-highlight-item strong{grid-row:1/3;grid-column:2;margin:0;font-size:29px}.release-highlight-item p{margin:0;font-size:11px}
           .publication-strip{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin:-4px 14px 16px}
           .publication-strip>span{padding:10px 11px;border-bottom:1px solid #e1e8e4}.publication-strip-next{grid-column:1/-1}
-          .publication-strip>a{grid-column:1/-1;min-width:0;padding:10px 12px}
+          .publication-strip>a{grid-column:1/-1;min-width:max-content;white-space:nowrap;padding:12px 14px}
         }
       </style>
-      <div class="view-tabs-heading view-tabs-spacer" aria-hidden="true"></div>
-      <div class="view-tabs" role="tablist" aria-label="طرق عرض محتوى النشرة">
-        <button class="view-tab active" id="dataTableTab" type="button" role="tab" aria-selected="true" aria-controls="dataTablePanel"><span class="view-tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4zM4 10h16M10 5v14M15 19v-5m3 5V9m3 10v-8"/></svg></span><span>الجداول والرسوم البيانية</span></button>
-        <button class="view-tab" id="chartsTab" type="button" role="tab" aria-selected="false" aria-controls="chartsPanel"><span class="view-tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19h16M6 16v-5m5 5V7m5 9V4m4 12V9"/></svg></span><span>لوح المعلومات</span></button>
-        <button class="view-tab" id="compareTab" type="button" role="tab" aria-selected="false" aria-controls="comparePanel"><span class="view-tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 7h13m0 0-3-3m3 3-3 3M17 17H4m0 0 3-3m-3 3 3 3"/></svg></span><span>مقارنة البيانات</span></button>
-        <button class="view-tab" id="methodologyTab" type="button" role="tab" aria-selected="false" aria-controls="methodologyPanel"><span class="view-tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 4h12v16H6zM9 8h6m-6 4h6m-6 4h4"/></svg></span><span>المنهجية</span></button>
+      <div class="nds-tabs nds-lg newsletter-tabs" id="newsletterTabs" dir="rtl"><div class="view-tabs-heading view-tabs-spacer" aria-hidden="true"></div>
+      <div class="nds-tab-list view-tabs" role="tablist" aria-label="طرق عرض محتوى النشرة">
+        <button class="nds-btn nds-secondary nds-tab view-tab active" id="dataTableTab" type="button" role="tab" aria-selected="true" tabindex="0" aria-controls="dataTablePanel"><span class="view-tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4zM4 10h16M10 5v14M15 19v-5m3 5V9m3 10v-8"/></svg></span><span class="nds-label">الجداول والرسوم البيانية</span></button>
+        <button class="nds-btn nds-secondary nds-tab view-tab" id="chartsTab" type="button" role="tab" aria-selected="false" tabindex="-1" aria-controls="chartsPanel"><span class="view-tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19h16M6 16v-5m5 5V7m5 9V4m4 12V9"/></svg></span><span class="nds-label">لوح المعلومات</span></button>
+        <button class="nds-btn nds-secondary nds-tab view-tab" id="compareTab" type="button" role="tab" aria-selected="false" tabindex="-1" aria-controls="comparePanel"><span class="view-tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 7h13m0 0-3-3m3 3-3 3M17 17H4m0 0 3-3m-3 3 3 3"/></svg></span><span class="nds-label">مقارنة البيانات</span></button>
+        <button class="nds-btn nds-secondary nds-tab view-tab" id="methodologyTab" type="button" role="tab" aria-selected="false" tabindex="-1" aria-controls="methodologyPanel"><span class="view-tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 4h12v16H6zM9 8h6m-6 4h6m-6 4h4"/></svg></span><span class="nds-label">المنهجية</span></button>
       </div>
-      <div class="view-panel" id="dataTablePanel" role="tabpanel" aria-labelledby="dataTableTab">
+      <div class="nds-tab-panel view-panel" id="dataTablePanel" role="tabpanel" tabindex="0" aria-labelledby="dataTableTab">
       <style id="dataset-tabs-distinction">
         #dataTablePanel .dataset-nav{gap:7px;margin:16px 22px 0;padding:7px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:12px;overflow-x:auto}
-        #dataTablePanel .dataset-tab{min-height:42px;padding:8px 14px;border:1px solid transparent;border-radius:8px;background:transparent;color:#34433c;font-size:14px;font-weight:700}
-        #dataTablePanel .dataset-tab:hover,#dataTablePanel .dataset-tab:focus-visible{color:#166a45;background:#eef8f3;border-color:#b9ddcc}
-        #dataTablePanel .dataset-tab.active{color:#fff;background:#1b8354;border-color:#1b8354;box-shadow:0 2px 7px rgba(27,131,84,.24)}
-        @media(max-width:600px){#dataTablePanel .dataset-nav{margin-inline:14px;padding:6px}#dataTablePanel .dataset-tab{min-height:40px;padding:7px 12px;font-size:13px}}
+        @media(max-width:600px){#dataTablePanel .dataset-nav{margin-inline:14px;padding:6px}}
       </style>
       <style id="newsletter-ux-polish">
         .masthead{padding:26px 0 24px}.masthead .hero-grid{grid-template-columns:1fr;gap:0;align-items:start}.masthead .hero{max-width:1050px}.masthead .hero h1{font-size:clamp(32px,3vw,46px);line-height:1.2}.masthead .hero p{margin-top:7px}.masthead .meta{margin-top:15px;gap:8px 20px}.masthead .meta span,.masthead .release-navigation .next-release{display:inline-flex;align-items:center;gap:7px}.masthead .meta svg,.masthead .release-navigation svg{flex:0 0 auto;width:17px;height:17px;fill:none;stroke:#52605a;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.masthead .actions{display:none!important}
@@ -6141,7 +6199,7 @@
         #dataTablePanel .toolbar{display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px;margin-top:16px;padding:16px 17px;background:#f8faf9;border-color:#e0e5e2;box-shadow:0 1px 2px rgba(22,31,45,.03)}#dataTablePanel .field{flex:1 1 190px;min-width:180px}#dataTablePanel .field.search{flex:2 1 360px;min-width:280px}#dataTablePanel .field label{margin-inline-start:2px;color:#34433c;font-size:12px}#dataTablePanel .control{background:#fff;transition:border-color .15s,box-shadow .15s}#dataTablePanel .control:hover{border-color:#1b8354}#dataTablePanel .control:focus{outline:0;border-color:#1b8354;box-shadow:0 0 0 3px rgba(27,131,84,.15)}
         #dataTablePanel .toolbar-actions{display:flex;flex:0 0 auto;flex-wrap:nowrap;gap:7px;align-items:center}#dataTablePanel .toolbar-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:40px;padding:7px 11px;border:1px solid #9da4a0;border-radius:7px;background:#fff;color:#34433c;font:inherit;font-size:12px;font-weight:700;text-decoration:none;white-space:nowrap;cursor:pointer;transition:transform .15s,background .15s,border-color .15s,box-shadow .15s}#dataTablePanel .toolbar-btn svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}#dataTablePanel #exportBtn,#dataTablePanel .toolbar-btn-excel{min-height:38px;padding:6px 9px;font-size:12px}#dataTablePanel .toolbar-btn-secondary:hover,#dataTablePanel .toolbar-btn-secondary:focus-visible{color:#166a45;border-color:#1b8354;background:#eef8f3;transform:translateY(-1px)}#dataTablePanel .toolbar-btn-excel{color:#fff;background:#1b8354;border-color:#1b8354;box-shadow:0 2px 5px rgba(27,131,84,.16)}#dataTablePanel .toolbar-btn-excel:hover,#dataTablePanel .toolbar-btn-excel:focus-visible{background:#166a45;border-color:#166a45;transform:translateY(-1px);box-shadow:0 3px 8px rgba(27,131,84,.2)}#dataTablePanel .toolbar-btn:focus-visible{outline:3px solid rgba(27,131,84,.3);outline-offset:2px}#dataTablePanel .table-heading{margin-top:8px;padding-bottom:14px}#dataTablePanel .results{padding:5px 10px;border-radius:999px;background:#f3f4f6;color:#34433c;font-size:13px}#dataTablePanel .table-wrap{box-shadow:0 1px 3px rgba(22,31,45,.04)}#dataTablePanel .data-table th{box-shadow:inset 0 -1px #cbd3ce}#dataTablePanel .data-table tbody tr:nth-child(even){background:#fbfcfb}#dataTablePanel .data-table tbody tr{transition:background .12s}#dataTablePanel .data-table tbody tr:hover{background:#eef8f3}#dataTablePanel .data-table th button:focus-visible{outline:2px solid #1b8354;outline-offset:3px;border-radius:3px}
         .repi-chart-card{transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}.repi-chart-card:hover{border-color:#b9c5bf;box-shadow:0 10px 28px rgba(22,31,45,.09);transform:translateY(-2px)}.repi-chart-head{background:linear-gradient(180deg,#fff 0%,#fbfcfb 100%)}.repi-chart-action{transition:background .15s,transform .15s}.repi-chart-action:hover{transform:translateY(-1px)}
-        .page-btn,.dataset-tab,.view-tab,.icon-btn,.repi-chart-action{transition:background .15s,color .15s,border-color .15s,box-shadow .15s}.page-btn:focus-visible,.dataset-tab:focus-visible,.view-tab:focus-visible,.icon-btn:focus-visible,.repi-chart-action:focus-visible{outline:3px solid rgba(27,131,84,.35);outline-offset:2px}
+        .page-btn,.view-tab,.icon-btn,.repi-chart-action{transition:background .15s,color .15s,border-color .15s,box-shadow .15s}.page-btn:focus-visible,.view-tab:focus-visible,.icon-btn:focus-visible,.repi-chart-action:focus-visible{outline:3px solid rgba(27,131,84,.35);outline-offset:2px}
         @media(max-width:900px){#dataTablePanel .toolbar-actions{flex:1 1 100%;justify-content:flex-start}.repi-chart-card:hover{transform:none}}
         @media(max-width:600px){.masthead{padding:20px 0}.masthead .hero h1{font-size:29px}.masthead .actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%}.masthead .btn{width:100%;padding-inline:9px}.masthead .btn.primary{grid-column:1/-1}.explorer-head{padding:14px 14px 5px}.view-tabs{margin:7px 14px 0;padding:5px}.view-tab{min-height:46px;padding:8px;font-size:14px}#dataTablePanel .toolbar{display:flex;padding:12px}#dataTablePanel .field,#dataTablePanel .field.search{flex:1 1 100%;min-width:0}#dataTablePanel .toolbar-actions{display:flex;justify-content:flex-start;width:100%;overflow-x:auto;padding-bottom:2px}#dataTablePanel .toolbar-btn{flex:0 0 auto;width:auto;min-width:0}.table-heading h3{font-size:18px}#dataTablePanel .results{white-space:normal}.repi-chart-actions{display:grid;grid-template-columns:repeat(3,1fr)}.repi-chart-action{justify-content:center;padding-inline:6px}.repi-charts-intro h3{font-size:21px}}
         @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
@@ -6155,41 +6213,53 @@
         <div class="toolbar-actions"><span class="toolbar-actions-label">إجراءات البيانات</span>
           <button class="toolbar-btn toolbar-btn-secondary" id="resetBtn" type="button" title="إعادة ضبط الفلاتر"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4v6h6M5.4 15a7 7 0 1 0 .7-7.2L4 10"/></svg><span>إعادة ضبط</span></button>
           <button class="toolbar-btn toolbar-btn-secondary" id="copyViewLinkBtn" type="button" title="نسخ رابط يحفظ التبويب والفلاتر المختارة"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l2-2a5 5 0 0 0-7-7l-1.1 1.1M14 11a5 5 0 0 0-7.5-.5l-2 2a5 5 0 0 0 7 7l1.1-1.1"/></svg><span>نسخ رابط العرض</span></button>
-          <details class="advanced-export" id="advancedExport">
-            <summary class="toolbar-btn toolbar-btn-excel" aria-label="فتح خيارات تنزيل البيانات"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"/></svg><span>تنزيل البيانات</span><small id="filteredDownloadCount"></small><svg class="advanced-export-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></summary>
-            <div class="advanced-export-menu">
+          <div class="advanced-export" id="advancedExport">
+            <button class="toolbar-btn toolbar-btn-excel advanced-export-trigger" id="advancedExportTrigger" type="button" aria-label="فتح خيارات تنزيل البيانات" aria-expanded="false" aria-controls="advancedExportMenu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"/></svg><span>تنزيل البيانات</span><small id="filteredDownloadCount"></small><svg class="advanced-export-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></button>
+            <div class="advanced-export-menu" id="advancedExportMenu" hidden>
               <div class="advanced-export-head"><strong>تنزيل بيانات الجدول الحالي</strong><span>الجدول: <b id="developerDatasetName">أبرز مؤشرات إحصاءات العمرة</b> · <b id="developerRowCount">6</b> صفوف مطابقة</span></div>
               <div class="advanced-export-primary" aria-label="تنزيل النتائج الحالية">
-                <button class="advanced-export-option advanced-export-option-featured" id="filteredExcelBtn" type="button"><span class="advanced-export-code">XLS</span><span><strong>Excel مفلتر</strong><small>النتائج الحالية + ورقة معلومات</small></span><svg class="advanced-export-download" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"/></svg></button>
+                <button class="advanced-export-option advanced-export-option-featured" id="filteredExcelBtn" type="button"><span class="advanced-export-code">XLSX</span><span><strong>Excel مفلتر</strong><small>النتائج الحالية + ورقة معلومات</small></span><svg class="advanced-export-download" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"/></svg></button>
                 <button class="advanced-export-option" id="exportBtn" type="button"><span class="advanced-export-code">CSV</span><span><strong>CSV مفلتر</strong><small>للتحليل السريع</small></span><svg class="advanced-export-download" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"/></svg></button>
               </div>
-              <details class="developer-formats">
-                <summary><span><strong>صيغ للمطورين</strong><small>JSON وSDMX</small></span><span class="developer-formats-count">3</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></summary>
-                <div class="developer-formats-list">
+              <div class="developer-formats" id="developerFormats">
+                <button class="developer-formats-trigger" id="developerFormatsTrigger" type="button" aria-expanded="false" aria-controls="developerFormatsList"><span><strong>صيغ للمطورين</strong><small>JSON وSDMX</small></span><span class="developer-formats-count">3</span><svg class="developer-formats-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></button>
+                <div class="developer-formats-list" id="developerFormatsList" hidden>
                   <button class="advanced-export-option" id="jsonExportBtn" type="button"><span class="advanced-export-code">JSON</span><span><strong>JSON — النتائج</strong><small>سجلات الجدول المطابقة فقط</small></span><svg class="advanced-export-download" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"/></svg></button>
                   <button class="advanced-export-option" id="apiExportBtn" type="button"><span class="advanced-export-code">JSON+</span><span><strong>JSON منظّم</strong><small>البيانات مع معلومات الجدول والفلاتر</small></span><svg class="advanced-export-download" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"/></svg></button>
                   <button class="advanced-export-option" id="sdmxExportBtn" type="button"><span class="advanced-export-code">CSV</span><span><strong>SDMX-CSV</strong><small>صيغة تبادل للبيانات الإحصائية</small></span><svg class="advanced-export-download" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"/></svg></button>
                 </div>
-              </details>
-              <a class="advanced-export-option advanced-export-official" id="officialExcelDownload" href="Umrah%20Statistics%20Q1%202026-AR.xlsx" download><span class="advanced-export-code">XLSX</span><span><strong>Excel — الملف الرسمي الكامل</strong><small>المصدر الأصلي بجميع الجداول والبيانات</small></span><svg class="advanced-export-download" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"/></svg></a>
-              <p class="advanced-export-note">تُنشأ صيغ النتائج الحالية داخل المتصفح، أما الملف الرسمي الكامل فيُنزل من المصدر.</p>
+              </div>
+              <style>
+                #developerFormats{margin:10px 0 0!important;border-top:1px solid #d2d6db!important;border-bottom:1px solid #d2d6db!important;background:#fff!important}
+                #developerFormatsTrigger{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;width:100%!important;min-height:54px!important;padding:9px 12px!important;color:#30453d!important;background:#fff!important;border:0!important;border-radius:0!important;cursor:pointer!important;text-align:right!important;pointer-events:auto!important;position:relative!important;z-index:2!important}
+                #developerFormatsTrigger:hover,#developerFormatsTrigger:focus-visible{background:#f3f4f6!important}
+                #developerFormatsTrigger::before,#developerFormatsTrigger::after{display:none!important;content:none!important}
+                #developerFormatsTrigger>span:first-child{display:flex!important;flex:1!important;align-items:baseline!important;gap:7px!important}
+                #developerFormatsTrigger small{color:#60726b!important;font-size:11px!important}
+                #developerFormatsTrigger .developer-formats-chevron{display:block!important;width:18px!important;height:18px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.8!important;transition:transform .18s ease!important}
+                #developerFormatsTrigger[aria-expanded="true"] .developer-formats-chevron{transform:rotate(180deg)!important}
+                #developerFormatsList[hidden]{display:none!important}
+                #developerFormatsList:not([hidden]){display:grid!important;padding:8px!important;border-top:1px solid #d7e2dc!important}
+              </style>
+              <a class="advanced-export-option advanced-export-official" id="officialExcelDownload" href="Umrah%20Statistics%20Q1%202026-AR.xlsx" download><span class="advanced-export-code">XLSX</span><span><strong>Excel — جميع جداول النشرة</strong><small>ملف مجمّع يُنشأ من البيانات المضمنة في الصفحة</small></span><svg class="advanced-export-download" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"/></svg></a>
+              <p class="advanced-export-note">تُنشأ جميع صيغ التنزيل مباشرة داخل المتصفح من بيانات النشرة المضمنة في الصفحة.</p>
             </div>
-          </details>
+          </div>
         </div>
       </div>
       <div class="table-heading"><div><h3 id="tableTitle"></h3><p id="tableDescription"></p></div><div class="results" id="resultsCount" role="status" aria-live="polite" aria-atomic="true"></div></div>
       <div class="dataset-chart-toggle-row"><button class="dataset-chart-toggle" id="datasetChartToggle" type="button" aria-expanded="false" aria-controls="datasetChartSection"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19h16M6 16v-5m5 5V7m5 9V4m4 12V9"/></svg><span>عرض الرسم البياني</span><svg class="dataset-chart-toggle-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></button></div>
-      <details class="table-definitions" id="tableDefinitions"><summary>تعريفات المؤشرات والوحدات</summary><div class="table-definitions-content" id="tableDefinitionsContent"></div></details>
-      <p class="sr-only" id="tableKeyboardHelp">يمكن التنقل داخل الجدول باستخدام قارئ الشاشة. استخدم مفتاح الجدولة للوصول إلى أزرار ترتيب الأعمدة، ويمكن تمرير منطقة الجدول أفقيًا عند صغر الشاشة.</p>
+      <div id="tableDefinitionsContent" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0"></div>
+      
+      <p id="tableKeyboardHelp" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">يمكن التنقل داخل الجدول ومحتواه باستخدام مفاتيح الأسهم أو مفتاح Tab، ويمكن التمرير أفقيًا لعرض بقية الأعمدة عند الحاجة.</p>
       <div class="table-wrap" tabindex="0" role="region" aria-labelledby="tableTitle" aria-describedby="tableDescription tableKeyboardHelp"><table class="data-table"><caption class="sr-only" id="tableCaption">بيانات إحصاءات العمرة للربع الأول 2026</caption><thead id="tableHead"></thead><tbody id="tableBody"></tbody></table></div>
-      <p class="note">يمكن البحث والتصفية والترتيب، ثم تنزيل النتائج الحالية فقط بالصيغ المتاحة في شريط الإجراءات.</p>
-      <div class="pagination"><div class="page-size"><label for="pageSize">عدد الصفوف في الصفحة</label><select id="pageSize"><option selected>10</option><option>20</option><option>50</option><option>100</option></select></div><div class="pager" id="pager"></div></div>
+      <div class="pagination selection-gated-pagination" hidden aria-hidden="true"><div class="page-size"><label for="pageSize">عدد الصفوف في الصفحة</label><select id="pageSize"><option selected>10</option><option>20</option><option>50</option><option>100</option></select></div><div class="pager" id="pager"></div></div>
       <section class="dataset-chart-section" id="datasetChartSection" aria-labelledby="datasetChartHeading" hidden>
         <div class="dataset-chart-section-head"><div><span>الرسم المرتبط بالجدول</span><h3 id="datasetChartHeading">العرض البياني للبيانات الحالية</h3></div><p>يتغير الرسم تلقائيًا عند اختيار جدول آخر.</p></div>
-        <div id="datasetChartMount"></div>
+        <div id="datasetChartMount"><div class="repi-chart-grid" id="repiChartGrid"></div></div>
       </section>
       </div>
-      <div class="view-panel" id="chartsPanel" role="tabpanel" aria-labelledby="chartsTab" hidden>
+<div class="nds-tab-panel view-panel dashboard-panel" id="chartsPanel" tabindex="-1" aria-hidden="true" role="tabpanel" aria-labelledby="chartsTab" hidden>
         <section class="tableau-dashboard" aria-labelledby="tableauDashboardTitle">
           <div class="tableau-dashboard-head">
             <div><span>عرض تفاعلي</span><h3 id="tableauDashboardTitle">لوح المعلومات</h3></div>
@@ -6207,7 +6277,7 @@
         <div class="repi-charts-intro comparison-intro"><div><span class="comparison-kicker">عرض بصري تفاعلي</span><h3>الرسومات البيانية لأسعار العقارات</h3><p>استكشف بيانات الجداول نفسها بصريًا — الربع الثاني 2026.</p></div><span class="comparison-limit">4 رسوم تفاعلية</span></div>
         <div class="repi-chart-grid" id="repiChartGrid"></div>
       </div>
-      <div class="view-panel comparison-panel" id="comparePanel" role="tabpanel" aria-labelledby="compareTab" hidden>
+      <div class="nds-tab-panel view-panel comparison-panel" id="comparePanel" tabindex="-1" aria-hidden="true" role="tabpanel" aria-labelledby="compareTab" hidden>
         <div class="comparison-intro">
           <div><span class="comparison-kicker">أداة تحليل تفاعلية</span><h3>مقارنة بيانات العمرة</h3><p>اختر جدولًا ومؤشرين، ثم قارن القيم والفروق بين عناصر الجدول مباشرة.</p></div>
           <span class="comparison-limit">يمكن اختيار 4 عناصر كحد أقصى</span>
@@ -6236,13 +6306,7 @@
         <div class="comparison-table-head"><div><h4>جدول نتائج المقارنة</h4><p>قارن بين مقياسين من الوحدة نفسها لضمان تفسير إحصائي صحيح.</p></div><span id="comparisonResultCount"></span></div>
           <div class="comparison-table-wrap" tabindex="0" role="region" aria-label="جدول نتائج المقارنة — يمكن التمرير أفقيًا"><table><colgroup><col class="comparison-col-name"><col class="comparison-col-value"><col class="comparison-col-value"><col class="comparison-col-change"><col class="comparison-col-change"></colgroup><thead><tr><th>العنصر</th><th id="comparisonCurrentHead">المقياس الأساسي</th><th id="comparisonBaseHead">المقياس المرجعي</th><th>الفرق</th><th>الفارق النسبي</th></tr></thead><tbody id="comparisonTableBody"></tbody></table></div>
       </div>
-      <div class="view-panel methodology-panel" id="methodologyPanel" role="tabpanel" aria-labelledby="methodologyTab" hidden></div>
-    </section>
-
-    <section class="support" aria-label="معلومات النشرة المساندة">
-      <details>
-        <summary>المنهجية</summary>
-        <div class="support-content methodology-content">
+      <div class="nds-tab-panel view-panel methodology-panel" id="methodologyPanel" role="tabpanel" tabindex="-1" aria-hidden="true" aria-labelledby="methodologyTab" hidden><div class="support-content methodology-content">
           <div class="methodology-intro">
             <div>
               <span class="methodology-kicker"><span>آخر تحديث للمنهجية</span><time datetime="2026-08-17" dir="ltr">2026/08/17</time></span>
@@ -6325,8 +6389,9 @@
               <ul class="update-list"><li>تحديث التقرير للربع الأول 2026.</li><li>تكامل بيانات المسح مع السجلات الإدارية.</li><li>توضيح الفترة المرجعية ووحدات القياس ومصادر البيانات.</li><li>تعزيز قواعد التحقق والمراجعة وجودة المخرجات.</li></ul>
             </section>
           </div>
-        </div>
-      </details>
+        </div></div>
+    </section>
+    <section class="support" aria-label="معلومات النشرة المساندة">
       <details>
         <summary>الاقتباس والتواصل</summary>
         <div class="support-content citation-content">
@@ -6377,7 +6442,7 @@
         </a>
         <a href="https://www.stats.gov.sa/ar/statistics-tabs?category=2197199&amp;tab=436312&amp;year=127357" target="_blank" rel="noopener">
           <span class="related-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 18l5-5 4 3 7-9M16 7h4v4"/></svg></span>
-          <span class="related-copy"><strong>إحصاءات العمرة</strong><small>ربعي · إحصاءات السياحة والحج والعمرة</small></span>
+          <span class="related-copy"><strong>إحصاءات النقل على الطرق</strong><small>سنوي · إحصاءات النقل والخدمات اللوجستية</small></span>
           <span class="related-arrow" aria-hidden="true">←</span>
         </a>
         <a href="https://www.stats.gov.sa/ar/c-search?category=120156" target="_blank" rel="noopener">
@@ -7964,10 +8029,38 @@
       (() => {
                         const sections = [
           {
-            name: "الاقتصاد والتجارة والاستثمار",
+            name: "الزراعة والغذاء",
+            items: [
+              ["حسابات الزراعة والأسماك", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=2236635"],
+              ["الإنتاج الزراعي", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124583"],
+              ["المزارع والحيازات", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124673"],
+              ["الأسماك والاستزراع المائي", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124643"],
+              ["الأمن الغذائي", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=2197199"],
+              ["الثروة الحيوانية", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124553"],
+            ],
+          },
+          {
+            name: "الأعمال والصناعة",
+            items: [
+              ["الإنتاج الصناعي", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123454"],
+              ["المنشآت الصغيرة والمتوسطة", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123088"],
+              ["قطاع الأعمال والمنشآت", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=3631799"],
+              ["القطاع غير الربحي", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=2163811"],
+              ["تجارة الجملة والتجزئة", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123427"],
+            ],
+          },
+          {
+            name: "المجتمع الرقمي والتقنية",
             items: [
               ["استخدام المنشآت للتقنية", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=127305"],
               ["الاقتصاد الرقمي", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=122941"],
+              ["البحث والتطوير", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123265"],
+              ["استخدام الأفراد للإنترنت", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=122971"],
+            ],
+          },
+          {
+            name: "الاقتصاد الوطني",
+            items: [
               ["ثقة المستهلك", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=10132653"],
               ["ثقة الأعمال والمستهلك", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=1340144"],
               ["الاستثمار الأجنبي المباشر", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123583"],
@@ -7980,7 +8073,7 @@
             ],
           },
           {
-            name: "الأسعار والتضخم",
+            name: "الأسعار",
             items: [
               ["تكلفة السكن والإيجارات", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=121920"],
               ["تكاليف البناء ومواده", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=3453505"],
@@ -7991,23 +8084,29 @@
             ],
           },
           {
-            name: "الأعمال والصناعة والابتكار",
+            name: "البيئة والمناخ",
             items: [
-              ["الإنتاج الصناعي", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123454"],
-              ["البحث والتطوير", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123265"],
-              ["المنشآت الصغيرة والمتوسطة", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123088"],
-              ["قطاع الأعمال والمنشآت", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=3631799"],
-              ["القطاع غير الربحي", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=2163811"],
-              ["تجارة الجملة والتجزئة", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123427"],
+              ["التغير المناخي", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=2236741"],
+              ["البيئة بوجه عام", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124458"],
+              ["الأراضي", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=2215700"],
+              ["البيئة في المنزل", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124428"],
+              ["النفايات", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=10269979"],
+              ["المياه", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=2236631"],
             ],
           },
           {
-            name: "سوق العمل والمهارات",
+            name: "الصحة والتعليم",
             items: [
+              ["التعليم والتدريب", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=514986"],
               ["مهارات الكبار والتعلّم", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=3030916"],
-              ["التوظيف والمشتغلون", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124074"],
-              ["معدل البطالة", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=417515"],
-              ["العمل التطوعي", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123992"],
+              ["صحة الطفل والطفولة المبكرة", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123872"],
+              ["الرعاية الصحية", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123812"],
+              ["العوامل المؤثرة في الصحة", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123842"],
+              ["المنشآت والكوادر الصحية", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=2968800"],
+              ["الحالة الصحية", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=417594"],
+              ["السلامة والصحة المهنية", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123762"],
+              ["صحة المرأة والإنجاب", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123902"],
+              ["تعداد السعودية ٢٠٢٢", "https://www.stats.gov.sa/ar/statistics?index=119025&subindex=127380"],
             ],
           },
           {
@@ -8019,60 +8118,21 @@
             ],
           },
           {
-            name: "الصحة والتعليم والرفاه",
+            name: "سوق العمل",
             items: [
-              ["التعليم والتدريب", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=514986"],
-              ["صحة الطفل والطفولة المبكرة", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123872"],
-              ["الرعاية الصحية", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123812"],
-              ["العوامل المؤثرة في الصحة", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123842"],
-              ["المنشآت والكوادر الصحية", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=2968800"],
-              ["الحالة الصحية", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=417594"],
-              ["السلامة والصحة المهنية", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123762"],
-              ["النشاط البدني والرياضة", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=1278616"],
-              ["صحة المرأة والإنجاب", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123902"],
-              ["تعداد السعودية ٢٠٢٢", "https://www.stats.gov.sa/ar/statistics?index=119025&subindex=127380"],
+              ["التوظيف والمشتغلون", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124074"],
+              ["معدل البطالة", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=417515"],
+              ["العمل التطوعي", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123992"],
             ],
           },
           {
-            name: "المجتمع وأساليب الحياة",
-            items: [
-              ["استخدام الأفراد للإنترنت", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=122971"],
-              ["الثقافة والترفيه", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=127333"],
-              ["دخل الأسرة وإنفاقها", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=127329"],
-              ["الأمن والسلامة", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=2377692"],
-              ["الخدمات في المناطق", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124988"],
-              ["كبار السن", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123674"],
-              ["ذوو الإعاقة", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123728"],
-              ["الأسرة السعودية", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=3153652"],
-              ["المرأة", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123614"],
-              ["الشباب", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=2696599"],
-            ],
-          },
-          {
-            name: "الطاقة والثروة المعدنية",
+            name: "الطاقة والموارد",
             items: [
               ["الكهرباء", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124767"],
               ["كفاءة الطاقة", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124737"],
               ["الثروة المعدنية", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=9766296"],
               ["النفط والغاز", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124827"],
               ["الطاقة المتجددة", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124797"],
-            ],
-          },
-          {
-            name: "البيئة والمناخ والأراضي والزراعة",
-            items: [
-              ["حسابات الزراعة والأسماك", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=2236635"],
-              ["الإنتاج الزراعي", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124583"],
-              ["المزارع والحيازات", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124673"],
-              ["الأسماك والاستزراع المائي", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124643"],
-              ["الأمن الغذائي", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=2197199"],
-              ["الثروة الحيوانية", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124553"],
-              ["التغير المناخي", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=2236741"],
-              ["البيئة بوجه عام", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124458"],
-              ["الأراضي", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=2215700"],
-              ["البيئة في المنزل", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124428"],
-              ["النفايات", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=10269979"],
-              ["المياه", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=2236631"],
             ],
           },
           {
@@ -8086,6 +8146,21 @@
               ["السكك الحديدية", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=565258"],
               ["النقل البري", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124894"],
               ["التخزين والخدمات اللوجستية", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=2163948"],
+            ],
+          },
+          {
+            name: "المجتمع وأساليب الحياة",
+            items: [
+              ["الثقافة والترفيه", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=127333"],
+              ["دخل الأسرة وإنفاقها", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=127329"],
+              ["الأمن والسلامة", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=2377692"],
+              ["الخدمات في المناطق", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=124988"],
+              ["كبار السن", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123674"],
+              ["ذوو الإعاقة", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123728"],
+              ["الأسرة السعودية", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=3153652"],
+              ["المرأة", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=123614"],
+              ["الشباب", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=2696599"],
+              ["النشاط البدني والرياضة", "https://www.stats.gov.sa/ar/statistics-tabs?tab=436312&category=1278616"],
             ],
           },
         ];
@@ -8708,7 +8783,12 @@
 </style>
 <style id="global-statistics-explorer-final">
   /* Clear hierarchy inspired by official statistical data explorers. */
-  .explorer-head { display: none !important; }
+  .explorer-head {
+    display: block !important;
+    position: relative;
+    top: -8px;
+    margin-bottom: -8px;
+  }
   .explorer { border-radius: 10px !important; }
   .view-tabs {
     margin: 0 24px !important;
@@ -10791,3 +10871,4 @@
 </script>
 </body>
 </html>
+
