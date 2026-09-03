@@ -4883,6 +4883,7 @@
 <style id="hero-period-badge-style">
 .hero-period-badge{display:inline-flex;align-items:center;gap:8px;margin:10px 0 0;padding:5px 14px;border-radius:999px;background:#eef8f3;color:#0e4731;font-size:16px;font-weight:700}
 .hero-period-badge::before{content:"";width:8px;height:8px;border-radius:50%;background:#1b8354;flex:0 0 auto}
+
 </style>
 </head>
 <body class="dga-platform-page">
@@ -4907,7 +4908,160 @@
 }
 </style>
 <a class="dga-skip-link" href="#main-content">تجاوز إلى المحتوى الرئيسي</a>
+<script id="umrah-real-xlsx-writer">
+/* مولّد ملفات إكسل حقيقية بصيغة OOXML (.xlsx) بدون أي مكتبات خارجية —
+   الهدف الوحيد من هذا الملف: تضمين شعار الهيئة (صورة PNG حقيقية) في أعلى يمين
+   ملفات تنزيل الإكسل. صيغة "Excel 2003 XML" (SpreadsheetML) المستخدمة سابقًا
+   لا تدعم تضمين صور فعليًا (لا يوجد عنصر Picture في مخطط WorksheetOptions الرسمي)،
+   لذلك تم بناء كاتب .xlsx حقيقي (ملف ZIP بمعايير OOXML) بدل ذلك — تم التحقق
+   من صحته عبر openpyxl و LibreOffice قبل التسليم. */
+(()=>{
+  const CRC_TABLE=(()=>{const t=new Uint32Array(256);for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=(c&1)?(0xEDB88320^(c>>>1)):(c>>>1);t[n]=c>>>0}return t})();
+  const crc32=bytes=>{let c=0xFFFFFFFF;for(let i=0;i<bytes.length;i++)c=CRC_TABLE[(c^bytes[i])&0xFF]^(c>>>8);return(c^0xFFFFFFFF)>>>0};
+  const u16=v=>{const b=new Uint8Array(2);b[0]=v&0xFF;b[1]=(v>>>8)&0xFF;return b};
+  const u32=v=>{const b=new Uint8Array(4);b[0]=v&0xFF;b[1]=(v>>>8)&0xFF;b[2]=(v>>>16)&0xFF;b[3]=(v>>>24)&0xFF;return b};
+  const concat=parts=>{let len=0;for(const p of parts)len+=p.length;const out=new Uint8Array(len);let o=0;for(const p of parts){out.set(p,o);o+=p.length}return out};
+  const strToBytes=s=>new TextEncoder().encode(s);
+  const b64ToBytes=b64=>{const bin=atob(b64.split(',').pop());const bytes=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);return bytes};
+  function zipStore(files){
+    const localParts=[],centralParts=[];let offset=0;const time=u16(0),date=u16((1<<9)|(1<<5)|1);
+    for(const f of files){
+      const nameBytes=strToBytes(f.name),data=f.data,crc=crc32(data);
+      const localHeader=concat([u32(0x04034b50),u16(20),u16(0),u16(0),time,date,u32(crc),u32(data.length),u32(data.length),u16(nameBytes.length),u16(0),nameBytes]);
+      localParts.push(localHeader,data);
+      const centralHeader=concat([u32(0x02014b50),u16(20),u16(20),u16(0),u16(0),time,date,u32(crc),u32(data.length),u32(data.length),u16(nameBytes.length),u16(0),u16(0),u16(0),u16(0),u32(0),u32(offset),nameBytes]);
+      centralParts.push(centralHeader);offset+=localHeader.length+data.length;
+    }
+    const centralDir=concat(centralParts),centralOffset=offset;
+    const eocd=concat([u32(0x06054b50),u16(0),u16(0),u16(files.length),u16(files.length),u32(centralDir.length),u32(centralOffset),u16(0)]);
+    return concat([...localParts,centralDir,eocd]);
+  }
+  const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));
+  const colLetter=i=>{let s='';i++;while(i>0){const m=(i-1)%26;s=String.fromCharCode(65+m)+s;i=Math.floor((i-1)/26)}return s};
+  function makeStyleRegistry(){
+    const fonts=[{name:'Calibri',size:11,color:null,bold:false,underline:false}];
+    const fills=[{type:'none'},{type:'gray125'}];
+    const borders=[{}];
+    const numFmts=[];
+    const cellXfs=[{fontId:0,fillId:0,borderId:0,numFmtId:0,align:null,rtl:false}];
+    const dedupe=(arr,item,keyFn)=>{const k=keyFn(item),idx=arr.findIndex(x=>keyFn(x)===k);if(idx>=0)return idx;arr.push(item);return arr.length-1};
+    const fontId=({color,bold,underline,name,size}={})=>dedupe(fonts,{name:name||'IBM Plex Sans Arabic',size:size||11,color:color||null,bold:!!bold,underline:!!underline},JSON.stringify);
+    const fillId=rgb=>rgb?dedupe(fills,{type:'solid',rgb},JSON.stringify):0;
+    const borderId=({bottom}={})=>bottom?dedupe(borders,{bottom},JSON.stringify):0;
+    let nextNumFmtId=164;
+    const numFmtId=fmt=>{if(!fmt)return 0;const existing=numFmts.find(n=>n.fmt===fmt);if(existing)return existing.id;const id=nextNumFmtId++;numFmts.push({id,fmt});return id};
+    const xf=({fontColor,bold,underline,fontSize,bg,borderBottom,align='right',numFmt,rtl=true,wrap=false}={})=>{
+      const spec={fontId:fontId({color:fontColor,bold,underline,size:fontSize}),fillId:fillId(bg),borderId:borderId({bottom:borderBottom}),numFmtId:numFmtId(numFmt),align,rtl,wrap};
+      return dedupe(cellXfs,spec,JSON.stringify);
+    };
+    const toXml=()=>{
+      const numFmtsXml=numFmts.length?`<numFmts count="${numFmts.length}">${numFmts.map(n=>`<numFmt numFmtId="${n.id}" formatCode="${esc(n.fmt)}"/>`).join('')}</numFmts>`:'';
+      const fontsXml=`<fonts count="${fonts.length}">${fonts.map(f=>`<font>${f.bold?'<b/>':''}${f.underline?'<u/>':''}<sz val="${f.size}"/>${f.color?`<color rgb="FF${f.color.replace('#','')}"/>`:'<color theme="1"/>'}<name val="${esc(f.name)}"/></font>`).join('')}</fonts>`;
+      const fillsXml=`<fills count="${fills.length}">${fills.map(f=>{
+        if(f.type==='none')return '<fill><patternFill patternType="none"/></fill>';
+        if(f.type==='gray125')return '<fill><patternFill patternType="gray125"/></fill>';
+        return `<fill><patternFill patternType="solid"><fgColor rgb="FF${f.rgb.replace('#','')}"/><bgColor indexed="64"/></patternFill></fill>`;
+      }).join('')}</fills>`;
+      const bordersXml=`<borders count="${borders.length}">${borders.map(b=>`<border>${['left','right','top'].map(s=>`<${s}/>`).join('')}${b.bottom?`<bottom style="thin"><color rgb="FF${b.bottom.replace('#','')}"/></bottom>`:'<bottom/>'}<diagonal/></border>`).join('')}</borders>`;
+      const cellXfsXml=`<cellXfs count="${cellXfs.length}">${cellXfs.map(x=>{
+        const alignAttrs=[];if(x.align)alignAttrs.push(`horizontal="${x.align}"`);alignAttrs.push('vertical="center"');if(x.rtl)alignAttrs.push('readingOrder="2"');if(x.wrap)alignAttrs.push('wrapText="1"');
+        return `<xf numFmtId="${x.numFmtId}" fontId="${x.fontId}" fillId="${x.fillId}" borderId="${x.borderId}" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyNumberFormat="${x.numFmtId?1:0}" applyAlignment="1"><alignment ${alignAttrs.join(' ')}/></xf>`;
+      }).join('')}</cellXfs>`;
+      return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">${numFmtsXml}${fontsXml}${fillsXml}${bordersXml}<cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs>${cellXfsXml}<cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles></styleSheet>`;
+    };
+    return{xf,toXml};
+  }
+  function xmlSheet({rows,cols,freezeRow,rtl=true,hyperlinks=[],mergeCells=[],drawingRelId}){
+    const colsXml=cols?.length?`<cols>${cols.map((c,i)=>`<col min="${i+1}" max="${i+1}" width="${c.width||14}" customWidth="1"/>`).join('')}</cols>`:'';
+    const rowsXml=rows.map((row,ri)=>{
+      const cells=row.cells.map((cell,ci)=>{
+        if(cell==null)return '';
+        const ref=colLetter(ci)+(ri+1),styleAttr=cell.s!==undefined?` s="${cell.s}"`:'';
+        if(typeof cell.v==='number'&&Number.isFinite(cell.v))return `<c r="${ref}"${styleAttr}><v>${cell.v}</v></c>`;
+        return `<c r="${ref}" t="inlineStr"${styleAttr}><is><t xml:space="preserve">${esc(cell.v)}</t></is></c>`;
+      }).join('');
+      return `<row r="${ri+1}"${row.height?` ht="${row.height}" customHeight="1"`:''}>${cells}</row>`;
+    }).join('');
+    const paneXml=freezeRow?`<pane ySplit="${freezeRow}" topLeftCell="A${freezeRow+1}" activePane="bottomLeft" state="frozen"/>`:'';
+    const mergeXml=mergeCells.length?`<mergeCells count="${mergeCells.length}">${mergeCells.map(m=>`<mergeCell ref="${m}"/>`).join('')}</mergeCells>`:'';
+    const hyperlinksXml=hyperlinks.length?`<hyperlinks>${hyperlinks.map((h,i)=>`<hyperlink ref="${h.ref}" r:id="rIdHlink${i}"/>`).join('')}</hyperlinks>`:'';
+    const maxCol=Math.max(...rows.map(r=>r.cells.length),cols?.length||0,1);
+    const dim=`A1:${colLetter(Math.max(0,maxCol-1))}${rows.length}`;
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><dimension ref="${dim}"/><sheetViews><sheetView ${rtl?'rightToLeft="1" ':''}workbookViewId="0">${paneXml}</sheetView></sheetViews><sheetFormatPr defaultRowHeight="18"/>${colsXml}<sheetData>${rowsXml}</sheetData>${mergeXml}${hyperlinksXml}${drawingRelId?`<drawing r:id="${drawingRelId}"/>`:''}</worksheet>`;
+  }
+  function drawingXmlForLogo({imgWidthPx,imgHeightPx,colOffPx=6,rowOffPx=6}){
+    const EMU=9525,cx=imgWidthPx*EMU,cy=imgHeightPx*EMU;
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><xdr:wsDr xmlns:xdr="http://schemas.openxmlformats.org/drawingml/2006/spreadsheetDrawing" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><xdr:oneCellAnchor><xdr:from><xdr:col>0</xdr:col><xdr:colOff>${colOffPx*EMU}</xdr:colOff><xdr:row>0</xdr:row><xdr:rowOff>${rowOffPx*EMU}</xdr:rowOff></xdr:from><xdr:ext cx="${cx}" cy="${cy}"/><xdr:pic><xdr:nvPicPr><xdr:cNvPr id="2" name="GASTAT Logo"/><xdr:cNvPicPr><a:picLocks noChangeAspect="1"/></xdr:cNvPicPr></xdr:nvPicPr><xdr:blipFill><a:blip r:embed="rIdLogo"/><a:stretch><a:fillRect/></a:stretch></xdr:blipFill><xdr:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="${cx}" cy="${cy}"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom></xdr:spPr></xdr:pic><xdr:clientData/></xdr:oneCellAnchor></xdr:wsDr>`;
+  }
+  const buildWorkbookXml=sheetNames=>`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><bookViews><workbookView/></bookViews><sheets>${sheetNames.map((name,i)=>`<sheet name="${esc(name)}" sheetId="${i+1}" r:id="rIdSheet${i+1}"/>`).join('')}</sheets></workbook>`;
+  function buildContentTypes(sheetCount,hasImages,imagedSheetIndexes){
+    const overrides=[`<Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/>`];
+    for(let i=1;i<=sheetCount;i++)overrides.push(`<Override PartName="/xl/worksheets/sheet${i}.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>`);
+    overrides.push(`<Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>`);
+    if(hasImages)imagedSheetIndexes.forEach(i=>overrides.push(`<Override PartName="/xl/drawings/drawing${i}.xml" ContentType="application/vnd.openxmlformats-officedocument.drawing+xml"/>`));
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Default Extension="png" ContentType="image/png"/>${overrides.join('')}</Types>`;
+  }
+  const buildRootRels=()=>`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>`;
+  const buildWorkbookRels=sheetCount=>{
+    const rels=[];for(let i=1;i<=sheetCount;i++)rels.push(`<Relationship Id="rIdSheet${i}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet${i}.xml"/>`);
+    rels.push(`<Relationship Id="rIdStyles" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>`);
+    return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">${rels.join('')}</Relationships>`;
+  };
+  const buildSheetRels=({hyperlinks=[],hasLogo,sheetIndex})=>{
+    const rels=[];hyperlinks.forEach((h,i)=>rels.push(`<Relationship Id="rIdHlink${i}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink" Target="${esc(h.target)}" TargetMode="External"/>`));
+    if(hasLogo)rels.push(`<Relationship Id="rIdDrawing" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/drawing" Target="../drawings/drawing${sheetIndex}.xml"/>`);
+    return rels.length?`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">${rels.join('')}</Relationships>`:null;
+  };
+  const buildDrawingRels=()=>`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rIdLogo" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="../media/image1.png"/></Relationships>`;
+  function buildXlsxBlob({sheets,logoDataUri}){
+    const logoBytes=logoDataUri?b64ToBytes(logoDataUri):null;
+    const files=[];
+    const imagedSheetIndexes=sheets.map((s,i)=>s.hasLogo?i+1:0).filter(Boolean);
+    files.push({name:'[Content_Types].xml',data:strToBytes(buildContentTypes(sheets.length,imagedSheetIndexes.length>0,imagedSheetIndexes))});
+    files.push({name:'_rels/.rels',data:strToBytes(buildRootRels())});
+    files.push({name:'xl/workbook.xml',data:strToBytes(buildWorkbookXml(sheets.map(s=>s.name)))});
+    files.push({name:'xl/_rels/workbook.xml.rels',data:strToBytes(buildWorkbookRels(sheets.length))});
+    sheets.forEach((s,i)=>{
+      const idx=i+1,hasLogo=!!s.hasLogo,drawingRelId=hasLogo?'rIdDrawing':undefined;
+      files.push({name:`xl/worksheets/sheet${idx}.xml`,data:strToBytes(xmlSheet({rows:s.rows,cols:s.cols,freezeRow:s.freezeRow,rtl:s.rtl!==false,hyperlinks:s.hyperlinks||[],mergeCells:s.mergeCells||[],drawingRelId}))});
+      const relsXml=buildSheetRels({hyperlinks:s.hyperlinks||[],hasLogo,sheetIndex:idx});
+      if(relsXml)files.push({name:`xl/worksheets/_rels/sheet${idx}.xml.rels`,data:strToBytes(relsXml)});
+      if(hasLogo){
+        files.push({name:`xl/drawings/drawing${idx}.xml`,data:strToBytes(drawingXmlForLogo({imgWidthPx:s.logoWidthPx||160,imgHeightPx:s.logoHeightPx||41}))});
+        files.push({name:`xl/drawings/_rels/drawing${idx}.xml.rels`,data:strToBytes(buildDrawingRels())});
+      }
+    });
+    if(logoBytes&&imagedSheetIndexes.length)files.push({name:'xl/media/image1.png',data:logoBytes});
+    return {files,zip:extraFiles=>zipStore(files.concat(extraFiles||[]))};
+  }
+  window.__umrahXlsx={makeStyleRegistry,buildXlsxBlob,zipStore,strToBytes};
+})();
+</script>
+
 <div class="download-toast" id="downloadToast" role="status" aria-live="polite" aria-atomic="true" hidden><span class="download-toast-icon" aria-hidden="true">✓</span><span id="downloadToastText"></span></div>
+<script id="umrah-mobile-safe-blob-download">
+/* iOS Safari (والمتصفحات المبنية عليه، زي Chrome iOS) لا يحترم بشكل موثوق سمة
+   download على وصلة <a> لما يكون المصدر blob: URL — أحيانًا لا يحدث شي إطلاقًا عند
+   محاكاة الضغط برمجيًا (a.click()), رغم إن نفس الأسلوب يعمل تمام على Android/Chrome/
+   Desktop (تحقّقنا من هذا فعليًا). هذا الملف يُفتح مباشرة على الجوال (مو بس داخل
+   iframe)، فالمشكلة بالمتصفح نفسه لا بالتضمين. الحل المعروف والموصى به لسفاري:
+   افتح الـblob مباشرة (تبويب جديد أو نفس التبويب) بدل محاكاة ضغط رابط تنزيل، وسفاري
+   وقتها يعرض واجهته الخاصة (مشاركة/حفظ إلى الملفات) بدل ما يتجاهل الطلب بصمت. */
+window.__umrahSaveBlob=(blob,name)=>{
+  const isIOS=/iP(hone|od|ad)/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  const url=URL.createObjectURL(blob);
+  if(isIOS){
+    const opened=window.open(url,'_blank');
+    if(!opened)window.location.href=url;
+    setTimeout(()=>URL.revokeObjectURL(url),60000);
+    return;
+  }
+  const a=document.createElement('a');
+  a.href=url;a.download=name;a.rel='noopener';a.style.display='none';
+  document.body.appendChild(a);a.click();
+  setTimeout(()=>{a.remove();URL.revokeObjectURL(url)},1800);
+};
+</script>
 <script>window.showDownloadToast=(message)=>{const toast=document.getElementById('downloadToast'),text=document.getElementById('downloadToastText');if(!toast||!text)return;clearTimeout(window.__downloadToastTimer);text.textContent=message;toast.hidden=false;requestAnimationFrame(()=>toast.classList.add('is-visible'));window.__downloadToastTimer=setTimeout(()=>{toast.classList.remove('is-visible');setTimeout(()=>toast.hidden=true,180)},2800)};document.addEventListener('click',event=>{const target=event.target.closest('#exportBtn,#filteredExcelBtn,#officialExcelDownload,#jsonExportBtn,#apiExportBtn,#sdmxExportBtn,.toolbar-btn-excel,#comparisonExcel,#comparisonPng,#comparisonSvg,.repi-chart-action[data-action="png"],.repi-chart-action[data-action="svg"]');if(!target||target.matches('summary'))return;const action=target.dataset.action,id=target.id,mapped={exportBtn:'CSV',filteredExcelBtn:'Excel للنتائج الحالية',officialExcelDownload:'Excel الرسمي',jsonExportBtn:'JSON للنتائج',apiExportBtn:'JSON منظّم',sdmxExportBtn:'SDMX-CSV',comparisonExcel:'Excel',comparisonPng:'PNG',comparisonSvg:'SVG'}[id],label=action?.toUpperCase()||mapped||(target.classList.contains('toolbar-btn-excel')?'Excel':'الملف');setTimeout(()=>window.showDownloadToast?.(`تم تجهيز ملف ${label} وبدء تنزيله`),action==='png'||id==='comparisonPng'?650:180)},true);</script>
 <!-- FULL-INDEX-DEV-NAV:BEGIN -->
 <header
@@ -6707,12 +6861,23 @@ body.chart-modal-open,body.repi-modal-open{overflow:hidden!important}
 </style>
 <main class="container" id="main-content" tabindex="-1">
     <section class="explorer" aria-label="بيانات النشرة">
-      <div class="explorer-head"><span class="eyebrow">بيانات النشرة</span></div>
-      <div class="publication-strip" aria-label="معلومات النشرة">
-        <span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v5l3 2"/></svg><span>تاريخ النشر</span><strong><time datetime="2026-08-23">2026/08/23</time></strong></span>
-        <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 6M20 5v6h-6"/></svg><span>دورية التحديث</span><strong>ربع سنوي</strong></span>
-        <span class="publication-strip-next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6h14v14H5zM8 3v6M16 3v6M5 10h14"/></svg><span>النشرة القادمة</span><strong><time datetime="2026-11-29">2026/11/29</time></strong></span>
-        <a href="https://azghamdi.github.io/releases-archive/">الرجوع للنشرات السابقة <span aria-hidden="true">←</span></a>
+      <div class="pubinfo-head">
+        <span class="pubinfo-eyebrow">بيانات النشرة</span>
+        <a class="pubinfo-back" href="https://azghamdi.github.io/releases-archive/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>الرجوع للنشرات السابقة</a>
+      </div>
+      <div class="pubinfo-grid" aria-label="معلومات النشرة">
+        <div class="pubinfo-item">
+          <span class="pubinfo-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v5l3 2"/></svg></span>
+          <span class="pubinfo-text"><span>تاريخ النشر</span><strong><time datetime="2026-08-23">2026/08/23</time></strong></span>
+        </div>
+        <div class="pubinfo-item">
+          <span class="pubinfo-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/><path d="M9 15l1.5 1.5L14 13"/></svg></span>
+          <span class="pubinfo-text"><span>دورية التحديث</span><strong>ربع سنوي</strong></span>
+        </div>
+        <div class="pubinfo-item">
+          <span class="pubinfo-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6h14v14H5zM8 3v6M16 3v6M5 10h14"/></svg></span>
+          <span class="pubinfo-text"><span>النشرة القادمة</span><strong><time datetime="2026-11-29">2026/11/29</time></strong></span>
+        </div>
       </div>
       <section class="release-highlight" aria-labelledby="releaseHighlightTitle">
         <div class="release-highlight-head">
@@ -6801,15 +6966,15 @@ body.chart-modal-open,body.repi-modal-open{overflow:hidden!important}
             <div class="advanced-export-menu" id="advancedExportMenu" hidden>
               <div class="advanced-export-head"><strong>تنزيل بيانات الجدول الحالي</strong><span>الجدول: <b id="developerDatasetName">أبرز مؤشرات إحصاءات العمرة</b> · <b id="developerRowCount">6</b> صفوف مطابقة</span></div>
               <div class="advanced-export-primary" aria-label="تنزيل النتائج الحالية">
-                <button class="advanced-export-option advanced-export-option-featured" id="filteredExcelBtn" type="button"><span class="advanced-export-code">XLSX</span><span><strong>Excel مفلتر</strong><small>النتائج الحالية + ورقة معلومات</small></span><svg class="advanced-export-download" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"/></svg></button>
-                <button class="advanced-export-option" id="exportBtn" type="button"><span class="advanced-export-code">CSV</span><span><strong>CSV مفلتر</strong><small>للتحليل السريع</small></span><svg class="advanced-export-download" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"/></svg></button>
+                <button class="advanced-export-option advanced-export-option-featured" id="filteredExcelBtn" type="button"><span class="advanced-export-code">XLSX</span><span><strong>Excel</strong></span><svg class="advanced-export-download" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"/></svg></button>
+                <button class="advanced-export-option" id="exportBtn" type="button"><span class="advanced-export-code">CSV</span><span><strong>CSV</strong></span><svg class="advanced-export-download" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"/></svg></button>
               </div>
               <div class="developer-formats" id="developerFormats">
-                <button class="developer-formats-trigger" id="developerFormatsTrigger" type="button" aria-expanded="false" aria-controls="developerFormatsList"><span><strong>صيغ للمطورين</strong><small>JSON وSDMX</small></span><span class="developer-formats-count">3</span><svg class="developer-formats-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></button>
+                <button class="developer-formats-trigger" id="developerFormatsTrigger" type="button" aria-expanded="false" aria-controls="developerFormatsList"><span><strong>صيغ للمطورين</strong><small>JSON وSDMX</small></span><span class="developer-formats-count">2</span><svg class="developer-formats-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg></button>
                 <div class="developer-formats-list" id="developerFormatsList" hidden>
-                  <button class="advanced-export-option" id="jsonExportBtn" type="button"><span class="advanced-export-code">JSON</span><span><strong>JSON — النتائج</strong><small>سجلات الجدول المطابقة فقط</small></span><svg class="advanced-export-download" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"/></svg></button>
-                  <button class="advanced-export-option" id="apiExportBtn" type="button"><span class="advanced-export-code">JSON+</span><span><strong>JSON منظّم</strong><small>البيانات مع معلومات الجدول والفلاتر</small></span><svg class="advanced-export-download" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"/></svg></button>
-                  <button class="advanced-export-option" id="sdmxExportBtn" type="button"><span class="advanced-export-code">CSV</span><span><strong>SDMX-CSV</strong><small>صيغة تبادل للبيانات الإحصائية</small></span><svg class="advanced-export-download" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"/></svg></button>
+                  <button class="advanced-export-option" id="jsonExportBtn" type="button"><span class="advanced-export-code">JSON</span><span><strong>JSON</strong></span><svg class="advanced-export-download" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"/></svg></button>
+                  <button class="advanced-export-option" id="apiExportBtn" type="button"><span class="advanced-export-code">JSON+</span><span><strong>JSON منظّم</strong></span><svg class="advanced-export-download" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"/></svg></button>
+                  <button class="advanced-export-option" id="sdmxExportBtn" type="button"><span class="advanced-export-code">CSV</span><span><strong>SDMX-CSV</strong></span><svg class="advanced-export-download" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"/></svg></button>
                 </div>
               </div>
               <style>
@@ -6824,7 +6989,7 @@ body.chart-modal-open,body.repi-modal-open{overflow:hidden!important}
                 #developerFormatsList[hidden]{display:none!important}
                 #developerFormatsList:not([hidden]){display:grid!important;padding:8px!important;border-top:1px solid #d7e2dc!important}
               </style>
-              <a class="advanced-export-option advanced-export-official" id="officialExcelDownload" href="Umrah%20Statistics%20Q1%202026-AR.xlsx" download><span class="advanced-export-code">XLSX</span><span><strong>Excel — جميع جداول النشرة</strong><small>ملف مجمّع يُنشأ من البيانات المضمنة في الصفحة</small></span><svg class="advanced-export-download" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"/></svg></a>
+              <a class="advanced-export-option advanced-export-official" id="officialExcelDownload" href="Umrah%20Statistics%20Q1%202026-AR.xlsx" download><span class="advanced-export-code">XLSX</span><span><strong>Excel — جميع جداول النشرة</strong></span><svg class="advanced-export-download" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"/></svg></a>
               <p class="advanced-export-note">تُنشأ جميع صيغ التنزيل مباشرة داخل المتصفح من بيانات النشرة المضمنة في الصفحة.</p>
             </div>
           </div>
@@ -7370,7 +7535,7 @@ body.chart-modal-open,body.repi-modal-open{overflow:hidden!important}
         let top='',bottom='',i=0;while(i<parsed.length){const item=parsed[i];if(!item.group){top+=`<th scope="col" rowspan="2" aria-sort="${state.sort.column===item.index?(state.sort.direction===1?'ascending':'descending'):'none'}">${button(item)}</th>`;i++;continue}let count=1;while(i+count<parsed.length&&parsed[i+count].group===item.group)count++;top+=`<th class="column-group" scope="colgroup" colspan="${count}">${item.group}</th>`;for(let j=0;j<count;j++){const child=parsed[i+j];bottom+=`<th scope="col" aria-sort="${state.sort.column===child.index?(state.sort.direction===1?'ascending':'descending'):'none'}">${button(child)}</th>`}i+=count}return `<tr class="column-groups">${top}</tr><tr>${bottom}</tr>`;
       }
       function renderTable(){const d=data.datasets[state.dataset];els.title.textContent=d.title;els.desc.textContent=d.description.replace(/\s*—\s*جدول\s*\([^)]*\)\s*$/,'');renderDefinitions();els.head.innerHTML=tableHeader(d);els.head.querySelectorAll('button').forEach(b=>b.onclick=()=>{const c=Number(b.dataset.sort);state.sort=state.sort.column===c?{column:c,direction:-state.sort.direction}:{column:c,direction:1};renderTable()});const rows=filteredRows();const pages=Math.max(1,Math.ceil(rows.length/state.pageSize));if(state.page>pages)state.page=pages;const start=(state.page-1)*state.pageSize;const visible=rows.slice(start,start+state.pageSize);els.count.textContent=rows.length?`عرض ${start+1}–${Math.min(start+state.pageSize,rows.length)} من ${rows.length} صفًا`:'لا توجد نتائج';const dlCount=document.querySelector('#filteredDownloadCount');if(dlCount)dlCount.textContent=`(${rows.length})`;els.body.innerHTML=visible.length?visible.map(r=>`<tr class="${String(r[0]).includes('إجمالي')?'row-total':''}">`+r.map((v,i)=>{const num=Number(v),classes=[];if(v!==''&&!Number.isNaN(num))classes.push('numeric');return i===0?`<th scope="row" class="${classes.join(' ')}">${format(v,d.columns[i],d,i)}</th>`:`<td class="${classes.join(' ')}">${format(v,d.columns[i],d,i)}</td>`}).join('')+'</tr>').join(''):'<tr><td class="empty" colspan="'+d.columns.length+'">لم يتم العثور على بيانات مطابقة.</td></tr>';renderPager(pages)}
-      const renderTableBase=renderTable;renderTable=function(){renderTableBase();const datasetName=document.getElementById('developerDatasetName'),rowCount=document.getElementById('developerRowCount');if(datasetName)datasetName.textContent=data.datasets[state.dataset].shortTitle;if(rowCount)rowCount.textContent=String(filteredRows().length)};
+      const renderTableBase=renderTable;renderTable=function(){renderTableBase();const datasetName=document.getElementById('developerDatasetName'),rowCount=document.getElementById('developerRowCount');if(datasetName)datasetName.textContent=data.datasets[state.dataset].shortTitle.replace(/^[\d.]+\s*—\s*/,'');if(rowCount)rowCount.textContent=String(filteredRows().length)};
       function renderPager(pages){els.pager.innerHTML='';const add=(label,page,disabled=false,active=false)=>{const b=document.createElement('button');b.type='button';b.className='page-btn'+(active?' active':'');b.textContent=label;b.disabled=disabled;b.onclick=()=>{state.page=page;renderTable();document.querySelector('.explorer').scrollIntoView({behavior:'smooth',block:'start'})};els.pager.appendChild(b)};add('‹',Math.max(1,state.page-1),state.page===1);let from=Math.max(1,state.page-2),to=Math.min(pages,from+4);from=Math.max(1,to-4);for(let p=from;p<=to;p++)add(String(p),p,false,p===state.page);add('›',Math.min(pages,state.page+1),state.page===pages)}
       function renderAll(){renderNav();renderFilters();renderTable()}
       window.downloadFilteredExcel=()=>{
@@ -10812,5 +10977,47 @@ addEventListener('load',send);new ResizeObserver(send).observe(document.getEleme
   });
 })();
 </script>
+<style id="hide-dataset-table-count-badge">
+#datasetNav .dataset-browser-count{display:none!important}
+</style>
+<style id="hide-reset-filters-btn">
+#dataTablePanel #resetBtn{display:none!important}
+</style>
+<style id="hide-structured-json-btn">
+#developerFormatsList #apiExportBtn{display:none!important}
+</style>
+<style id="hide-change-dataset-btn">
+#dataTablePanel .change-dataset-btn{display:none!important}
+</style>
+<style id="hide-comparison-reset-btn">
+#comparePanel #comparisonReset{display:none!important}
+</style>
+<style id="publication-info-redesign">
+#main-content .pubinfo-head{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:14px!important;padding:16px 22px!important;border-bottom:1px solid var(--line)!important;margin:0!important;background:transparent!important}
+#main-content .pubinfo-eyebrow{display:flex!important;align-items:center!important;gap:8px!important;color:#0f5132!important;font-weight:800!important;font-size:14px!important}
+#main-content .pubinfo-eyebrow::before{content:""!important;width:7px!important;height:7px!important;border-radius:50%!important;background:#1b8354!important;flex:0 0 auto!important}
+
+#main-content .pubinfo-back{display:inline-flex!important;align-items:center!important;gap:6px!important;color:#0f5132!important;font-weight:700!important;font-size:13px!important;text-decoration:none!important;padding:6px 12px!important;border-radius:999px!important;background:#edf7f2!important;transition:background .15s!important;white-space:nowrap!important}
+#main-content .pubinfo-back:hover,#main-content .pubinfo-back:focus-visible{background:#dff0e6!important;text-decoration:none!important}
+#main-content .pubinfo-back svg{width:15px!important;height:15px!important;fill:none!important;stroke:currentColor!important;stroke-width:2!important;stroke-linecap:round!important;stroke-linejoin:round!important;flex:0 0 auto!important}
+#main-content .pubinfo-grid{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:0!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important}
+#main-content .pubinfo-item{display:flex!important;align-items:center!important;gap:14px!important;padding:18px 22px!important;border-inline-end:1px solid var(--line)!important;min-width:0!important}
+#main-content .pubinfo-item:last-child{border-inline-end:0!important}
+#main-content .pubinfo-icon{flex:0 0 auto!important;display:grid!important;place-items:center!important;width:42px!important;height:42px!important;border-radius:12px!important;background:#edf7f2!important;color:#1b8354!important}
+#main-content .pubinfo-icon svg{width:21px!important;height:21px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.8!important;stroke-linecap:round!important;stroke-linejoin:round!important}
+#main-content .pubinfo-text{min-width:0!important;display:block!important}
+#main-content .pubinfo-text span{display:block!important;color:#60726b!important;font-size:12px!important;font-weight:600!important;margin:0 0 3px!important}
+#main-content .pubinfo-text strong{display:block!important;color:#17352b!important;font-size:16px!important;font-weight:800!important;white-space:nowrap!important}
+@media(max-width:760px){
+  #main-content .pubinfo-grid{grid-template-columns:1fr!important}
+  #main-content .pubinfo-item{border-inline-end:0!important;border-bottom:1px solid var(--line)!important}
+  #main-content .pubinfo-item:last-child{border-bottom:0!important}
+}
+@media(max-width:600px){
+  #main-content .pubinfo-head{flex-direction:column!important;align-items:stretch!important;gap:10px!important;padding:14px!important}
+  #main-content .pubinfo-back{justify-content:center!important}
+  #main-content .pubinfo-item{padding:14px!important}
+}
+</style>
 </body>
 </html>
